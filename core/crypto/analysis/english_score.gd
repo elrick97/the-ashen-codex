@@ -99,7 +99,7 @@ static func _byte_table() -> PackedFloat64Array:
 			p = SPACE_P
 		elif b == 10:
 			p = NEWLINE_P
-		elif PUNCT.find(String.chr(b)) >= 0:
+		elif b > 0 and PUNCT.find(String.chr(b)) >= 0:
 			p = PUNCT_P / float(PUNCT.length())
 		elif b >= 48 and b <= 57:
 			p = DIGIT_P / 10.0
