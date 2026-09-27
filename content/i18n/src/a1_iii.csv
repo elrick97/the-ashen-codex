@@ -1,0 +1,176 @@
+keys,en
+PZ_P07_TITLE,The Steward Grows Clever
+PZ_P07_BRIEF,Five wheels turn together. Find each column's peak and set the drums.
+PZ_P07_HINT1,"Five teeth, five families. Split the letters by their place in the row before you stare at any of them."
+PZ_P07_HINT2,Each family is just a shift wearing a mask. Read its tallest bar as E and the drum falls into place.
+PZ_P07_HINT3,Set one drum at a time and watch the scroll; it will tell you the moment a column reads true.
+LTR_P07,"Warden Tallow,\n\nThe Lord sends a new cipher from his own library, five teeth to its wheel. Use it from this day.\n\nThe carts cross at Blackwater ford after moonrise. Count them twice and say nothing to the reeve.\n\nYour servant in eternity,\nVeneric Soll"
+LTR_P07_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by raven"
+PZ_P08_TITLE,Kasiski's Lens
+PZ_P08_BRIEF,Measure the gaps between repeated letters to learn how many teeth this key has.
+PZ_P08_HINT1,Look for the same three letters showing up twice in a message this long. That is never an accident.
+PZ_P08_HINT2,Measure the distance between each repeat. The key's length divides most of those numbers.
+PZ_P08_HINT3,"Take the common factor of your spacings, split the text into that many columns, then read each peak."
+LTR_P08,"Steward,\n\nYou try my patience. The tithe is not a suggestion, and Hollowmere is not exempt from it. Twice the tithe came short, and twice you blamed the reeve, the weather, the carts.\n\nCollect the tithe at Hollowmere before the new moon, or find yourself replaced before the new moon after that.\n\nBlood is owed, blood is paid, world without end.\n\nHollowmere remembers its tithe even when its steward forgets his sums, and the new moon does not wait on excuses. Recite it until you believe it. Blood is owed, blood is paid, world without end.\n\nSee the tithe is whole.\n\nCasimir Morrow-Veil"
+LTR_P08_FROM,"From Lord Casimir Morrow-Veil to Steward Veneric Soll, by raven"
+PZ_P09_TITLE,The Loom of Columns
+PZ_P09_BRIEF,Too short for repeats to help. Slide the loom until the strands look like English.
+PZ_P09_HINT1,Nothing repeats twice in a note this short. Don't waste an hour hunting for a pattern that isn't there.
+PZ_P09_HINT2,Split the letters into strands and test each width. English strands clump; a wrong width scatters.
+PZ_P09_HINT3,"Find the width where the vial reads truest, then read each strand's tallest bar as E."
+LTR_P09,"Tallow,\n\nWord from the manor: the night has moved. Bring the carts before dusk falls, not after moonrise as before. The old crossing floods whenever it rains, so use the north path this time and go quietly. Burn this note once you have read it.\n\nSoll"
+LTR_P09_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by hand"
+PZ_P10_TITLE,Bit Rosary
+PZ_P10_BRIEF,"Flip the beads that differ, then pour the byte twice to find the key."
+PZ_P10_HINT1,A bead only knows heads or tails. Flip the ones where your two rows don't agree.
+PZ_P10_HINT2,Pour the same key over the sum twice and it cancels itself out. That is the whole trick of it.
+PZ_P10_HINT3,"Once you have one letter, turn the dial through all its settings and keep whichever reads most like English."
+PZ_P10_WORD,BLOOD
+LTR_P10,"They watch the north gate after dark now. Do not use the old path again, and burn this once you have read it."
+LTR_P10_FROM,"From an unnamed thrall of Hollowmere, passed hand to hand"
+PZ_P11_TITLE,The Litany Key
+PZ_P11_BRIEF,"Find the key's length on the comb, then tune each strand to its truest English."
+PZ_P11_HINT1,"A prayer repeated is still a prayer. Somewhere in this cipher, the same words keep answering themselves."
+PZ_P11_HINT2,Compare blocks of bytes against each other. The size where they agree most is the key's length.
+PZ_P11_HINT3,Split the bytes into that many strands and turn each dial until its strand scores like English.
+LTR_P11,"Casimir Morrow-Veil,\n\nOur friend in the Quill is worth ten spies. He sits among the cipher-monks and copies their manifests before the ink is dry, and for a purse of silver and a promise of turned blood he tells us which routes the Order walks and which raven-roosts they watch.\n\nHe calls himself devout. He is merely for sale, which is a kind of devotion I understand far better than prayer.\n\nThrough him we know the Order reads more of our mail than either of us would like, and that they have not yet broken the new cipher. Use that ignorance while it lasts. Do not write his name where a courier might read it.\n\nYour servant in eternity,\nVeneric Soll"
+LTR_P11_FROM,"From Steward Veneric Soll to Lord Casimir Morrow-Veil, by raven"
+PZ_P12_TITLE,BOSS: The Twice-Used Pad
+PZ_P12_BRIEF,Drag a guessed word across both streams until real words answer it back.
+PZ_P12_HINT1,"Two letters, one careless key. Whatever you guess in one, you get for free in the other."
+PZ_P12_HINT2,"Slide a likely word along the combined stream. Where it fits, both sides turn to readable text."
+PZ_P12_HINT3,"Pin your crib where the words make sense, then use what falls out to guess the next word along."
+LTR_P12_A,"Warden Tallow,\n\nBe ready. The tithe falls on the night of the black moon, at the salt barn. Bring the ledger; count twice. The reeve is not to be trusted with the tally.\n\nYour servant in eternity,\nVeneric Soll"
+LTR_P12_A_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by raven"
+LTR_P12_B,"Casimir Morrow Veil,\n\nOur friend in the Quill is no friend. Brother Ansgar sells them our routes, and has done since the salt barn burned. Silence him before new moon.\n\nYour servant in eternity,\nVeneric Soll"
+LTR_P12_B_FROM,"From Steward Veneric Soll to Lord Casimir Morrow-Veil, by raven"
+PZ_P12_TARGET_NIGHT,the night of the black moon
+PZ_P12_TARGET_NAME,Brother Ansgar
+PZ_P12_LABEL_NIGHT,When:
+PZ_P12_LABEL_NAME,Who:
+PZ_P12_CRIB_1, THE 
+PZ_P12_CRIB_2,TITHE
+PZ_P12_CRIB_3,SALT BARN
+PZ_P12_CRIB_4,YOUR SERVANT IN ETERNITY
+PZ_P12_CRIB_5,BROTHER
+PZ_P12_CRIB_6,LEDGER
+CDX_A1_VIGENERE_TITLE,"The Vigenere Cipher: many locks, one dull key"
+CDX_A1_VIGENERE_BODY,"A Vigenere cipher is many Caesar shifts interleaved, one for each letter of a keyword. Write the key under the message, repeating it to length; each plaintext letter shifts by its key letter beneath it. A five-letter key means five separate shift ciphers, laced together column by column. It was first described by Giovan Battista Bellaso in 1553, though history gave the credit to Blaise de Vigenere, who came later. For nearly three centuries the court called it le chiffre indechiffrable, the unbreakable cipher. It is not unbreakable. It only asks a patient reader to notice that the key itself repeats."
+CDX_A1_VIGENERE_EXAMPLE,PT  ATTACKATDAWN\nKEY LEMON\nCT  LXFOPVEFRNHR
+CDX_A1_VIGENERE_WRONG,"House Morrow-Veil trusted a single clever word to guard every letter for a season. They changed the wheel once and then trusted it, as if cleverness bought silence forever. It did not; it only bought time, and time is what the Order had plenty of."
+CDX_A1_VIGENERE_ASIDE,"Modern ciphers still fear a repeating key. A stream cipher that reuses its keystream, or a block cipher run in a mode that behaves like one, leaks exactly the way this one does: patterns in the key become patterns in the world."
+CDX_A1_VIGENERE_M1,"Five wheels, not five secrets. Same trick five times over, wearing five different hats. Don't let it scare you, boy."
+CDX_A1_VIGENERE_M2,"I'm rounding here: the real fight was who wrote it first, some Italian or some Frenchman. Doesn't change how you crack it."
+CDX_A1_KASISKI_TITLE,Kasiski's Lens: measuring the gaps
+CDX_A1_KASISKI_BODY,"If the same three or four letters appear twice in a Vigenere ciphertext, it is usually because the same plaintext letters lined up with the same stretch of key, some whole number of key-lengths apart. Measure the distance between each repeat, and the key's true length will divide most of those distances. Short repeats can happen by pure chance, so trust trigrams and longer, and trust a pattern that shows up more than once. Friedrich Kasiski published this attack in 1863. Charles Babbage broke Vigenere ciphers by a similar method roughly a decade earlier, but he never published his work, so his name waited a century for credit."
+CDX_A1_KASISKI_EXAMPLE,CT  KBRSCXPVPJGFFIXWRCQXYYBPUQNCJBBPU\nBPU repeats at 22 and 30\ngap = 8 = 2 x 4\ntry a key length of 4
+CDX_A1_KASISKI_WRONG,"The steward believed a long enough message could never repeat itself by accident, so he never varied his key mid-letter. Patience alone unravelled him; the repeats were sitting in plain sight the entire time."
+CDX_A1_KASISKI_ASIDE,"The same idea drives modern traffic analysis: repeated patterns in encrypted data, even without breaking the cipher itself, tell an analyst about structure, timing, or reused keys underneath."
+CDX_A1_KASISKI_M1,Coincidences happen. Two repeats might be luck. Ten repeats at the same spacing is a confession.
+CDX_A1_KASISKI_M2,Babbage did this first and told nobody. A monk who doesn't publish is a monk who gets forgotten.
+CDX_A1_IOC_TITLE,Index of Coincidence: the shape of a language
+CDX_A1_IOC_BODY,"Every language has a fingerprint: some letters turn up far more often than others, so two letters drawn at random from real English are more likely to match than two drawn from gibberish. The index of coincidence measures that odds of a match: IC equals the sum of each letter's count times one less than itself, divided by the text's length times one less than itself. Ordinary English scores near 0.066 to 0.067. Purely random letters score near 0.038. Split a Vigenere ciphertext into the wrong number of columns and each column still looks random. Split it into the right number, matching the key's length, and every column suddenly looks like English again. William Friedman formalised this measure in 1922."
+CDX_A1_IOC_EXAMPLE,"ATTACKATDAWN, N = 12 letters\nA x4  T x3  others x1 each\nIC = (12+6) / (12x11) = 0.136\nshort text, so this reads high"
+CDX_A1_IOC_WRONG,"The Court assumed any cipher without repeated words was safe from counting. They never counted the letters themselves. A vial of blood-purity, or a column of tallies, cares nothing for a clever vocabulary."
+CDX_A1_IOC_ASIDE,"The index of coincidence still helps modern analysts fingerprint a language or detect that two supposedly random streams are secretly related, long before anyone reads a single decrypted word."
+CDX_A1_IOC_M1,"Random letters land near 0.038. English lands near 0.067. Memorise both, forget the decimals if you must."
+CDX_A1_IOC_M2,Twelve letters is too few to trust. I picked a short example so you could count it on your fingers.
+CDX_A1_XOR_TITLE,"Bits, Bytes and the Chalice: what XOR is"
+CDX_A1_XOR_BODY,"Every letter the alchemists write becomes a byte, eight little beads that are each either lit or dark. XOR compares two beads and lights the result only when exactly one of them was lit; two dark or two lit beads both go dark. Flip the same bead twice with the same key and it returns to where it started, because a thing XORed with itself vanishes, and a thing XORed with darkness stays itself. XOR is its own undoing, which is exactly why the Court's alchemists love it: one chalice pours the cipher on, and the very same chalice, poured again, pours it back off. The bead widget on this page lets you pour it yourself."
+CDX_A1_XOR_EXAMPLE,A = 01000001\nA xor A = 00000000\nA xor 0 = 01000001
+CDX_A1_XOR_WRONG,"The alchemists assumed a chalice poured twice was twice as strong. It is not; poured twice with the same key, it undoes itself completely, which is a lesson in arithmetic dressed up as a lesson in wine."
+CDX_A1_XOR_ASIDE,"XOR is the workhorse of real ciphers too: stream ciphers, block-cipher modes and one-time pads all lean on the same self-cancelling trick to combine key and message."
+CDX_A1_XOR_M1,A XOR A is nothing. Pour the same wine into the same cup twice and you're back where you started.
+CDX_A1_XOR_M2,"I'm simplifying the beads to eight per letter. Real machines sometimes use bigger words, but the pouring works the same."
+CDX_A1_SINGLE_XOR_TITLE,"The Single Chalice: one key, two hundred fifty six guesses"
+CDX_A1_SINGLE_XOR_BODY,"Pour one single key-byte over an entire message and you get single-byte XOR, which is nothing more than a Caesar cipher wearing bytes instead of letters. There are only two hundred fifty six possible keys, few enough to try every single one. For each candidate key, undo the pour and ask how English the result looks: common letters common, spaces where you expect them, no strings of nonsense. Score every candidate that way and the true key stands out from the noise, the same as reading the tallest bar of a frequency chart once told you which shift was Caesar's."
+CDX_A1_SINGLE_XOR_EXAMPLE,"PT  MEET AT DUSK\nKEY one byte, 0x2B\nCT  666E6E7F0B6A7F0B6F7E7860\ntry all 256, score English"
+CDX_A1_SINGLE_XOR_WRONG,"The Court believed one key-byte poured over a whole message was safe simply because there were hundreds of choices. Two hundred fifty six is a crowd to a man guessing blind, and nothing at all to a scale that scores every guess at once."
+CDX_A1_SINGLE_XOR_ASIDE,"This exact technique, scoring every single-byte key by letter frequency, is a standard first exercise in modern cryptography training, because it teaches the scoring habit every later attack in this game reuses."
+CDX_A1_SINGLE_XOR_M1,"Two hundred fifty six keys. Count them on your fingers forty times, or let the gauge do it."
+CDX_A1_SINGLE_XOR_M2,Same trick as reading the wheel's tallest bar as E. Bytes just make it look scarier.
+CDX_A1_REPEATING_XOR_TITLE,The Litany Key: Vigenere in bytes
+CDX_A1_REPEATING_XOR_BODY,"Repeat a short key over and over and XOR it against a long message, byte by byte, and you have built the same machine as Vigenere, only in bytes instead of letters. Finding the key's length works differently here: measure the Hamming distance, the count of differing bits, between blocks of the ciphertext, divide by the block size, and average across several pairs. The key size giving the smallest normalized distance is usually the true one, since blocks under a matching key line up like English lines up with itself. Split the bytes into that many strands; each was XORed with one repeated byte, so it falls to the same single-chalice attack."
+CDX_A1_REPEATING_XOR_EXAMPLE,"this is a test\nwokka wokka!!!\nhamming distance = 37 bits\ntry sizes, keep the smallest"
+CDX_A1_REPEATING_XOR_WRONG,"The steward trusted a single line of liturgy to guard everything he wrote, believing scripture too sacred to be predictable. Sacred words repeat by design; that is exactly what made them countable."
+CDX_A1_REPEATING_XOR_ASIDE,"This attack is the classic first step against repeating-key XOR in real cryptanalysis exercises, and the same Hamming-distance trick appears whenever an analyst suspects two supposedly independent streams share a hidden period."
+CDX_A1_REPEATING_XOR_M1,"Hamming distance just counts where two things disagree, bit for bit. Nothing mystical about it."
+CDX_A1_REPEATING_XOR_M2,"I'm giving you the famous test pair, this is a test and wokka wokka, because everyone checks their code against it."
+CDX_A1_OTP_TITLE,The One-Time Pad: a key you must never repeat
+CDX_A1_OTP_BODY,"A one-time pad is unbreakable, but only under conditions nobody's house ever quite manages: a truly random key, as long as the message, kept secret, and never used twice. Reuse it once and the magic that made it perfect becomes the flaw that breaks it. XOR two messages under the same pad and the pad cancels out entirely, leaving the XOR of the two plaintexts, no key required. Guess a likely word in one message, XOR that guess against the stream, and fragments of the other message spill out wherever the guess was right. Shannon proved the perfect-secrecy conditions in 1949; the Soviets broke their own rule, and codebreakers spent decades reading the consequences."
+CDX_A1_OTP_EXAMPLE,"P1 ATTACKS  P2 ATTIRES\nsame pad; C1 xor C2 = P1 xor P2\nguess P1, xor result gives P2\nwrong guess yields only garbage"
+CDX_A1_OTP_WRONG,"The Order assumed any two intercepted letters must hide two different secrets. A shared, reused key ties them together instead, so cracking one crib into the stream cracks a second letter for free."
+CDX_A1_OTP_ASIDE,"This exact failure sank Soviet intelligence traffic in the VENONA program of the 1940s. Its modern descendant is nonce reuse in stream ciphers and in AES-GCM, where a repeated nonce leaks the keystream and, in GCM's case, can let a forger fake new messages entirely."
+CDX_A1_OTP_M1,A pad used once is a vault. A pad used twice is a diary somebody left open.
+CDX_A1_OTP_M2,Perfect secrecy needs a truly random key as long as the message. Real houses almost never manage all four conditions at once.
+CDX_A1_OTP_M3,"VENONA took codebreakers years to crack open, and it only worked because the Soviets got lazy first. Laziness is the whole lesson of this act."
+DLG_A1_III_INTRO_01,I lifted this off the steward's writing box while his clerk was busy choking on a fish bone.
+DLG_A1_III_INTRO_02,What is it?
+DLG_A1_III_INTRO_03,"One line, in his own hand: the key has five teeth."
+DLG_A1_III_INTRO_04,"Five teeth. Five what, Kett?"
+DLG_A1_III_INTRO_05,"Five wheels, all turning together. One shift cipher was a toy. This is a machine."
+DLG_A1_III_INTRO_06,The steward's grown clever.
+DLG_A1_III_INTRO_07,Clever men still write their secrets down. That's the only reason we still eat.
+DLG_A1_III_INTRO_08,"So we counted teeth, and we went hunting again."
+DLG_A1_P07_AFTER_01,"Blackwater ford, the letter said. The carts would cross there after moonrise."
+DLG_A1_P07_AFTER_02,"A ford's a fine place for an ambush, if the reeds don't drown you first."
+DLG_A1_P07_AFTER_03,We could take the tithe there.
+DLG_A1_P07_AFTER_04,Or lose you to the current same as any drunk soldier. We watch first.
+DLG_A1_P07_AFTER_05,So we went to watch the water learn its new route.
+DLG_A1_P08_AFTER_01,This one came from the Lord himself. Casimir Morrow-Veil doesn't waste ink on stewards he likes.
+DLG_A1_P08_AFTER_02,A bored old thing shouting scripture at a frightened man. I've heard worse sermons.
+DLG_A1_P08_AFTER_03,"He repeats himself. The tithe, Hollowmere, the new moon, over and over."
+DLG_A1_P08_AFTER_04,Bored men repeat themselves. Lucky for us.
+DLG_A1_P08_AFTER_05,"I filed that away and said nothing, the way Kett taught me."
+DLG_A1_P08_REMARK_01,"Repetition. Your Lord Casimir bellows the same liturgy until it hardens into law, and a man who repeats himself can be timed."
+DLG_A1_P08_REMARK_02,My cousin used the same key for ninety years. He considered it tradition. I consider it evidence.
+DLG_A1_P08_REMARK_03,You sound almost fond of him.
+DLG_A1_P08_REMARK_04,I am fond of evidence. Ask me again about my cousin.
+DLG_A1_P09_AFTER_01,"A hurried note, this time. No flourish, just the night moved and a new path."
+DLG_A1_P09_AFTER_02,Hurried men make mistakes. Let's hope the steward's clerk is one of them.
+DLG_A1_P09_AFTER_03,"If the night's moved, Hollowmere has less warning than before."
+DLG_A1_P09_AFTER_04,Then we ride faster than the ravens. Move.
+DLG_A1_P10_AFTER_01,"The next cipher wasn't the steward's hand at all. It counted in beads, like the Court's own alchemists."
+DLG_A1_P10_AFTER_02,Numbers dressed up as prayer beads. The Undying borrow from anyone when it suits them.
+DLG_A1_P10_AFTER_03,Even from us?
+DLG_A1_P10_AFTER_04,Especially from us. Now count the damned things.
+DLG_A1_P11_AFTER_01,Buried in the steward's report to the Lord: our friend in the Quill.
+DLG_A1_P11_AFTER_02,Say that again.
+DLG_A1_P11_AFTER_03,"Someone in the Order is theirs, Kett. Someone reads what we read."
+DLG_A1_P11_AFTER_04,Not a name yet. Just a shadow with a habit and a price.
+DLG_A1_P11_AFTER_05,We have to find out who.
+DLG_A1_P11_REMARK_01,A liturgy makes a poor secret and a fine key. Sacred words repeat because men need to be certain of them.
+DLG_A1_P11_REMARK_02,Your Order should have known that better than my house does.
+DLG_A1_P11_REMARK_03,We're finding that out.
+DLG_A1_III_END_01,The last pad gave up two names where there should have been one. The second was Brother Ansgar.
+DLG_A1_III_END_02,Kett went the colour of the page. I had never seen him go that quiet.
+DLG_A1_III_END_03,"I thought of Odo Lusk, and what it had cost to learn how careless a courier could be."
+DLG_A1_III_END_04,"I thought of Odo Lusk, riding free somewhere with a doctored letter and Kett's borrowed blood."
+DLG_A1_III_END_05,"I thought of Wenna's wrist, and what I had taken from her to get this far."
+DLG_A1_III_END_06,"I thought of Wenna's wrist, offered and refused, and wondered if it had mattered."
+DLG_A1_III_END_07,"And I thought of what the Thirst had already cost us both, getting here."
+DLG_A1_III_END_08,One of ours had sold us to House Morrow-Veil. Ansgar. Key-warden of the Silent Quill.
+DLG_A1_III_END_09,"Two roads, and no clean one. Warn the village, or hold our tongues and hunt him."
+DLG_A1_III_END_C1,Warn Hollowmere tonight
+DLG_A1_III_END_C2,"Stay silent, hunt Ansgar"
+DLG_A1_III_END_10,"We rode for Hollowmere ourselves. By dawn the village was empty reeds and cold hearths, and House Morrow-Veil knew its letters were read."
+DLG_A1_III_END_11,Ansgar was gone before anyone thought to look for him. We had traded a name for a village of ghosts.
+DLG_A1_III_END_12,"We said nothing to Hollowmere. The new moon came, the tithe went out whole, and Lise's name never surfaced again in anything we read."
+DLG_A1_III_END_13,"We followed Ansgar's raven instead, and told ourselves that silence was a kind of mercy."
+DLG_A1_III_END_14,Kett didn't speak the whole ride back. Some choices you don't get to unmake.
+DLG_A1_III_FRENZY_01,"The Thirst took me between one heartbeat and the next, same as always once I've told myself I'm fine."
+DLG_A1_III_FRENZY_02,"I don't remember choosing. I remember Kett's arm between my teeth, and the sound he didn't make."
+DLG_A1_III_FRENZY_03,"He shoved Isaak off with his free hand and said nothing, then or ever after."
+DLG_A1_III_FRENZY_04,The page with the salt barn written on it went into the mud with the rest of me.
+DLG_A1_III_FRENZY_05,"Get up. We don't have that letter anymore, so we'd better be quick about the rest."
+DLG_A1_III_FRENZY_06,He never once mentioned his arm. I never once thanked him for that.
+DLG_A1_VAULT_END_01,Brother Ansgar. Yes. My house knew that name before your Order finished paying him.
+DLG_A1_VAULT_END_02,You knew.
+DLG_A1_VAULT_END_03,"Of course I knew. A key-warden who sells keys is not a secret, he is a market."
+DLG_A1_VAULT_END_04,We warned them. Hollowmere scattered into the reeds before your house could collect.
+DLG_A1_VAULT_END_05,And told my house exactly what your Order is capable of. A costly kind of honesty.
+DLG_A1_VAULT_END_06,"We said nothing. The tithe went out whole, and we followed Ansgar's raven instead."
+DLG_A1_VAULT_END_07,The quieter choice. Also the hungrier one. I imagine it still visits you.
+DLG_A1_VAULT_END_08,"Your Order calls itself a secret, yet it reused the same trust in the same man for years."
+DLG_A1_VAULT_END_09,"The same as any lazy house reuses a key. Everything eternal repeats, Isaak. Even the ones who hunt us."
+DLG_A1_VAULT_END_10,I said nothing to that either. Some lessons you just have to sit in.

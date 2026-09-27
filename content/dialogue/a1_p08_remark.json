@@ -1,0 +1,24 @@
+{
+  "id": "a1_p08_remark",
+  "location": "vault",
+  "ambience": "vault",
+  "nodes": [
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_P08_REMARK_01"
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_P08_REMARK_02"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_P08_REMARK_03"
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_P08_REMARK_04",
+      "end": true
+    }
+  ]
+}

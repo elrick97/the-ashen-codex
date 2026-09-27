@@ -1,0 +1,101 @@
+{
+  "id": "a1_iii_end",
+  "location": "memory",
+  "ambience": "marsh",
+  "nodes": [
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_01"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_02"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_03",
+      "if": {
+        "flag": "courier_drained"
+      }
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_04",
+      "if": {
+        "flag": "courier_spared"
+      }
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_05",
+      "if": {
+        "flag": "drank_wenna"
+      }
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_06",
+      "if": {
+        "flag": "refused_wenna"
+      }
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_III_END_07",
+      "if": {
+        "flag": "frenzy_count",
+        "gte": 1
+      }
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_08"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_09",
+      "choices": [
+        {
+          "text": "DLG_A1_III_END_C1",
+          "set": {
+            "act1_warned": true
+          },
+          "goto": "warned"
+        },
+        {
+          "text": "DLG_A1_III_END_C2",
+          "set": {
+            "act1_silent": true
+          },
+          "goto": "silent"
+        }
+      ]
+    },
+    {
+      "label": "warned",
+      "speaker": "narrator",
+      "text": "DLG_A1_III_END_10"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_11",
+      "goto": "after"
+    },
+    {
+      "label": "silent",
+      "speaker": "narrator",
+      "text": "DLG_A1_III_END_12"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_13",
+      "goto": "after"
+    },
+    {
+      "label": "after",
+      "speaker": "isaak",
+      "text": "DLG_A1_III_END_14",
+      "end": true
+    }
+  ]
+}

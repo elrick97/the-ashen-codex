@@ -1,0 +1,60 @@
+{
+  "id": "a1_vault_end",
+  "location": "vault",
+  "ambience": "vault",
+  "nodes": [
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_END_01"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_VAULT_END_02"
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_END_03"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_VAULT_END_04",
+      "if": {
+        "flag": "act1_warned"
+      }
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_END_05",
+      "if": {
+        "flag": "act1_warned"
+      }
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_VAULT_END_06",
+      "if": {
+        "flag": "act1_silent"
+      }
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_END_07",
+      "if": {
+        "flag": "act1_silent"
+      }
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_END_08"
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_END_09"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_VAULT_END_10",
+      "end": true
+    }
+  ]
+}

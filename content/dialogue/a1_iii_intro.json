@@ -1,0 +1,40 @@
+{
+  "id": "a1_iii_intro",
+  "location": "memory",
+  "ambience": "marsh",
+  "nodes": [
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_III_INTRO_01"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_INTRO_02"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_III_INTRO_03"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_INTRO_04"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_III_INTRO_05"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_INTRO_06"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_III_INTRO_07"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_III_INTRO_08",
+      "end": true
+    }
+  ]
+}

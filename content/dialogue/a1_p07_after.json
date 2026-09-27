@@ -1,0 +1,28 @@
+{
+  "id": "a1_p07_after",
+  "location": "memory",
+  "ambience": "marsh",
+  "nodes": [
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_P07_AFTER_01"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_P07_AFTER_02"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_P07_AFTER_03"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_P07_AFTER_04"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_P07_AFTER_05",
+      "end": true
+    }
+  ]
+}
