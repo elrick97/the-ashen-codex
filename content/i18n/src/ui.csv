@@ -1,0 +1,99 @@
+keys,en
+UI_WARNING_RATING,Mature 17+
+UI_WARNING_TITLE,A Warning
+UI_WARNING_BODY,"This is a tale of blood. It contains written violence, strong language, feeding, grief and bleak choices. Nothing is shown that the words don't earn, but the words are not kind."
+UI_WARNING_NOTE,"Clear Mind (in Settings) removes every shaking, bleeding and wobbling effect."
+UI_WARNING_CONTINUE,I understand
+UI_TITLE_GAME,The Ashen Codex
+UI_TAGLINE,Everything eternal repeats.
+UI_TITLE_ACT,Act I: The Tithe Letters
+UI_CONTINUE,Continue
+UI_NEW_GAME,New Confession
+UI_NEW_GAME_CONFIRM,Begin again? Your current confession will be burned.
+UI_NEW_GAME_YES,Burn it
+UI_CANCEL,Not yet
+UI_CODEX,Codex
+UI_SETTINGS,Settings
+UI_CREDITS,Credits
+UI_BACK,Back
+UI_CLOSE,Close
+UI_MENU,Menu
+UI_RETURN_TITLE,Return to the vault door
+UI_SAVE_RESTORED_BACKUP,The last page was spoiled. Resumed from the copy.
+UI_CODEX_NEW,New in the Codex: %s
+UI_PLACE_VAULT,"The Vault, beneath the Court's library"
+UI_PLACE_MEMORY,"Hollowmere, years ago"
+UI_HISTORY,Log
+UI_FAST,Skip >>
+UI_TAP_CONTINUE,Tap to go on
+UI_WHISPER_1,just a sip
+UI_WHISPER_2,she can hear your pulse
+UI_WHISPER_3,the ink smells like iron
+UI_WHISPER_4,why count letters when you could count heartbeats
+UI_WHISPER_5,drink
+UI_WHISPER_6,the chain is only iron
+UI_THIRST,Thirst
+UI_UNDO,Undo
+UI_SEAL,Seal the reading
+UI_HINTS,Kett's advice
+UI_HINT_COST,Ask Kett (+%d)
+UI_CODEX_TAB,Codex
+UI_WRONG_1,"Kett: ""Wrong, and loud about it. Look again."""
+UI_WRONG_2,"Kett: ""That's a guess wearing a clever hat."""
+UI_WRONG_3,"Kett: ""No. The letter's still lying to you."""
+UI_WRONG_4,"Kett: ""Bollocks. Count before you commit."""
+UI_FRENZY_AFTER,"The letter is lost. Another is caught, and it is harder."
+UI_HINT_TITLE,What Kett Taught Me
+UI_HINT_NONE,"Kett's lessons cost blood to remember. Each one feeds the Thirst."
+UI_HINT_TIER_1,Nudge
+UI_HINT_TIER_2,Concept
+UI_HINT_TIER_3,Near-answer
+UI_HINT_BUY,Remember the %s (+%d Thirst)
+UI_HINT_CONFIRM,Remembering costs %d Thirst. Go on?
+UI_HINT_CONFIRM_YES,Remember
+UI_FOLIO,Folio
+UI_FOLIO_STATS,Thirst spent: %d. Lessons remembered: %d.
+UI_FOLIO_FRENZY,The Thirst took Isaak during this letter.
+UI_FOLIO_CODEX,Written in the Codex: %s
+UI_GRADE_SANCTIFIED,Sanctified
+UI_GRADE_STAINED,Stained
+UI_GRADE_DAMNED,Damned
+UI_ACT_FOLIO,The Act Folio
+UI_SUMMARY_TALLY,"Sanctified %d, Stained %d, Damned %d. Frenzies: %d. Thirst now: %d."
+UI_SUMMARY_CHOICES,What Isaak chose:
+UI_CHOICE_COURIER_DRAINED,He drained the courier Odo Lusk.
+UI_CHOICE_COURIER_SPARED,He let the courier go with a false letter.
+UI_CHOICE_DRANK_WENNA,He drank from Wenna's wrist.
+UI_CHOICE_REFUSED_WENNA,He refused Wenna's wrist.
+UI_CHOICE_ACT1_WARNED,He warned Hollowmere and burned the Order's trust.
+UI_CHOICE_ACT1_SILENT,He kept silent and hunted the traitor.
+UI_SET_TEXT_SIZE,Text size
+UI_SET_SIZE_0,Small
+UI_SET_SIZE_1,Large
+UI_SET_SIZE_2,Largest
+UI_SET_SIZE_PREVIEW,The letter smelled of marsh water and somebody else's fear.
+UI_SET_CLEAR_MIND,Clear Mind (reduce motion)
+UI_SET_CLEAR_MIND_HELP,"Turns off every distortion: ink bleed, wobble, pulse, desaturation, blood drips, shaking. The Thirst still counts."
+UI_SET_HAPTICS,Haptics
+UI_SET_HINT_CONFIRM,Confirm before paying for hints
+UI_SET_VOL_MASTER,Master volume
+UI_SET_VOL_MUSIC,Music and ambience
+UI_SET_VOL_SFX,Effects
+UI_SET_RESET,Reset all progress
+UI_SET_RESET_Q1,Burn the whole confession? Every letter and grade will be lost.
+UI_SET_RESET_YES,Yes
+UI_SET_RESET_Q2,Truly? There is no copy after this.
+UI_SET_RESET_YES2,Burn it all
+UI_SET_RESET_DONE,The confession is ash.
+UI_CODEX_TITLE,The Codex
+UI_CODEX_INTRO,"Isaak's grimoire, kept in Kett's hand and his own. Reading it costs nothing."
+UI_CODEX_CLOSE,Close the Codex
+UI_CODEX_INDEX,< All entries
+UI_CODEX_SEALED,Sealed. Not yet learned.
+UI_CODEX_LATER,sealed in a later act
+UI_CODEX_EXAMPLE,Worked Example
+UI_CODEX_TRY,Try It
+UI_CODEX_WRONG,How the Court Got It Wrong
+UI_CODEX_ASIDE,Scribe's Aside (the real world)
+UI_CODEX_KETT,"Kett, in the margin: %s"
+UI_CREDITS_BODY,"THE ASHEN CODEX\nAct I: The Tithe Letters\n\nDesign, writing, code, art and sound: generated procedurally for this vertical slice.\n\nBuilt with Godot Engine 4.7 (MIT licence).\nTests: GUT (MIT licence).\n\nFonts (SIL Open Font License 1.1):\nUnifrakturMaguntia by j. 'mach' wust\nPirata One by Rodrigo Fuenzalida and Nicolas Massi\nEB Garamond by Georg Duffner and Octavio Pardo\nIM FELL English by Igino Marini\nJetBrains Mono by JetBrains\n\nEnglish n-gram statistics computed from public-domain Project Gutenberg texts.\n\nEvery name, place and word of this story is original."

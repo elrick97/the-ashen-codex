@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ThirstConfig" format=3]
+
+[ext_resource type="Script" path="res://core/game/thirst_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+wrong_commit = 8
+hint_costs = PackedInt32Array(5, 12, 25)
+thresholds = PackedInt32Array(40, 65, 90)
+frenzy_at = 100
+frenzy_reset_to = 70
+grade_sanctified_max = 10
+grade_stained_max = 35

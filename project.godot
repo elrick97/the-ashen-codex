@@ -11,8 +11,21 @@ config_version=5
 [application]
 
 config/name="The Ashen Codex"
+config/description="A grimdark narrative codebreaking game. Act I: The Tithe Letters."
 config/version="0.1.0"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+boot_splash/bg_color=Color(0.078, 0.063, 0.051, 1)
+boot_splash/show_image=false
+config/icon="res://icon.svg"
+
+[autoload]
+
+EventBus="*res://core/game/event_bus.gd"
+Thirst="*res://core/game/thirst.gd"
+Save="*res://core/game/save_service.gd"
+Settings="*res://core/game/settings_service.gd"
+Audio="*res://core/game/audio_service.gd"
 
 [debug]
 
@@ -28,9 +41,19 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=false
+common/snap_controls_to_pixels=true
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://content/i18n/strings.en.translation")
+locale/fallback="en"
 
 [rendering]
 

@@ -1,0 +1,20 @@
+keys,en
+SPK_ISAAK,Isaak Varr
+SPK_KETT,Brother Kett
+SPK_MARQUISE,Marquise Ottilie Dray
+SPK_STEWARD,Steward Veneric Soll
+SPK_LORD,Lord Casimir Morrow-Veil
+SPK_WENNA,Wenna Grobb
+SPK_COURIER,Odo Lusk
+CH_A1_TITLE,Act I: The Tithe Letters
+CH_A1_I_TITLE,I.i The Raven's Wheel
+CH_A1_I_SUB,Shift ciphers
+CH_A1_II_TITLE,I.ii The Steward's Alphabet
+CH_A1_II_SUB,Monoalphabetic substitution
+CH_A1_III_TITLE,I.iii The Many-Toothed Key
+CH_A1_III_SUB,Polyalphabetic ciphers and XOR
+CH_A2_TITLE,Act II: The Stained Glass
+CH_A3_TITLE,Act III: Blood Sigils
+CH_A4_TITLE,Act IV: The Court of Primes
+CH_A5_TITLE,Act V: The Ward and the Whisper
+CARD_A1_END,To be continued\nAct II: The Stained Glass\nThe Marquise turns a page. Somewhere above you a bell counts the hour. She has more questions.
