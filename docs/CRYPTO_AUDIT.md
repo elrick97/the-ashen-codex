@@ -358,3 +358,127 @@ Counts are at the end of the report.
 | **total** | **192** |
 
 Some table rows group several strings or functions that share a verdict. The numbered list and the table rows do not map one to one: item 1 covers three WRONG rows, item 5 three MISLEADING rows and item 9 two. The 42 list items therefore cover all 47 WRONG and MISLEADING rows.
+
+---
+
+## Re-audit (second pass)
+
+Independent second pass against HEAD `c219f22` (fixes in `c66a4e4`, `f9ab878`, `1ea3465`), following `.claude/skills/crypto-accuracy-check/SKILL.md`. Report only; nothing outside this section was changed.
+
+**Method.**
+- I diffed `463a3dd..HEAD` for `content/`, `core/`, `tools/`, `tests/solvers/` and `tools_dev/gen_content_defs.py`, and re-read the current CSV strings, `.tres` anti_cheese notes, solvers and new analysis functions.
+- I wrote fresh Python ports in `.tools/ra_lib.py`, `ra_vig.py`, `ra_vig2.py`, `ra_xor.py`, `ra_sub.py` and `ra_otp.py` (scratch). They cover `profile_match` (cosine), Kasiski (`find_repeats` plus the 0.8 rule), IoC, normalized Hamming, the comb's new "smallest within 5%" mark, the byte gauge, letters-only crib fitting and `reads_like_english`. The quadgram table is the game's own (`core/crypto/data/english_ngrams.json`).
+- Vigenere and XOR checks ran on **every** key in each pool. They did not depend on PCG32 seeds.
+- Letters LTR_P01..P11 are unchanged since the first audit. The only letter edit is LTR_P12_B ("Morrow-Veil" restored).
+- `./tools_dev/run_tests.sh solvers`: 15/15 tests, 221 asserts, pass (160 s). `./tools_dev/run_tests.sh unit`: 59/59 pass (9604 asserts); the regenerated `strings.csv` is unchanged.
+
+### Status of the 42 earlier findings
+
+| # | short name | status | evidence |
+|---|---|---|---|
+| 1 | P07 peak-as-E (brief, HINT2, anti_cheese) | PARTLY FIXED | **Fixed:**<br>- BRIEF now reads "Line up each column's shape with English".<br>- The Tally gained a "Shapes agree" score (`Frequency.profile_match`) and Read-as E/T/A/O/I/N.<br>- HINT3's procedure (read the tallest bar as each letter, keep the best score) is correct on P07: for every pool key the true shift is among the tallest bar x E/T/A/O/I/N, and the best of those 6 is the true shift in all 5 columns.<br>**Remaining:**<br>- HINT2 says "T, A or O can win; try them", but column 4 peaks on plaintext **N** (N 6, E 4) for every key.<br>- The anti_cheese still says "the preview reads as English only when every column is right". With 4 of 5 right, 80% of letters read.<br>- The cost estimate "about 10-15 Thirst" is optimistic. Reads in E,T,A,O,I,N order cost **14** only if the player knows when to stop (7+... = 2+4+1+6+1). A player who cannot tell and tries all six pays about 22-35. It also names only E/T/A/O. |
+| 2 | P07 HINT3 "scroll will tell you" | FIXED | HINT3 now points at the shapes-agree score. `vigenere_mode.sync_views` calls `tally.set_alignment(shifts[col], profile_match(...))` on every drum change, so the score does react to the drum. |
+| 3 | Vigenere solvers use chi-squared, not the taught method | FIXED | `SolverLib.vigenere_shifts` now takes the argmax of `Frequency.profile_match` over 26 shifts, the same score the Tally shows. My port: the argmax is the true shift in **every** column of every pool key for P07, P08 and P09 (0 failures). Note: the solver searches all 26 shifts for free (see new item N6). |
+| 4 | PZ_P09_HINT1 "nothing repeats" | FIXED | "A few letters do repeat here, but too few to vote on a key length." It is a fair hedge. |
+| 5 | P09 "too short for Kasiski" (brief, UI_MODE_VIG_IOC, anti_cheese) | PARTLY FIXED | **Fixed:** BRIEF ("Too few repeats to trust") and UI_MODE_VIG_IOC.<br>**Remaining:** the new anti_cheese says "Only a few short repeats occur, **at chance level**, so Kasiski misleads here". This is false:<br>- VEIL has 8 repeated sequences (BSZ x4, SZR x3, BSZR, IBSZ, BSDW, WVZO, GZV, IGZ) against about 1 expected by chance, and 14/15 spacings are multiples of 4. Kasiski gives **4**.<br>- ASHES and GRIEF give 10, a multiple the commit accepts.<br>- Only EMBERS misleads (3). |
+| 6 | PZ_P09_HINT3 "tallest bar as E" | FIXED | It now says "Take the smallest width where the vial runs thick, then give each strand the reading where the shapes agree best." IoC gives the right width for all 4 keys, and the shapes-agree argmax is right in every strand. (See N6 for the cost of finding that reading.) |
+| 7 | PZ_P08_HINT1 "never an accident" | FIXED | "Short repeats can be chance; longer ones rarely are." |
+| 8 | PZ_P03_HINT3 leaks the answer | FIXED | "...ask what a stranger would still lack after reading them." It is a strong nudge toward A3 but no longer paraphrases it, and it names no scheme per note. |
+| 9 | P05 "short" (HINT1, anti_cheese) | PARTLY FIXED | **Fixed:** HINT1 now blames the order ("the commonest letters here don't fall in their usual order"). True: O 43 > E 41.<br>**Remaining:** the new anti_cheese adds two false statements:<br>- "**O and T** outnumber E". T is 35, below E at 41.<br>- The frenzy crib IN ETERNITY "agrees in **more than one place**". Letters-only, INETERNITY fits at exactly **one** offset (354 of 375); the full crib fits once (343).<br>`test_p05_frequency_alone_is_ambiguous` is unchanged (weak evidence, as before). |
+| 10 | CDX_A1_KEYSPACE_BODY "true strength" | FIXED | "A large key space is necessary for strength but not enough on its own." |
+| 11 | CDX_A1_IOC_BODY wrong columns "look random" | FIXED | "...Split it into the key's length, or a multiple of it, and every column looks like English again." |
+| 12 | CDX_A1_REPEATING_XOR_BODY "usually the true one" | FIXED | "The true size, or a multiple of it, scores lowest... Prefer the smallest size that scores nearly as well as the best." |
+| 13 | a1_p11 anti_cheese | FIXED | It now says multiples score lowest and are accepted. "At a wrong size no setting makes every strand gauge high" is right. Nit: "the live preview reads as English only when all dials are right" overstates, but dials are free in P11, so there is no cost impact. |
+| 14 | PZ_P11_HINT2 | FIXED | "...is the key's length, or a multiple of it." |
+| 15 | UI_COMB_TAP | FIXED | It now says "key size or a multiple... Prefer the smallest size that is nearly as short". The comb's new mark (smallest size within 5% of the best) picks **11, 13, 13, 14**: the true size for all four keys (best raw 33 and 28 for two of them). Residual coach line: see N9. |
+| 16 | CDX_A1_KASISKI_EXAMPLE single gap | PARTLY FIXED | **Improved:** the new example (key VEIL) has three repeats and says "try 4 (the largest shared), then 2". The shown text really is VEIL over "THE TITHE IS OWED AT THE NEW MOON AND THE TI..." OLM (gap 16) and XPP (gap 24) check.<br>**Remaining:**<br>- The shown ciphertext is only **34 letters** (positions 0-33). "BSZ at 34 and 46" lies outside it and cannot be checked; BSZ does not occur in the shown text.<br>- From the two visible gaps (16, 24) the largest shared factor is **8**, not 4. |
+| 17 | DLG_A1_P11_REMARK_01 "fine key" | FIXED | "A liturgy makes a fine prayer and a poor key." |
+| 18 | PZ_P08_HINT3 "read each peak" | FIXED | It now says "largest factor that nearly all your spacings share... match each column's shape to English":<br>- The Kasiski 0.8 rule gives 6/6/6/7/7, correct for every key.<br>- The lens glow now uses the same rule.<br>- The profile argmax is right in every column. |
+| 19 | CDX_A1_XOR_BODY lit = 1 | FIXED | "each dark (one) or pale (nought)... darkens the result only when exactly one of them was dark". It matches `bit_rosary.gd`, UI_COACH_BIT_ROSARY and PZ_P10_HINT1. |
+| 20 | `solve_p06` not the bigram/trigram lesson | PARTLY FIXED | **Fixed:** it now calls `solve_substitution(c, {}, true, 40)`, so hill-climbing scores trigrams.<br>**Remaining:**<br>- It still starts from a single-letter frequency ranking and finishes with `polish_with_words` dictionary segmentation. The anti_cheese now says so honestly ("the rest is read off the words that appear").<br>- The `solve_p06` docstring still claims single letters are "flattened, so only multi-letter structure such as TH, HE, THE can anchor the key".<br>- The test message says "flattened letter".<br>- It is still not shown that the top-8 Pairs/Triples tabs alone suffice. |
+| 21 | P12 crib-drag solver punctuation prior | FIXED | `_reads_true` now allows a hyphen between two letters, LTR_P12_B has "Morrow-Veil" again, and the prior (`: ! ?` read as noise; a line break only after `, .` or another break) is documented in the code comment. It is still a style prior, but a stated one. |
+| 22 | PZ_P03_HINT1 "three tricks" | FIXED | "Three notes, two little tricks." |
+| 23 | P06 "flattened" strings | FIXED | BRIEF ("E is hiding"), HINT1 ("starved the commonest letter") and CDX_A1_NGRAMS_BODY ("skews") are fixed. Residual, not in the original list: CDX_A1_NGRAMS_M1 "Flatten the letters all you like" is hypothetical and acceptable. |
+| 24 | a1_p06 anti_cheese | FIXED | "T tops the tally, E sits mid-table" is true (T 27, E 12, tied 5th). The word-reading step is now acknowledged. |
+| 25 | a1_p08 anti_cheese "mush" | PARTLY FIXED | **Fixed:** it now admits the free stepper and tallies.<br>**Remaining:** "(at a wrong one nothing does)" overstates. Mean best shapes-agree per column (my port):<br>- MORROW: 0.90 at 6, but 0.88 at 3 and 0.84 at 12.<br>- VESPERS: 0.89 at 7, but 0.85 at 2 and 0.84 at 4.<br>Cosine similarity has a high floor: a perfectly flat column scores 0.77 against English. |
+| 26 | a1_p10 anti_cheese exclude 96 | PARTLY FIXED | **Fixed:** the bogus `exclude: [96]` is gone.<br>**Remaining:** the new rationale "Keys 65-250 always set bit 6 or 7, so no key merely flips letter case (0x20) and no wrong key reads as English by accident" is a non sequitur:<br>- The dial covers 0-255, and dialing K xor 0x20 (in range for every K) still gives case-flipped letters.<br>- What keeps it from reading is that spaces become NUL and punctuation becomes control codes: gauge at most 0.60 versus at least 0.998 for the true key.<br>- The true key tops the gauge for all 186 keys, and the runner-up peaks at 0.80. |
+| 27 | PZ_P10_BRIEF | FIXED | "...pour twice to undo it, then dial the key." |
+| 28 | UI_WIDGET_IOC_HELP | PARTLY FIXED | It now mentions multiples and factor 2. Remaining:<br>- `ui/codex_widgets/ioc.gd` calls `_loom.configure(10)`, so **N = 12 is not reachable** on this widget (the first audit's "within the slider's range" was itself wrong).<br>- On the sample, N = 2 reads **0.065**, fully English-level and above the 0.058 threshold, not "a little". N = 6 reads 0.061. |
+| 29 | UI_COMB_TITLE | FIXED | "Average differing bits per byte..." |
+| 30 | CDX_A1_FREQUENCY_M1 | FIXED | "The tallest bar is only a strong bet, boy." |
+| 31 | CDX_A1_FREQUENCY_M2 | FIXED | "...and later every column of a many-toothed key." |
+| 32 | CDX_A1_KEY_M1 | FIXED | "In a Caesar the number IS the key." |
+| 33 | CDX_A1_KEY_ASIDE password hashing | FIXED | Now AES only. |
+| 34 | CDX_A1_VIGENERE_M2 "the real fight" | FIXED | "Bellaso wrote it; Vigenere got the credit centuries later by mistake." |
+| 35 | CDX_A1_OTP_M3 "lazy" | FIXED | "...wartime pad makers duplicated pages under pressure." |
+| 36 | Marquise "six words... every letter" | PARTLY FIXED | "four words" is fixed. DLG_A1_P05_REMARK_02 still says "every time" and DLG_A1_VAULT_II_01 still says "on every letter". LTR_P09 is signed only "Soll". Low severity. |
+| 37 | UI_COACH_KASISKI_LENS | FIXED | "Repeats sit a multiple of the key's length apart." |
+| 38 | CDX_A1_SINGLE_XOR_M1 "forty times" | FIXED | "about twenty-six times over" (256/10 = 25.6). |
+| 39 | `modes.gd` odd-length decrypt | FIXED | `ecb_decrypt` and `cbc_decrypt` return `{ok: false}` when the data is empty or `size % BLOCK_BYTES != 0`. |
+| 40 | `random_pad` docstring | FIXED | "Pseudo-random pad bytes from the seeded PCG32... a real one-time pad needs truly random bytes." |
+| 41 | `from_hex` "whitespace ignored" | FIXED | The loop drops space, tab, LF and CR anywhere, and the docstring now lists exactly those. |
+| 42 | `english_score` "log-probability" | FIXED | "mean log-weight... the weights are not normalized to sum to 1, so it is a score". |
+
+**Counts:** FIXED 33, PARTLY FIXED 9 (1, 5, 9, 16, 20, 25, 26, 28, 36), NOT FIXED 0.
+
+### New or re-checked items since the first audit
+
+| file | claim or function | verdict | evidence | suggested correction |
+|---|---|---|---|---|
+| core/crypto/analysis/frequency.gd | `profile_match(counts, shift)`: cosine between counts read back through the shift and `ENGLISH` | OK | Convention matches `Caesar.shift_between` and `Vigenere.decrypt_with_shifts` (cipher = plain + shift). The argmax is the true shift in every column of every P07/P08/P09 pool key (15 key/letter pairs, 32-77 letters per column). | |
+| core/crypto/analysis/frequency.gd | Docstring: "About 0.9 or more when the shapes line up; roughly 0.3-0.6 when they don't" | MISLEADING | True shifts measured 0.76-0.96 (for example, P09 VEIL strand 4 at 0.76 and ASHES strand 1 at 0.79). The best wrong shift is 0.57-0.76. A perfectly flat profile scores 0.77 (1/sqrt(26 x sum E^2)). The readout (UI_TALLY_MATCH) is only meaningful comparatively. | "Highest at the right shift, typically 0.8-0.95 on 40+ letters; wrong shifts usually 0.3-0.75, and a flat profile scores about 0.77. Compare settings; don't read it as an absolute." |
+| core/crypto/analysis/crib.gd | `substitution_letter_status` (letters-only strip): 1 consistent so far, 0 contradicts an earlier letter, -1 past the end | OK | Same checks as `substitution_mapping`. All 1s exactly when the crib fits. The mode now feeds letters-only cipher and crib (`TextUtil.letters_only`), so word breaks cannot give the place away, and the gold highlight maps letter offsets back correctly. | |
+| core/crypto/analysis/crib.gd | `reads_like_english` "English-like letters (quadgram fitness per gram above -5.2 when there are enough letters to judge)" | MISLEADING | Four letters is not enough to judge, and fragments with 3 letters or fewer pass on character set alone. Against the real P12 stream (overlap 207):<br>- **False "reads true":** " THE " at 1, 31 and 139 (" UEM'", "- IN ", "SIK ,"); TITHE at 5, 114, 116 and 139 ("S; DF", "C, KD", " JUN ", "'TW-I").<br>- **False "doesn't read":** a true " THE " at 122 gives "ALT B" (fitness below -5.2).<br>- The long tray cribs (SALT BARN, BROTHER, LEDGER, the sign-off) have no false positives.<br>The colour is the boss's readability cue and a wrong pin costs 4-6. | Require at least 6-8 letters for the quadgram test. Below that, require complete words from a small vocabulary. Also apply the solver's apostrophe and hyphen rules. |
+| tests/solvers/solver_lib.gd | `vigenere_shifts`: profile_match argmax "exactly as the game teaches" | OK | Uses the taught score and never reads the key. Caveat in N6: it scores all 26 shifts for free, where a player pays 1 per Read-as. | |
+| tests/solvers/reference_solvers.gd | `solve_p05`: letters-only crib, last consistent offset | OK | Mirrors the strip. The crib fits once in both variants, so "a sign-off sits last" is harmless. The comment "Several consistent places are possible for a short crib" does not happen for IN ETERNITY. | |
+| tests/solvers/reference_solvers.gd | `solve_p06` docstring "single letters are flattened, so only multi-letter structure... can anchor the key" | MISLEADING | See #20: the solver starts from single-letter ranks and ends with dictionary segmentation; P06 counts are skewed, not flat. | "Trigram-scored hill climb from a frequency start, finished by reading words." |
+| tests/solvers/crib_drag_solver.gd | Crib-dragging only; "never sees the pad or the plaintexts" | OK | Inputs are only C1 xor C2 over the overlap, the tray, story words from LTR_P01-P11 plus dialogue before P12, and a word list. Both targets are inside the overlap (NIGHT at 45 in A, ANSGAR at 60 in B). Its `_reads_true` is stricter than the game's `reads_like_english`. The punctuation prior is documented. | |
+| tools/kasiski_lens/kasiski_lens.gd | Glow = largest factor with tally >= 0.8 x best | OK | Same rule as `Kasiski.likely_period`: 6, 6, 6, 7, 7 on P08. | |
+| tools/hamming_comb/hamming_comb.gd | Mark = smallest size within 5% of the best | OK | 11, 13, 13, 14: the true size for all P11 keys. | |
+| a1_iii.csv | PZ_P07_HINT2 "Its tallest bar is often E, but in forty letters T, A or O can win; try them." | MISLEADING | Plaintext column peaks are T, O, E, **N**, E for every key. For column 4, trying E/T/A/O never lands; N (6th button) does. | "...T, A, O or even N can win; try them." |
+| a1_p07.tres | "the preview reads as English only when every column is right"; "read-as E/T/A/O jumps... about 10-15 Thirst" | MISLEADING | With 4/5 drums right, 80% of letters read. The minimum is 14 reads, and only with perfect stopping. Without a stopping rule it is about 22 (6 reads per column where the true score is 0.82-0.86, because a player cannot tell it is the best). There are 6 buttons (E/T/A/O/I/N), and the cost doubles after a frenzy. | "...reads fully only when every column is right... about 14-25 Thirst." |
+| a1_iii.csv / a1_p09 | P09 strands under the taught Read-as search (N6) | MISLEADING | The true shift is not reachable from the tallest bar x E/T/A/O/I/N in 1-2 strands per key:<br>- VEIL strand 4 has no plaintext E; its peaks are H/O.<br>- ASHES and GRIEF strand 1 peaks on S (true shift at the 2nd bar, read 8); strand 4 peaks on R (**5th bar, 30 reads**).<br>- EMBERS strand 6 peaks on H/S (3rd bar, 18 reads).<br>Hint 3's target ("the reading where the shapes agree best") is true, but the procedure taught on P07 does not reach it cheaply. Only the free-argmax solver passes, so the solver tests cannot see this. The adversarial playtest (docs/playtest/adversarial_a1_iii.md, section 9) found the same. | Add a line to P09 HINT3 ("if no reading of the tall bars scores well, read a word you can guess off the preview and set that letter"), or rebalance the P09 letter so each strand's true shift sits within the two tallest bars x E/T/A/O/I/N. Add a solver test limited to that search. |
+| a1_p05.tres | "O and T outnumber E"; frenzy crib "agrees in more than one place" | WRONG | Counts O 43, E 41, T 35. INETERNITY fits at exactly one letter offset (354). See #9. | "O outnumbers E... IN ETERNITY: ten letters, six of them distinct, and it still fits only at the sign-off." |
+| a1_p09.tres | "Only a few short repeats occur, at chance level, so Kasiski misleads here" | WRONG | See #5. VEIL: 8 repeats, 14/15 spacings are multiples of 4, and Kasiski gives 4. ASHES/GRIEF give 10 (accepted). Only EMBERS gives 3. | "Repeats are few; Kasiski is right for some keys and wrong for others (EMBERS gives 3), so the loom is the reliable tool." |
+| a1_p08.tres | "(at a wrong one nothing does)" | MISLEADING | See #25. | "...at a wrong one the match is weaker (though multiples and shared factors also look decent)." |
+| a1_p10.tres | "Keys 65-250 always set bit 6 or 7, so no key merely flips letter case (0x20) and no wrong key reads as English by accident" | MISLEADING | See #26. | "The dial setting K xor 0x20 flips case but turns spaces into NUL, so the gauge rejects it; the true key always tops the gauge (checked for all 186 keys)." |
+| a1_iii.csv | CDX_A1_KASISKI_EXAMPLE third repeat | MISLEADING | See #16: "BSZ at 34 and 46" is off the 34-letter text shown, and the visible gaps 16 and 24 share 8. | Show at least 49 letters of the ciphertext (so BSZ is visible), or pick a third repeat inside the shown text. |
+| modes.csv | UI_WIDGET_IOC_HELP "(8, 12)... Factors such as 2 rise a little too" | MISLEADING | See #28: the slider stops at 10; N = 2 gives 0.065. | "...at 4 and 8 the vial thickens; at 2 it thickens nearly as much, so prefer the largest of the near-ties that divides the others, or check the strands." (Or change the sample or key.) |
+| tools.csv | UI_COACH_HAMMING_COMB "Short tooth, likely key size. Tap it." | MISLEADING | For NOX AETERNA and SALT AND ASHES the shortest tooth is 33 or 28, a multiple. The comb's mark and UI_COMB_TAP are right. Low. | "Short tooth: the key size or a multiple. Tap the marked one." |
+| a1_i.csv / a1_ii.csv / a1_iii.csv | Hints PZ_P01..P12 HINT1-3 (all rewritten ones re-read) | OK (except PZ_P07_HINT2 above) | All are true against the letters:<br>- P02: E 48 vs T 29, and "One press costs a drop; ... one per notch" matches `caesar_mode`.<br>- P04: E 139, T 97, THE x25.<br>- P06: THE is the top trigram (9); the words before THE are AT, TO, NOT, PAST, ON, TILL.<br>- P10: dark = 1; K = A xor B.<br>- P12: the auto-refile of a right crib pinned in the wrong letter does not make HINT3 false.<br>Tier 3 never names a shift, key, scheme per note, width, byte or target phrase, and none makes key-specific claims. P03 HINT3 is a strong nudge, not the answer. | |
+| a1_*.csv | Rewritten Codex bodies, examples, margins (KEY, KEYSPACE, FREQUENCY, NGRAMS, VIGENERE, KASISKI body, IOC, XOR, SINGLE_XOR, REPEATING_XOR, OTP) | OK (except the Kasiski example) | Checked against the reference facts:<br>- The Babbage "a century" claim was removed (resolving the old UNVERIFIED).<br>- SINGLE_XOR_ASIDE is now hedged.<br>- 256/10 is about 26.<br>- The XOR convention is consistent. | |
+| a1_*.csv | Marquise lines rewritten (P05_REMARK_02, VAULT_II_01, P11_REMARK_01) and new narrative (P10_AFTER_05/06, III_FRENZY_04/05) | OK (except #36 residual) | No new cryptographic claims. | |
+| tools.csv | UI_TALLY_READ_AS(_COST), UI_TALLY_MATCH, UI_TALLY_ENGLISH_ALIGNED, UI_CRIB_HELP ("spaces ignored"), UI_CRIB_FITS ("a candidate, not proof"), UI_CRIBDRAG_OTHER_LETTER | OK | They match the code paths (`tally_scroll.gd`, `substitution_mode._update_crib`, `two_time_pad_mode._on_pin`). | |
+| a1_p01/p03/p04/p06/p12.tres | Frenzy variants (P01/P03 costed, P04/P06 wrong seal 16, P12 wrong pin 6) | OK | `puzzle_factory` applies `costed`, `trial_cost` and params as the notes say. P01's and P03's notes don't mention that the frenzy variant rusts the wheel; this is an omission, not an error. Word/phrase-key variants > 0 never reuse variant 0's key word (checked in code). | |
+
+### Remaining WRONG or MISLEADING items (most severe first)
+
+1. **WRONG.** a1_p09.tres anti_cheese: "at chance level, so Kasiski misleads here".
+   - VEIL has 8 repeated sequences with 14/15 spacings multiples of 4, and Kasiski gives 4.
+   - ASHES and GRIEF give 10 (accepted).
+   - Only EMBERS misleads (3).
+2. **WRONG.** a1_p05.tres anti_cheese.
+   - "O and T outnumber E" is false: T 35 < E 41.
+   - The frenzy crib IN ETERNITY "agrees in more than one place" is false: it fits at exactly one letters-only offset (354).
+3. **MISLEADING.** P09 strands cannot be set by the taught tallest-bar x E/T/A/O/I/N search in 1-2 strands per key.
+   - The worst case is ASHES/GRIEF strand 4: 5th bar, 30 reads.
+   - The reference solver's free 26-shift argmax hides this.
+   - HINT3's target is true, but no hint says how to reach it cheaply.
+4. **MISLEADING.** PZ_P07_HINT2 lists "T, A or O". Column 4 peaks on N in every variant.
+5. **MISLEADING.** a1_p07.tres anti_cheese.
+   - "reads as English only when every column is right": 4/5 right reads 80%.
+   - "about 10-15 Thirst" is optimistic: 14 is the minimum with perfect stopping; about 22 is realistic.
+   - It names E/T/A/O, but there are six buttons.
+6. **MISLEADING.** `Crib.reads_like_english` (the boss's readability colour) judges fragments of 3 or fewer letters by character set only, and quadgrams from 4 letters.
+   - False "reads" for " THE " and TITHE at 7 wrong offsets.
+   - A false "doesn't read" for the true " THE " at 122 ("ALT B").
+7. **MISLEADING.** CDX_A1_KASISKI_EXAMPLE: the third repeat (BSZ at 34 and 46) lies outside the 34 letters shown. The visible gaps 16 and 24 share 8, not 4.
+8. **MISLEADING.** a1_p08.tres anti_cheese "(at a wrong one nothing does)". Best column matches at wrong widths reach 0.84-0.88 against 0.89-0.90 at the true width.
+9. **MISLEADING.** a1_p10.tres anti_cheese. The key range is not why wrong keys fail to read. Dial K xor 0x20 flips case; spaces turning into NUL is what sinks its gauge (at most 0.60).
+10. **MISLEADING.** UI_WIDGET_IOC_HELP.
+    - It cites N = 12, but the widget's slider stops at 10.
+    - "Factors such as 2 rise a little" understates: N = 2 reads 0.065, English level.
+11. **MISLEADING.** `Frequency.profile_match` docstring ranges ("0.9 or more" / "0.3-0.6"). Measured true 0.76-0.96, best wrong up to 0.76, and a flat profile scores 0.77.
+12. **MISLEADING.** `solve_p06` docstring and test message still say "flattened". The solver still starts from single-letter ranks and finishes with dictionary segmentation, so it does not show that the Pairs/Triples tabs suffice.
+13. **MISLEADING.** UI_COACH_HAMMING_COMB "Short tooth, likely key size". For 2 of 4 keys the shortest tooth is a multiple (33, 28). Low.
+14. **MISLEADING.** DLG_A1_P05_REMARK_02 ("every time") and DLG_A1_VAULT_II_01 ("on every letter"). LTR_P09 is signed only "Soll". Low.

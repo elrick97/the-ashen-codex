@@ -100,8 +100,9 @@ static func is_plausible_upper(fragment: PackedByteArray) -> bool:
 
 
 ## A stricter reading test for a dragged fragment: plausible characters, punctuation
-## followed by a space or line break, no doubled spaces, and English-like letters
-## (quadgram fitness per gram above -5.2 when there are enough letters to judge).
+## followed by a space or line break, no doubled spaces, and at least six letters whose
+## quadgram fitness per gram is above -5.0. Shorter fragments are too ambiguous to call,
+## so they never count as readable (the player judges those by eye).
 static func reads_like_english(fragment: PackedByteArray) -> bool:
 	if not is_plausible_upper(fragment):
 		return false
@@ -114,9 +115,9 @@ static func reads_like_english(fragment: PackedByteArray) -> bool:
 		if b == 32 and nxt == 32:
 			return false
 	var letters: PackedInt32Array = TextUtil.letter_indices(fragment.get_string_from_ascii())
-	if letters.size() >= 4:
-		return EnglishScore.fitness(letters) / float(letters.size() - 3) > -5.2
-	return letters.size() > 0
+	if letters.size() < 6:
+		return false
+	return EnglishScore.fitness(letters) / float(letters.size() - 3) > -5.0
 
 
 ## Space, newline and . , ; : ' ! ? - as byte values.

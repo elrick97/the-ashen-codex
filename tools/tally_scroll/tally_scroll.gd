@@ -34,7 +34,7 @@ var tab: int = TAB_LETTERS
 var align_shift: int = -1
 ## Profile agreement 0..1 pushed by the mode (-1 = hidden).
 var match_value: float = -1.0
-const READ_AS: Array[int] = [4, 19, 0, 14, 8, 13] # E, T, A, O, I, N
+const READ_AS: Array[int] = [4, 19, 0, 14, 8, 13, 18, 7] # E, T, A, O, I, N, S, H
 
 var _tabs: HBoxContainer = null
 var _cols: HBoxContainer = null
@@ -115,7 +115,7 @@ func _ready() -> void:
 		var b: Button = Button.new()
 		b.text = String.chr(65 + plain)
 		b.theme_type_variation = "RubricButton" if plain == 4 else ""
-		b.custom_minimum_size = Vector2(96, 124)
+		b.custom_minimum_size = Vector2(80, 124)
 		b.pressed.connect(func() -> void:
 			if selected >= 0:
 				read_as.emit(selected, plain))

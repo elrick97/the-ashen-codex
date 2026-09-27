@@ -60,7 +60,7 @@ def referenced_keys():
             for c in node.get("choices", []):
                 keys.add((c["text"], os.path.relpath(path, ROOT)))
     for path in glob.glob(os.path.join(ROOT, "**", "*.gd"), recursive=True):
-        if "/addons/" in path or "/.godot/" in path:
+        if "/addons/" in path or "/.godot/" in path or "/tests/" in path:
             continue
         text = open(path, encoding="utf-8").read()
         for m in re.finditer(r'\btr\("([A-Z][A-Z0-9_]+)"\)', text):

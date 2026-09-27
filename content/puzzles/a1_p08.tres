@@ -23,4 +23,4 @@ hint_keys = PackedStringArray("PZ_P08_HINT1", "PZ_P08_HINT2", "PZ_P08_HINT3")
 codex_unlocks = PackedStringArray("a1_kasiski")
 frenzy_dialogue = "a1_iii_frenzy"
 frenzy_overrides = {"trial_cost": 2}
-anti_cheese = "Unknown period. The period stepper and tallies are free, and at the right period each column's shape lines up with English (at a wrong one nothing does), so testing widths on the tally is a slow cousin of the index of coincidence. The Kasiski lens is faster: the factor most spacings share. Either way every drum notch still costs Thirst."
+anti_cheese = "Unknown period. The period stepper and tallies are free; at the true period each column's best alignment scores a little higher than at wrong periods (about 0.89-0.90 against 0.84-0.88), so testing widths on the tally is a slow, noisy cousin of the index of coincidence. The Kasiski lens is faster: the largest factor that nearly all spacings share. Either way every drum notch still costs Thirst."

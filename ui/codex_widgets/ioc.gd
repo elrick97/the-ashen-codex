@@ -21,7 +21,7 @@ func _ready() -> void:
 	_loom = (load("res://tools/column_loom/column_loom.tscn") as PackedScene).instantiate() as ColumnLoom
 	_loom.custom_minimum_size = Vector2(0, 640)
 	add_child(_loom)
-	_loom.configure(10)
+	_loom.configure(12)
 	_loom.n_changed.connect(_update)
 	_loom.period_chosen.connect(func(_n: int) -> void: pass)
 	_update(1)

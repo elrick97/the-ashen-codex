@@ -63,7 +63,8 @@ static func solve_p05(inst: PuzzleInstance) -> Dictionary:
 
 
 ## 6. Bigrams in the Marsh: n-gram statistics across word boundaries (single letters
-## are flattened, so only multi-letter structure such as TH, HE, THE can anchor the key).
+## are skewed away from E, so trigram statistics anchor the key; the rest is finished by
+## reading words out of the unbroken stream).
 static func solve_p06(inst: PuzzleInstance) -> Dictionary:
 	var c: String = inst.ciphertexts[0]
 	var k: PackedInt32Array = SolverLib.solve_substitution(c, {}, true, 40)

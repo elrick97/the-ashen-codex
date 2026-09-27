@@ -2,7 +2,7 @@ keys,en
 PZ_P07_TITLE,The Steward Grows Clever
 PZ_P07_BRIEF,Five wheels turn together. Line up each column's shape with English and set the drums.
 PZ_P07_HINT1,"Five teeth, five families. Split the letters by their place in the row before you stare at any of them."
-PZ_P07_HINT2,"Each family is a plain shift. Its tallest bar is often E, but in forty letters T, A or O can win; try them."
+PZ_P07_HINT2,"Each family is a plain shift. Its tallest bar is often E, but in forty letters T, A, O or N can win; try them."
 PZ_P07_HINT3,"Pick a column, read its tallest bar as E and watch the shapes-agree score. If another letter scores higher, keep the best."
 LTR_P07,"Warden Tallow,\n\nThe Lord sends a new cipher from his own library, five teeth to its wheel. Use it from this day.\n\nThe carts cross at Blackwater ford after moonrise. Count them twice and say nothing to the reeve.\n\nYour servant in eternity,\nVeneric Soll"
 LTR_P07_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by raven"
@@ -14,10 +14,10 @@ PZ_P08_HINT3,"Take the largest factor that nearly all your spacings share, set t
 LTR_P08,"Steward,\n\nYou try my patience. The tithe is not a suggestion, and Hollowmere is not exempt from it. Twice the tithe came short, and twice you blamed the reeve, the weather, the carts.\n\nCollect the tithe at Hollowmere before the new moon, or find yourself replaced before the new moon after that.\n\nBlood is owed, blood is paid, world without end.\n\nHollowmere remembers its tithe even when its steward forgets his sums, and the new moon does not wait on excuses. Recite it until you believe it. Blood is owed, blood is paid, world without end.\n\nSee the tithe is whole.\n\nCasimir Morrow-Veil"
 LTR_P08_FROM,"From Lord Casimir Morrow-Veil to Steward Veneric Soll, by raven"
 PZ_P09_TITLE,The Loom of Columns
-PZ_P09_BRIEF,Too few repeats to trust. Slide the loom until the strands look like English.
-PZ_P09_HINT1,"A few letters do repeat here, but too few to vote on a key length. Don't bet your blood on them."
+PZ_P09_BRIEF,Repeats are few and unreliable here. Slide the loom until the strands look like English.
+PZ_P09_HINT1,"Repeats here are few and can point the wrong way. The loom is the surer road, boy."
 PZ_P09_HINT2,Split the letters into strands and test each width. English strands clump; a wrong width scatters.
-PZ_P09_HINT3,"Take the smallest width where the vial runs thick, then give each strand the reading where the shapes agree best."
+PZ_P09_HINT3,"Take the smallest thick width. For a stubborn strand, find three tall bars four, four and six apart: that's A, E, I, O."
 LTR_P09,"Tallow,\n\nWord from the manor: the night has moved. Bring the carts before dusk falls, not after moonrise as before. The old crossing floods whenever it rains, so use the north path this time and go quietly. Burn this note once you have read it.\n\nSoll"
 LTR_P09_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by hand"
 PZ_P10_TITLE,Bit Rosary
@@ -63,7 +63,7 @@ CDX_A1_VIGENERE_M1,"Five wheels, not five secrets. Same trick five times over, w
 CDX_A1_VIGENERE_M2,Bellaso wrote it; Vigenere got the credit centuries later by mistake. Doesn't change how you crack it.
 CDX_A1_KASISKI_TITLE,Kasiski's Lens: measuring the gaps
 CDX_A1_KASISKI_BODY,"If the same three or four letters appear twice in a Vigenere ciphertext, it is usually because the same plaintext letters lined up with the same stretch of key, some whole number of key-lengths apart. Measure the distance between each repeat, and the key's true length will divide most of those distances. Short repeats can happen by pure chance, so trust trigrams and longer, and trust a factor that several distances share. Friedrich Kasiski published this attack in 1863. Charles Babbage broke Vigenere ciphers by a similar method earlier, in the 1850s, but never published it."
-CDX_A1_KASISKI_EXAMPLE,"key VEIL (unknown), letters only:\nOLMEDXPPDWWHZHIEOLMYZAUZJRIYYXPPOM\nOLM at 0 and 16: gap 16\nXPP at 5 and 29: gap 24\nBSZ at 34 and 46: gap 12\nall three share the factors 2 and 4\ntry 4 (the largest shared), then 2"
+CDX_A1_KASISKI_EXAMPLE,"key VEIL (unknown), letters only:\nOLMEDXPPDWWHZHIEOLMYZAUZJRIY\nYXPPOMBSZMAEVOMYVXBSZRMHHSWY\nOLM at 0 and 16: gap 16\nXPP at 5 and 29: gap 24\nBSZ at 34 and 46: gap 12\n16, 24 and 12 all share 2 and 4\ntry 4 (the largest shared), then 2"
 CDX_A1_KASISKI_WRONG,"The steward believed a long enough message could never repeat itself by accident, so he never varied his key mid-letter. Patience alone unravelled him; the repeats were sitting in plain sight the entire time."
 CDX_A1_KASISKI_ASIDE,"The same idea drives modern traffic analysis: repeated patterns in encrypted data, even without breaking the cipher itself, tell an analyst about structure, timing, or reused keys underneath."
 CDX_A1_KASISKI_M1,Coincidences happen. Two repeats might be luck. Ten repeats at the same spacing is a confession.

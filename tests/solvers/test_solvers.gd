@@ -104,7 +104,7 @@ func test_p06_ngrams_needed_and_sufficient() -> void:
 		var r: Dictionary = ReferenceSolvers.solve_p06(inst)
 		assert_eq(Substitution.decrypt(inst.ciphertexts[0], str(r["key"])), inst.plaintexts[0], _tag(inst))
 	var one: PuzzleInstance = PuzzleFactory.build(db.puzzle("a1_p06"))
-	assert_lt(_rank_mapping_accuracy(one), 0.5, "single-letter ranking alone fails on the flattened letter")
+	assert_lt(_rank_mapping_accuracy(one), 0.5, "single-letter ranking alone fails on the E-starved letter")
 
 
 func test_p07_given_period() -> void:

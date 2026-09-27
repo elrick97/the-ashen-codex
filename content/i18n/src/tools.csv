@@ -67,6 +67,6 @@ UI_COACH_KASISKI_LENS,"Kett: ""Hold a letter on the page. Repeats sit a multiple
 UI_COACH_COLUMN_LOOM,"Kett: ""Slide N. When the strands are each plain English shifted, the vial runs red and thick."""
 UI_COACH_BIT_ROSARY,"Kett: ""Tap a bead to flip it. Dark is one, pale is nought. The chalice mixes two strands."""
 UI_COACH_KEY_DIAL,"Kett: ""Turn the dial. Watch the gauge, not your hopes."""
-UI_COACH_HAMMING_COMB,"Kett: ""Short tooth, likely key size. Tap it."""
+UI_COACH_HAMMING_COMB,"Kett: ""Short tooth: the key size, or a multiple of it. Tap the smallest tooth that's nearly as short."""
 UI_COACH_CRIB_DRAGGER,"Kett: ""Drag a word you think is in one letter. If the other letter turns to sense beneath it, you've guessed right."""
 UI_CRIBDRAG_OTHER_LETTER,Those words belong to the other letter. Pinned there.

@@ -184,7 +184,7 @@ DLG_A1_P05_AFTER_03,"Then the clock's already turned over once. He'll change his
 DLG_A1_P05_AFTER_04,"Small comfort, that we frightened him first."
 DLG_A1_P05_AFTER_05,Small comfort's the only kind Hollowmere hands out. Take it.
 DLG_A1_P05_REMARK_01,'Your servant in eternity.' He signed that on tithe rolls and threats alike. Vanity dressed as devotion.
-DLG_A1_P05_REMARK_02,"A signature is a habit wearing a crown. He gave you the same four words every time, and thought it made him sound eternal."
+DLG_A1_P05_REMARK_02,"A signature is a habit wearing a crown. He gave you the same four words on nearly every letter, and thought it made him sound eternal."
 DLG_A1_P05_REMARK_03,"It made him easy to read, is what it did."
 DLG_A1_P05_REMARK_04,"Yes. That too. Immortals are terrible at noticing their own repetitions, Isaak. Remember that, chained or not."
 DLG_A1_P06_AFTER_01,"The ford, the barn's back door, a hound that slept past midnight. Kett read it back twice, like he didn't trust his own eyes."
@@ -215,7 +215,7 @@ DLG_A1_II_FRENZY_05,"Kett hauled him back by the collar, hard as a man dragging 
 DLG_A1_II_FRENZY_06,"That's enough! That's ENOUGH, Isaak, look at me, look at my one damned eye and nobody else's blood."
 DLG_A1_II_FRENZY_07,"The handler didn't die. I want that said plainly, for whatever plainness is worth after a thing like that."
 DLG_A1_II_FRENZY_08,"The copy was ruined past reading, soaked with mud and worse. We'd have to catch the Steward's next letter clean."
-DLG_A1_VAULT_II_01,A crib. Elegant. You didn't break his alphabet so much as let him hand you the sign-off he put on every letter.
+DLG_A1_VAULT_II_01,A crib. Elegant. You didn't break his alphabet so much as let him hand you the sign-off he put on nearly every letter.
 DLG_A1_VAULT_II_02,"He handed us more than that, eventually."
 DLG_A1_VAULT_II_03,"Vanity, Isaak. 'Your servant in eternity' is not devotion, it is a man admiring the sound of his own permanence."
 DLG_A1_VAULT_II_04,"You drank from the courier girl. I wonder if you tasted her fear, or only her blood."
@@ -226,7 +226,7 @@ DLG_A1_VAULT_II_08,"Very well. How did the many-toothed key fall into a monk's h
 PZ_P07_TITLE,The Steward Grows Clever
 PZ_P07_BRIEF,Five wheels turn together. Line up each column's shape with English and set the drums.
 PZ_P07_HINT1,"Five teeth, five families. Split the letters by their place in the row before you stare at any of them."
-PZ_P07_HINT2,"Each family is a plain shift. Its tallest bar is often E, but in forty letters T, A or O can win; try them."
+PZ_P07_HINT2,"Each family is a plain shift. Its tallest bar is often E, but in forty letters T, A, O or N can win; try them."
 PZ_P07_HINT3,"Pick a column, read its tallest bar as E and watch the shapes-agree score. If another letter scores higher, keep the best."
 LTR_P07,"Warden Tallow,\n\nThe Lord sends a new cipher from his own library, five teeth to its wheel. Use it from this day.\n\nThe carts cross at Blackwater ford after moonrise. Count them twice and say nothing to the reeve.\n\nYour servant in eternity,\nVeneric Soll"
 LTR_P07_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by raven"
@@ -238,10 +238,10 @@ PZ_P08_HINT3,"Take the largest factor that nearly all your spacings share, set t
 LTR_P08,"Steward,\n\nYou try my patience. The tithe is not a suggestion, and Hollowmere is not exempt from it. Twice the tithe came short, and twice you blamed the reeve, the weather, the carts.\n\nCollect the tithe at Hollowmere before the new moon, or find yourself replaced before the new moon after that.\n\nBlood is owed, blood is paid, world without end.\n\nHollowmere remembers its tithe even when its steward forgets his sums, and the new moon does not wait on excuses. Recite it until you believe it. Blood is owed, blood is paid, world without end.\n\nSee the tithe is whole.\n\nCasimir Morrow-Veil"
 LTR_P08_FROM,"From Lord Casimir Morrow-Veil to Steward Veneric Soll, by raven"
 PZ_P09_TITLE,The Loom of Columns
-PZ_P09_BRIEF,Too few repeats to trust. Slide the loom until the strands look like English.
-PZ_P09_HINT1,"A few letters do repeat here, but too few to vote on a key length. Don't bet your blood on them."
+PZ_P09_BRIEF,Repeats are few and unreliable here. Slide the loom until the strands look like English.
+PZ_P09_HINT1,"Repeats here are few and can point the wrong way. The loom is the surer road, boy."
 PZ_P09_HINT2,Split the letters into strands and test each width. English strands clump; a wrong width scatters.
-PZ_P09_HINT3,"Take the smallest width where the vial runs thick, then give each strand the reading where the shapes agree best."
+PZ_P09_HINT3,"Take the smallest thick width. For a stubborn strand, find three tall bars four, four and six apart: that's A, E, I, O."
 LTR_P09,"Tallow,\n\nWord from the manor: the night has moved. Bring the carts before dusk falls, not after moonrise as before. The old crossing floods whenever it rains, so use the north path this time and go quietly. Burn this note once you have read it.\n\nSoll"
 LTR_P09_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by hand"
 PZ_P10_TITLE,Bit Rosary
@@ -287,7 +287,7 @@ CDX_A1_VIGENERE_M1,"Five wheels, not five secrets. Same trick five times over, w
 CDX_A1_VIGENERE_M2,Bellaso wrote it; Vigenere got the credit centuries later by mistake. Doesn't change how you crack it.
 CDX_A1_KASISKI_TITLE,Kasiski's Lens: measuring the gaps
 CDX_A1_KASISKI_BODY,"If the same three or four letters appear twice in a Vigenere ciphertext, it is usually because the same plaintext letters lined up with the same stretch of key, some whole number of key-lengths apart. Measure the distance between each repeat, and the key's true length will divide most of those distances. Short repeats can happen by pure chance, so trust trigrams and longer, and trust a factor that several distances share. Friedrich Kasiski published this attack in 1863. Charles Babbage broke Vigenere ciphers by a similar method earlier, in the 1850s, but never published it."
-CDX_A1_KASISKI_EXAMPLE,"key VEIL (unknown), letters only:\nOLMEDXPPDWWHZHIEOLMYZAUZJRIYYXPPOM\nOLM at 0 and 16: gap 16\nXPP at 5 and 29: gap 24\nBSZ at 34 and 46: gap 12\nall three share the factors 2 and 4\ntry 4 (the largest shared), then 2"
+CDX_A1_KASISKI_EXAMPLE,"key VEIL (unknown), letters only:\nOLMEDXPPDWWHZHIEOLMYZAUZJRIY\nYXPPOMBSZMAEVOMYVXBSZRMHHSWY\nOLM at 0 and 16: gap 16\nXPP at 5 and 29: gap 24\nBSZ at 34 and 46: gap 12\n16, 24 and 12 all share 2 and 4\ntry 4 (the largest shared), then 2"
 CDX_A1_KASISKI_WRONG,"The steward believed a long enough message could never repeat itself by accident, so he never varied his key mid-letter. Patience alone unravelled him; the repeats were sitting in plain sight the entire time."
 CDX_A1_KASISKI_ASIDE,"The same idea drives modern traffic analysis: repeated patterns in encrypted data, even without breaking the cipher itself, tell an analyst about structure, timing, or reused keys underneath."
 CDX_A1_KASISKI_M1,Coincidences happen. Two repeats might be luck. Ten repeats at the same spacing is a confession.
@@ -462,7 +462,7 @@ UI_MODE_SUB_NGRAMS,"No word breaks, and E is hiding. Pairs and triples still tal
 UI_MODE_VIG_PERIOD,Set to %d wheels.
 UI_MODE_VIG_GIVEN,The key has %d teeth. Set each wheel by its own column. Notches cost %d.
 UI_MODE_VIG_KASISKI,Unknown key length. Hold repeated letters to measure them. Notches cost %d.
-UI_MODE_VIG_IOC,"Unknown key length, and too few repeats to trust Kasiski. Slide the loom. Notches cost %d."
+UI_MODE_VIG_IOC,"Unknown key length, and the repeats here are unreliable. Slide the loom. Notches cost %d."
 UI_ROSARY_STAGE1,Kett's lesson: which key pours %s into %s?
 UI_ROSARY_STAGE2,"Kett's lesson: pour the word, then pour it again. Pours: %d"
 UI_ROSARY_POUR,Pour the key in
@@ -476,7 +476,7 @@ UI_MODE_REPXOR_2,"%d strands, one dial each. Every strand is single-byte XOR."
 UI_MODE_OTP,"One pad, used twice. Drag cribs; pin the ones that read true. A wrong pin costs %d."
 UI_WIDGET_SHIFT_HELP,"Turn the ring. At one setting, and only one, the line reads true."
 UI_WIDGET_FREQ_HELP,"Shift %d. The tallest cipher bar is %s. The profile slides, its shape does not."
-UI_WIDGET_IOC_HELP,"A letter under the key VEIL. Slide N: at 4 and its multiples (8, 12) each strand is one Caesar of English and the vial thickens. Factors such as 2 rise a little too."
+UI_WIDGET_IOC_HELP,"A letter under the key VEIL. Slide N: the vial thickens at 4 and its multiples, and on this short sample even at 2. Take the smallest N whose strands each read as one shift."
 UI_WIDGET_XOR_HELP,Flip any bead of the letter or the key. The poured strand is their XOR; pour the key again and the letter returns.
 UI_WIDGET_XOR_TWICE,Poured twice
 UI_ROSARY_EQ1,%s xor %s = %s\nWanted: %s
@@ -551,7 +551,7 @@ UI_COACH_KASISKI_LENS,"Kett: ""Hold a letter on the page. Repeats sit a multiple
 UI_COACH_COLUMN_LOOM,"Kett: ""Slide N. When the strands are each plain English shifted, the vial runs red and thick."""
 UI_COACH_BIT_ROSARY,"Kett: ""Tap a bead to flip it. Dark is one, pale is nought. The chalice mixes two strands."""
 UI_COACH_KEY_DIAL,"Kett: ""Turn the dial. Watch the gauge, not your hopes."""
-UI_COACH_HAMMING_COMB,"Kett: ""Short tooth, likely key size. Tap it."""
+UI_COACH_HAMMING_COMB,"Kett: ""Short tooth: the key size, or a multiple of it. Tap the smallest tooth that's nearly as short."""
 UI_COACH_CRIB_DRAGGER,"Kett: ""Drag a word you think is in one letter. If the other letter turns to sense beneath it, you've guessed right."""
 UI_CRIBDRAG_OTHER_LETTER,Those words belong to the other letter. Pinned there.
 UI_WARNING_RATING,Mature 17+

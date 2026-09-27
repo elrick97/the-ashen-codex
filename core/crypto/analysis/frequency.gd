@@ -72,7 +72,9 @@ static func chi_squared(letter_counts: PackedInt32Array) -> float:
 
 ## How well a letter count matches English if the text was shifted by `shift`: the
 ## cosine similarity between the counts read back through the shift and the English
-## profile. About 0.9 or more when the shapes line up; roughly 0.3-0.6 when they don't.
+## profile. Compare settings with each other rather than against a fixed number: the
+## right shift scores highest for a column (typically 0.8-0.95); wrong shifts usually score
+## much lower, but a short column's runner-up can come close, and a flat count scores ~0.77.
 static func profile_match(letter_counts: PackedInt32Array, shift: int) -> float:
 	var dot: float = 0.0
 	var na: float = 0.0

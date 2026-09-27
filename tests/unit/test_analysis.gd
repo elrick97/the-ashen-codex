@@ -206,6 +206,7 @@ func test_crib_drag_two_time_pad() -> void:
 	assert_false(Crib.is_plausible_upper(Crib.drag(stream, "THE TITHE".to_ascii_buffer(), 3)))
 	assert_eq(Crib.drag(stream, "ABC".to_ascii_buffer(), stream.size() - 1).size(), 1)
 	assert_true(Crib.reads_like_english("OUR FRIEN".to_ascii_buffer()))
+	assert_false(Crib.reads_like_english("ALT B".to_ascii_buffer()), "too short to call")
 	assert_false(Crib.reads_like_english("XQZJ VKPW".to_ascii_buffer()), "letters but not English")
 	assert_false(Crib.reads_like_english("THE.MOON".to_ascii_buffer()), "full stop glued to a word")
 	assert_false(Crib.reads_like_english("THE  MOON".to_ascii_buffer()), "double space")

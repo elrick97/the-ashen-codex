@@ -279,7 +279,7 @@ func _draw_grid() -> void:
 				elif ci < fragment.size():
 					var b: int = fragment[ci]
 					ch = String.chr(b) if b >= 32 and b <= 126 else "?"
-					col = Palette.GOLD_LIGHT if fragment_ok else Color("e07a6a")
+					col = Palette.GOLD_LIGHT if fragment_ok else Palette.ON_DARK
 			if ch == " ":
 				ch = "_"
 				col = Color(col, 0.45)

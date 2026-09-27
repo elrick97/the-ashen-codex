@@ -14,9 +14,9 @@ Values are after all fixes. "Expected" is a careful first-timer who reads the Co
 | 4 | The Tithe Roll (substitution) | Tally, place E/T, find THE and short words | Rare letters (J in "jar") late in the solve | Tiers point from tally to short-word patterns | 0-8 / Sanctified; 17 with two hints |
 | 5 | The Signature (crib) | Frequency first (misleads: O and T outnumber E), then the crib strip | Finding where the crib's letter pattern agrees (letters only, spaces ignored) | Tier 3: the sign-off just before his name | 0-5 / Sanctified |
 | 6 | Bigrams in the Marsh (flattened E, no word breaks) | Letters tab (T tops it), then Triples: THE | Reading the other 17 letters out of an unbroken stream | Tiers now target that stage: letters before each THE, then half-words | 10-35 / Stained (the hardest early solve) |
-| 7 | The Steward Grows Clever (Vigenere, 5 given) | Per-column Tally; Read-as E; watch "shapes agree" | Columns whose peak is T or O, not E | Tier 2/3: try T, A, O and keep the best agreement | 10-15 / Sanctified-Stained |
+| 7 | The Steward Grows Clever (Vigenere, 5 given) | Per-column Tally; Read-as E; watch "shapes agree" | Columns whose peak is T or O, not E | Tier 2/3: try T, A, O, N and keep the best agreement | 14-22 / Stained |
 | 8 | Kasiski's Lens | Hold repeats; factor tray glows the largest well-supported factor | Choosing 6 over its factors 2 and 3 | Tier 3: largest factor nearly all spacings share | 12-20 / Stained |
-| 9 | The Loom of Columns (IoC) | Slide N; vial thickens at the key length | Columns that need I or N; the 0.79 column | Read-as now covers E/T/A/O/I/N; hints say "best agreement" | 12-25 / Stained |
+| 9 | The Loom of Columns (IoC) | Slide N; vial thickens at the key length | Columns that need I or N; the 0.79 column | Read-as covers E/T/A/O/I/N/S/H; tier 3 teaches the A-E-I-O vowel comb for stubborn strands | 20-30 / Stained |
 | 10 | Bit Rosary (bits, XOR, single-byte) | Flip beads to match; pour twice; dial the gauge | None serious | Stage-by-stage hints | 0 / Sanctified |
 | 11 | The Litany Key (repeating XOR) | Comb: shortest tooth (smallest near-best size marked); per-strand dials | A multiple of the key size (accepted anyway) | Tier 2 mentions multiples | 0 / Sanctified |
 | 12 | BOSS: The Twice-Used Pad | Drag tray cribs; readable gold text only where it truly reads | Deciding which letter a crib belongs to (now filed correctly for free) and bridging Ansgar | Tier 3: earlier letters' words; P11's "Our friend in the Quill" is the key callback | 8-20 / Stained |
@@ -41,9 +41,9 @@ All blockers and majors are fixed; every item below was re-tested (automated tes
 | Crib strip gave its place away through spaces (major) | Crib strip matches letters only; "agrees" is worded as a candidate, not proof |
 | Boss: right crib in the wrong letter cost a wrong pin (major) | Filed into the letter it belongs to, with a note |
 | P08 tray never glowed 6 (major) | Glows the largest factor with >= 80% of the best count |
-| P09 columns unreachable with E/T/A/O reads (major) | Read-as E/T/A/O/I/N; "best agreement" wording |
+| P09 columns unreachable with E/T/A/O reads (major) | Read-as E/T/A/O/I/N/S/H; "best agreement" wording; vowel-comb hint |
 | P11 undo after choosing a size broke the dials (major) | Size follows the dials' column count; snapshot before resizing |
-| Boss "readable" gold lit at wrong offsets (major) | `Crib.reads_like_english` (punctuation rules + quadgram fitness) |
+| Boss "readable" gold lit at wrong offsets (major) | `Crib.reads_like_english`: punctuation rules + quadgram fitness, and fragments under six letters are never called readable (neutral colour, the player judges) |
 | Frenzy dodge by killing the app (minor) | `frenzy_pending` saved and replayed on load |
 | Frenzy variants not harder (minor) | P01/P03 rusted; P04/P06 double wrong-seal cost; P05 keeps only IN ETERNITY; P07-P09 double notch cost; P12 wrong pins cost 6; new variants never reuse the first key word |
 | No Thirst restored inside I.iii (minor) | Kett's flask after the Bit Rosary (-20) |
