@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntryDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/codex_entry_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_ioc"
+act = 1
+chapter_id = "a1_iii"
+order = 10
+title_key = "CDX_A1_IOC_TITLE"
+body_key = "CDX_A1_IOC_BODY"
+example_key = "CDX_A1_IOC_EXAMPLE"
+wrong_key = "CDX_A1_IOC_WRONG"
+aside_key = "CDX_A1_IOC_ASIDE"
+margin_keys = PackedStringArray("CDX_A1_IOC_M1", "CDX_A1_IOC_M2")
+widget = "ioc"
+placeholder = false

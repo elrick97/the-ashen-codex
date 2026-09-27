@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ChapterDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/chapter_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_iii"
+act = 1
+order = 3
+title_key = "CH_A1_III_TITLE"
+subtitle_key = "CH_A1_III_SUB"
+steps = Array[Dictionary]([{"type": "dialogue", "id": "a1_iii_intro"}, {"type": "puzzle", "id": "a1_p07"}, {"type": "dialogue", "id": "a1_p07_after"}, {"type": "puzzle", "id": "a1_p08"}, {"type": "dialogue", "id": "a1_p08_after"}, {"type": "dialogue", "id": "a1_p08_remark"}, {"type": "puzzle", "id": "a1_p09"}, {"type": "dialogue", "id": "a1_p09_after"}, {"type": "puzzle", "id": "a1_p10"}, {"type": "dialogue", "id": "a1_p10_after"}, {"type": "puzzle", "id": "a1_p11"}, {"type": "dialogue", "id": "a1_p11_after"}, {"type": "dialogue", "id": "a1_p11_remark"}, {"type": "puzzle", "id": "a1_p12"}, {"type": "dialogue", "id": "a1_iii_end"}, {"type": "dialogue", "id": "a1_vault_end"}, {"type": "summary"}, {"type": "act_folio"}, {"type": "card", "text": "CARD_A1_END"}])
+next_chapter = ""
+puzzle_ids = PackedStringArray("a1_p07", "a1_p08", "a1_p09", "a1_p10", "a1_p11", "a1_p12")

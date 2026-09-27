@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PuzzleDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/puzzle_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_p03"
+chapter_id = "a1_i"
+number = 3
+title_key = "PZ_P03_TITLE"
+brief_key = "PZ_P03_BRIEF"
+mode = "keyless"
+tools = PackedStringArray("cipher_wheel")
+plaintext_keys = PackedStringArray("LTR_P03_A", "LTR_P03_B", "LTR_P03_C")
+sender_keys = PackedStringArray("LTR_P03_A_FROM", "LTR_P03_B_FROM", "LTR_P03_C_FROM")
+normalization = "upper_keep"
+key_rule = {"type": "scheme_mix", "schemes": ["rot13", "atbash"]}
+base_seed = 1303
+params = {"question_key": "PZ_P03_Q", "answer_keys": ["PZ_P03_A1", "PZ_P03_A2", "PZ_P03_A3"], "correct_answer": 2}
+brute_force_costed = false
+trial_cost = 1
+hint_keys = PackedStringArray("PZ_P03_HINT1", "PZ_P03_HINT2", "PZ_P03_HINT3")
+codex_unlocks = PackedStringArray("a1_kerckhoffs")
+frenzy_dialogue = "a1_i_frenzy"
+frenzy_overrides = {}
+anti_cheese = "The free preview is deliberate: the lesson is that a keyless scheme falls the moment its method is known (Kerckhoffs). The assessment cannot be eyeballed: the seal requires naming the scheme of each note and then answering what actually protects these letters (nothing but the secrecy of the method). Wrong seals cost 8."

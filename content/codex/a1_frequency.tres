@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntryDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/codex_entry_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_frequency"
+act = 1
+chapter_id = "a1_i"
+order = 3
+title_key = "CDX_A1_FREQUENCY_TITLE"
+body_key = "CDX_A1_FREQUENCY_BODY"
+example_key = "CDX_A1_FREQUENCY_EXAMPLE"
+wrong_key = "CDX_A1_FREQUENCY_WRONG"
+aside_key = "CDX_A1_FREQUENCY_ASIDE"
+margin_keys = PackedStringArray("CDX_A1_FREQUENCY_M1", "CDX_A1_FREQUENCY_M2")
+widget = "frequency"
+placeholder = false

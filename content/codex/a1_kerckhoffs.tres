@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntryDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/codex_entry_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_kerckhoffs"
+act = 1
+chapter_id = "a1_i"
+order = 4
+title_key = "CDX_A1_KERCKHOFFS_TITLE"
+body_key = "CDX_A1_KERCKHOFFS_BODY"
+example_key = "CDX_A1_KERCKHOFFS_EXAMPLE"
+wrong_key = "CDX_A1_KERCKHOFFS_WRONG"
+aside_key = "CDX_A1_KERCKHOFFS_ASIDE"
+margin_keys = PackedStringArray("CDX_A1_KERCKHOFFS_M1", "CDX_A1_KERCKHOFFS_M2", "CDX_A1_KERCKHOFFS_M3")
+widget = ""
+placeholder = false

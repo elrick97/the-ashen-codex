@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PuzzleDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/puzzle_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_p04"
+chapter_id = "a1_ii"
+number = 4
+title_key = "PZ_P04_TITLE"
+brief_key = "PZ_P04_BRIEF"
+mode = "substitution"
+tools = PackedStringArray("substitution_board", "tally_scroll")
+plaintext_keys = PackedStringArray("LTR_P04")
+sender_keys = PackedStringArray("LTR_P04_FROM")
+normalization = "upper_keep"
+key_rule = {"type": "perm"}
+base_seed = 1404
+params = {"ngrams": false}
+brute_force_costed = false
+trial_cost = 1
+hint_keys = PackedStringArray("PZ_P04_HINT1", "PZ_P04_HINT2", "PZ_P04_HINT3")
+codex_unlocks = PackedStringArray("a1_substitution")
+frenzy_dialogue = "a1_ii_frenzy"
+frenzy_overrides = {}
+anti_cheese = "26! keys; there is no dial to spin. The preview only shows letters the player has placed, so every letter must be argued from frequency and word patterns. Partial placements are free; sealing a wrong full alphabet costs 8."

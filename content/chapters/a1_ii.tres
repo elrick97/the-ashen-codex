@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ChapterDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/chapter_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_ii"
+act = 1
+order = 2
+title_key = "CH_A1_II_TITLE"
+subtitle_key = "CH_A1_II_SUB"
+steps = Array[Dictionary]([{"type": "dialogue", "id": "a1_ii_intro"}, {"type": "puzzle", "id": "a1_p04"}, {"type": "dialogue", "id": "a1_p04_after"}, {"type": "puzzle", "id": "a1_p05"}, {"type": "dialogue", "id": "a1_p05_after"}, {"type": "dialogue", "id": "a1_p05_remark"}, {"type": "puzzle", "id": "a1_p06"}, {"type": "dialogue", "id": "a1_p06_after"}, {"type": "dialogue", "id": "a1_ii_end"}, {"type": "summary"}, {"type": "dialogue", "id": "a1_vault_ii"}])
+next_chapter = "a1_iii"
+puzzle_ids = PackedStringArray("a1_p04", "a1_p05", "a1_p06")

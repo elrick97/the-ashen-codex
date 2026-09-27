@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PuzzleDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/puzzle_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_p02"
+chapter_id = "a1_i"
+number = 2
+title_key = "PZ_P02_TITLE"
+brief_key = "PZ_P02_BRIEF"
+mode = "caesar"
+tools = PackedStringArray("cipher_wheel", "tally_scroll")
+plaintext_keys = PackedStringArray("LTR_P02")
+sender_keys = PackedStringArray("LTR_P02_FROM")
+normalization = "upper_keep"
+key_rule = {"type": "shift", "min": 3, "max": 23}
+base_seed = 1202
+params = {"show_tally": true}
+brute_force_costed = true
+trial_cost = 1
+hint_keys = PackedStringArray("PZ_P02_HINT1", "PZ_P02_HINT2", "PZ_P02_HINT3")
+codex_unlocks = PackedStringArray("a1_keyspace", "a1_frequency")
+frenzy_dialogue = "a1_i_frenzy"
+frenzy_overrides = {"trial_cost": 2}
+anti_cheese = "Rusted wheel: every notch turned and every 'read as E' costs 1 Thirst (2 after a frenzy). Eyeballing the preview means turning notch by notch (average ~6-13 trials, up to 25), which pushes the grade to Stained or worse. The free Tally Scroll shows the peak; one 'read as E' costs 1 and usually lands the key: Sanctified."

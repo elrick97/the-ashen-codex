@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PuzzleDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/puzzle_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_p10"
+chapter_id = "a1_iii"
+number = 10
+title_key = "PZ_P10_TITLE"
+brief_key = "PZ_P10_BRIEF"
+mode = "xor_rosary"
+tools = PackedStringArray("bit_rosary", "key_dial")
+plaintext_keys = PackedStringArray("LTR_P10")
+sender_keys = PackedStringArray("LTR_P10_FROM")
+normalization = "ascii"
+key_rule = {"type": "byte", "min": 65, "max": 250, "exclude": [96]}
+base_seed = 2010
+params = {"stage2_word_key": "PZ_P10_WORD", "stage1_pool": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"}
+brute_force_costed = false
+trial_cost = 1
+hint_keys = PackedStringArray("PZ_P10_HINT1", "PZ_P10_HINT2", "PZ_P10_HINT3")
+codex_unlocks = PackedStringArray("a1_xor", "a1_single_xor")
+frenzy_dialogue = "a1_iii_frenzy"
+frenzy_overrides = {}
+anti_cheese = "Stage 1 needs the XOR relation (flip exactly the beads where A and B differ); the wanted strand is shown, the key is not. Stage 3: dial turns are free on purpose because the lesson is the scoring function; the gauge is the same English score the solvers use, and 256 keys is exactly where brute force plus a scorer is the right tool. Keys that merely flip letter case (0x20) are excluded so no key reads as English by accident."

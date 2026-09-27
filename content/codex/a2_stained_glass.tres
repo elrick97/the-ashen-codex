@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntryDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/codex_entry_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a2_stained_glass"
+act = 2
+chapter_id = "a2"
+order = 1
+title_key = "CDX_A2_STAINED_GLASS_TITLE"
+body_key = "CDX_A2_STAINED_GLASS_BODY"
+example_key = "CDX_A2_STAINED_GLASS_EXAMPLE"
+wrong_key = "CDX_A2_STAINED_GLASS_WRONG"
+aside_key = "CDX_A2_STAINED_GLASS_ASIDE"
+margin_keys = PackedStringArray("CDX_A2_STAINED_GLASS_M1")
+widget = ""
+placeholder = true

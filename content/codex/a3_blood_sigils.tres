@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntryDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/codex_entry_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a3_blood_sigils"
+act = 3
+chapter_id = "a3"
+order = 1
+title_key = "CDX_A3_BLOOD_SIGILS_TITLE"
+body_key = "CDX_A3_BLOOD_SIGILS_BODY"
+example_key = "CDX_A3_BLOOD_SIGILS_EXAMPLE"
+wrong_key = "CDX_A3_BLOOD_SIGILS_WRONG"
+aside_key = "CDX_A3_BLOOD_SIGILS_ASIDE"
+margin_keys = PackedStringArray("CDX_A3_BLOOD_SIGILS_M1")
+widget = ""
+placeholder = true

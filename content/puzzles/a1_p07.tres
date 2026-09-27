@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PuzzleDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/puzzle_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_p07"
+chapter_id = "a1_iii"
+number = 7
+title_key = "PZ_P07_TITLE"
+brief_key = "PZ_P07_BRIEF"
+mode = "vigenere"
+tools = PackedStringArray("multi_wheel", "tally_scroll")
+plaintext_keys = PackedStringArray("LTR_P07")
+sender_keys = PackedStringArray("LTR_P07_FROM")
+normalization = "letters_only"
+key_rule = {"type": "word", "pool": ["ASHEN", "RAVEN", "THORN", "GRAVE", "EMBER"]}
+base_seed = 1707
+params = {"period_given": 5, "period_max": 12}
+brute_force_costed = true
+trial_cost = 1
+hint_keys = PackedStringArray("PZ_P07_HINT1", "PZ_P07_HINT2", "PZ_P07_HINT3")
+codex_unlocks = PackedStringArray("a1_vigenere")
+frenzy_dialogue = "a1_iii_frenzy"
+frenzy_overrides = {"trial_cost": 2}
+anti_cheese = "Each drum only changes every fifth letter, so the preview never reads as English until all five are right; eyeballing one column is hopeless. Notches cost 1 (2 after a frenzy). The per-column Tally Scroll plus 'read as E' sets each drum for 1 Thirst."

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntryDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/codex_entry_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a5_ward_whisper"
+act = 5
+chapter_id = "a5"
+order = 1
+title_key = "CDX_A5_WARD_WHISPER_TITLE"
+body_key = "CDX_A5_WARD_WHISPER_BODY"
+example_key = "CDX_A5_WARD_WHISPER_EXAMPLE"
+wrong_key = "CDX_A5_WARD_WHISPER_WRONG"
+aside_key = "CDX_A5_WARD_WHISPER_ASIDE"
+margin_keys = PackedStringArray("CDX_A5_WARD_WHISPER_M1")
+widget = ""
+placeholder = true

@@ -18,6 +18,30 @@ CH_A3_TITLE,Act III: Blood Sigils
 CH_A4_TITLE,Act IV: The Court of Primes
 CH_A5_TITLE,Act V: The Ward and the Whisper
 CARD_A1_END,To be continued\nAct II: The Stained Glass\nThe Marquise turns a page. Somewhere above you a bell counts the hour. She has more questions.
+CDX_A2_STAINED_GLASS_TITLE,"The Stained Glass: blocks, ECB, CBC, the confessor"
+CDX_A2_STAINED_GLASS_BODY,"Sealed. The Court's alchemists will cut letters into blocks and push each through a small machine of substitutions and shuffles. When the same block goes in twice, the same block comes out twice, and the picture shows through the glass."
+CDX_A2_STAINED_GLASS_EXAMPLE,Sealed.
+CDX_A2_STAINED_GLASS_WRONG,Sealed.
+CDX_A2_STAINED_GLASS_ASIDE,"Act II will cover a toy block cipher, ECB mode, CBC bit-flipping and the padding-oracle attack."
+CDX_A2_STAINED_GLASS_M1,Glass shows what's behind it. Remember that.
+CDX_A3_BLOOD_SIGILS_TITLE,"Blood Sigils: hashes, birthdays, extensions"
+CDX_A3_BLOOD_SIGILS_BODY,Sealed. A sigil that stands for a whole letter. Easy to make. Hard to forge. Unless it is small enough to meet its twin.
+CDX_A3_BLOOD_SIGILS_EXAMPLE,Sealed.
+CDX_A3_BLOOD_SIGILS_WRONG,Sealed.
+CDX_A3_BLOOD_SIGILS_ASIDE,"Act III will cover hash functions, birthday collisions, length extension and HMAC."
+CDX_A3_BLOOD_SIGILS_M1,A seal proves nothing but that somebody owned wax.
+CDX_A4_COURT_OF_PRIMES_TITLE,The Court of Primes: numbers that keep secrets
+CDX_A4_COURT_OF_PRIMES_BODY,"Sealed. Arithmetic on a clock face, and keys that may be shouted from a tower because only a second key can undo them."
+CDX_A4_COURT_OF_PRIMES_EXAMPLE,Sealed.
+CDX_A4_COURT_OF_PRIMES_WRONG,Sealed.
+CDX_A4_COURT_OF_PRIMES_ASIDE,"Act IV will cover modular arithmetic, RSA and its classic misuses, Diffie-Hellman and discrete logarithms."
+CDX_A4_COURT_OF_PRIMES_M1,Numbers don't lie. The men who pick them do.
+CDX_A5_WARD_WHISPER_TITLE,The Ward and the Whisper
+CDX_A5_WARD_WHISPER_BODY,"Sealed. Men in the middle, clocks that tell tales, a signature that repeats its secret once too often, and a way to prove you know a thing without saying it."
+CDX_A5_WARD_WHISPER_EXAMPLE,Sealed.
+CDX_A5_WARD_WHISPER_WRONG,Sealed.
+CDX_A5_WARD_WHISPER_ASIDE,"Act V will cover replay and man-in-the-middle attacks, timing side channels, ECDSA nonce reuse and zero-knowledge proofs."
+CDX_A5_WARD_WHISPER_M1,Everything eternal repeats. Even the last trick.
 UI_WHEEL_SHIFT,Shift
 UI_WHEEL_MIRROR,Mirror
 UI_WHEEL_KEY,the key

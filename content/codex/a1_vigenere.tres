@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntryDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/codex_entry_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_vigenere"
+act = 1
+chapter_id = "a1_iii"
+order = 8
+title_key = "CDX_A1_VIGENERE_TITLE"
+body_key = "CDX_A1_VIGENERE_BODY"
+example_key = "CDX_A1_VIGENERE_EXAMPLE"
+wrong_key = "CDX_A1_VIGENERE_WRONG"
+aside_key = "CDX_A1_VIGENERE_ASIDE"
+margin_keys = PackedStringArray("CDX_A1_VIGENERE_M1", "CDX_A1_VIGENERE_M2")
+widget = ""
+placeholder = false

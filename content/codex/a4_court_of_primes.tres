@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntryDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/codex_entry_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a4_court_of_primes"
+act = 4
+chapter_id = "a4"
+order = 1
+title_key = "CDX_A4_COURT_OF_PRIMES_TITLE"
+body_key = "CDX_A4_COURT_OF_PRIMES_BODY"
+example_key = "CDX_A4_COURT_OF_PRIMES_EXAMPLE"
+wrong_key = "CDX_A4_COURT_OF_PRIMES_WRONG"
+aside_key = "CDX_A4_COURT_OF_PRIMES_ASIDE"
+margin_keys = PackedStringArray("CDX_A4_COURT_OF_PRIMES_M1")
+widget = ""
+placeholder = true

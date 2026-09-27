@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PuzzleDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/puzzle_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_p05"
+chapter_id = "a1_ii"
+number = 5
+title_key = "PZ_P05_TITLE"
+brief_key = "PZ_P05_BRIEF"
+mode = "substitution"
+tools = PackedStringArray("substitution_board", "tally_scroll")
+plaintext_keys = PackedStringArray("LTR_P05")
+sender_keys = PackedStringArray("LTR_P05_FROM")
+normalization = "upper_keep"
+key_rule = {"type": "perm"}
+base_seed = 1505
+params = {"crib_key": "PZ_P05_CRIB", "ngrams": false}
+brute_force_costed = false
+trial_cost = 1
+hint_keys = PackedStringArray("PZ_P05_HINT1", "PZ_P05_HINT2", "PZ_P05_HINT3")
+codex_unlocks = PackedStringArray("a1_cribs")
+frenzy_dialogue = "a1_ii_frenzy"
+frenzy_overrides = {"crib_key": "PZ_P05_CRIB_SHORT"}
+anti_cheese = "Short letter: single-letter counts are ambiguous. The crib must be slid to the one offset where its letter pattern is self-consistent; pinning applies ~11 letters at once. The preview never places letters by itself. After a frenzy only 'YOUR SERVANT' survives the blood, so fewer letters are pinned."

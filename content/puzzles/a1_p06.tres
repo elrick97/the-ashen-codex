@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PuzzleDef" format=3]
+
+[ext_resource type="Script" path="res://core/game/puzzle_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "a1_p06"
+chapter_id = "a1_ii"
+number = 6
+title_key = "PZ_P06_TITLE"
+brief_key = "PZ_P06_BRIEF"
+mode = "substitution"
+tools = PackedStringArray("substitution_board", "tally_scroll")
+plaintext_keys = PackedStringArray("LTR_P06")
+sender_keys = PackedStringArray("LTR_P06_FROM")
+normalization = "letters_only"
+key_rule = {"type": "perm"}
+base_seed = 1606
+params = {"ngrams": true, "group5": true}
+brute_force_costed = false
+trial_cost = 1
+hint_keys = PackedStringArray("PZ_P06_HINT1", "PZ_P06_HINT2", "PZ_P06_HINT3")
+codex_unlocks = PackedStringArray("a1_ngrams")
+frenzy_dialogue = "a1_ii_frenzy"
+frenzy_overrides = {}
+anti_cheese = "Word breaks are stripped and single-letter counts are flattened by the E-sparing clerk, so the Letters tab misleads. Only pairs/triples (TH, HE, THE) anchor the alphabet. Wrong full seals cost 8."
