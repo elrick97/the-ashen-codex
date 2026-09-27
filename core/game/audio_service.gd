@@ -35,6 +35,17 @@ func _ready() -> void:
 	Settings.apply()
 
 
+## Release every stream at shutdown so nothing is left referenced (clean exit logs).
+func _exit_tree() -> void:
+	if _duck_tween != null:
+		_duck_tween.kill()
+	for p: AudioStreamPlayer in _pool + [_ambience, _drone, _heartbeat]:
+		if p != null:
+			p.stop()
+			p.stream = null
+	_streams.clear()
+
+
 func play(id: String, pitch: float = 1.0, volume_db: float = 0.0) -> void:
 	var s: AudioStream = _stream(id)
 	if s == null:
