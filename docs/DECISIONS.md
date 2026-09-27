@@ -1,0 +1,22 @@
+# Decisions
+
+One line each: decision, reason.
+
+- D01. Engine Godot 4.7.2-stable (latest stable on 2026-09-27), vendored in `.tools/godot`, not on PATH. Reason: brief says latest stable; no sudo.
+- D02. Renderer **Compatibility** (`gl_compatibility`, OpenGL 3 / GLES 3 / WebGL 2). Reason: runs on the widest range of phones, is the only renderer for Web export, and is what WSLg (llvmpipe) can render for the screenshot tour.
+- D03. Tests use vendored GUT 9.7.1 plus `tools_dev/run_tests.sh`, which imports first (translations are generated on import) then runs GUT. Reason: one documented command that works from a fresh clone.
+- D04. A single `scenes/main.tscn` owns the screen stack, transition overlay and Thirst overlay instead of `change_scene_to_file`. Reason: the ink-bleed wipe and Thirst effects must persist across screens, and autoloads stay limited to EventBus, Thirst, Save, Settings, Audio.
+- D05. Non-autoload services (progression, codex, hints, content database) live in a `GameContext` RefCounted created by Main and injected into screens via `setup(ctx)`. Reason: brief caps autoloads; injection keeps screens testable.
+- D06. Custom PCG32 in pure GDScript (16-bit limb multiply) rather than wrapping `RandomNumberGenerator`. Reason: puzzle seeds stored in saves must give identical puzzles regardless of engine version; also avoids relying on signed 64-bit overflow behaviour.
+- D07. Player-facing text uses symbolic keys (`DLG_...`, `LTR_...`, `CDX_...`) in one `content/i18n/strings.csv`, merged by `tools_dev/build_strings.py` from per-area fragments in `content/i18n/src/` (folder has `.gdignore`). Reason: DoD asks for one translation table; fragments let three content authors work in parallel without merge conflicts.
+- D08. Letter plaintexts live in the CSV too; ciphertext is generated from `tr(key)` at load time. Reason: no hard-coded ciphertext, and a localized build can supply its own letters (solver tests guard each language).
+- D09. Puzzle mechanics are grouped into **modes** (caesar, keyless, substitution, vigenere, xor_rosary, xor_repeating, two_time_pad). Each mode has one controller script; a PuzzleDef picks a mode, tools and parameters. Reason: new puzzles of an existing mode need zero code.
+- D10. Brute-force costing on wheels: in `brute_force_costed` puzzles each notch turned and each "read this peak as E" declaration costs one trial. Reason: statistics must be cheaper than force, but declaring from the histogram is still a committed guess, so it can't be spammed for free.
+- D11. Puzzle 3 (ROT13/Atbash) keeps the free live preview on purpose, and its commit asks what actually protects the letters. Reason: the lesson is that a keyless scheme falls the instant it is known; the committed concept question is the assessment.
+- D12. Puzzle 6 flattens frequencies by writing the plaintext with an E-sparing clerk's hand (in-world: the Steward ordered it) and strips word breaks (letters only, shown in groups of five). Reason: a real monoalphabetic cipher cannot flatten frequencies by itself; changing the plaintext keeps it monoalphabetic while forcing the n-gram technique.
+- D13. Puzzle 12 wins when the tithe-night phrase and the traitor's name are fully recovered, not the whole of both letters. Reason: full reconstruction by crib-dragging is tedious on a phone; the story payload is what matters, and each wrong pin still costs Thirst.
+- D14. Frenzy: Thirst reaches 100, a frenzy scene plays, Thirst drops to 70, the frenzy is logged, and the puzzle restarts on the next seeded variant with `frenzy_overrides` applied (for example a lost crib, a lost key-length clue, doubled trial cost). Reason: a real narrative consequence plus a harder but still solver-proven variant.
+- D15. Grades use Thirst *spent inside the puzzle* (not the running total): Sanctified <= 10, Stained <= 35, Damned > 35. Reason: the carried total would punish later puzzles for earlier mistakes.
+- D16. Settings stored in `user://settings.json`, progress in `user://save.json` with `.bak`; both atomic (write `.tmp`, rotate, rename). Reason: brief requires atomic writes and a corruption fallback.
+- D17. Text size: three steps (1.0, 1.18, 1.36) applied by rebuilding the root Theme font sizes. Reason: every Control inherits it, so there are no per-screen special cases.
+- D18. All art is drawn in code (`_draw`, Polygon2D, shaders); no bitmap art ships. Reason: brief requires procedural art; asset swap paths are reserved in ASSET_MANIFEST.
