@@ -45,7 +45,7 @@ func _build() -> void:
 	wheels.period_changed.connect(func(_p: int) -> void: _period_changed())
 	wheels.drum_notch.connect(func(_d: int) -> void: spend_trial())
 	wheels.drum_selected.connect(func(d: int) -> void:
-		tally.column = d
+		tally.select_column(d)
 		_update_tally())
 	track(wheels)
 	tools.append(wheels)

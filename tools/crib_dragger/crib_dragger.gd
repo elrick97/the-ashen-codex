@@ -171,7 +171,7 @@ func _rebuild_tray() -> void:
 	all.append_array(custom)
 	for word: String in all:
 		var b: Button = Button.new()
-		b.text = word.strip_edges() if word.strip_edges() != "" else "' '"
+		b.text = word.replace(" ", "_")
 		b.add_theme_font_override("font", ThemeBuilder.font("mono_bold"))
 		b.add_theme_font_size_override("font_size", mini(ThemeBuilder.size(32), 38))
 		if word == crib:

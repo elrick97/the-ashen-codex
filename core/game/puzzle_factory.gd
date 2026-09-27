@@ -26,6 +26,13 @@ static func build(def: PuzzleDef, variant: int = 0, frenzied: bool = false) -> P
 	for k: String in def.plaintext_keys:
 		inst.plaintexts.append(TextUtil.normalize(letter_text(k), def.normalization))
 	inst.key = make_key(def.key_rule, rng, inst.plaintexts.size())
+	if variant > 0 and str(def.key_rule.get("type", "")) in ["word", "phrase"]:
+		# A new variant never reuses the first variant's key word.
+		var first: Variant = make_key(def.key_rule, Pcg32.new(def.seed_for_variant(0), def.number), inst.plaintexts.size())
+		var tries: int = 0
+		while str(inst.key) == str(first) and tries < 16:
+			inst.key = make_key(def.key_rule, rng, inst.plaintexts.size())
+			tries += 1
 	match def.mode:
 		"caesar":
 			for p: String in inst.plaintexts:

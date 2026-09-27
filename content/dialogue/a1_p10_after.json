@@ -17,7 +17,16 @@
     },
     {
       "speaker": "kett",
-      "text": "DLG_A1_P10_AFTER_04",
+      "text": "DLG_A1_P10_AFTER_04"
+    },
+    {
+      "speaker": "narrator",
+      "text": "DLG_A1_P10_AFTER_05",
+      "thirst": -20
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_P10_AFTER_06",
       "end": true
     }
   ]

@@ -6,7 +6,7 @@ extends Control
 signal submitted(text: String)
 signal cancelled
 
-const ROWS: Array[String] = ["ABCDEFG", "HIJKLMN", "OPQRSTU", "VWXYZ.,"]
+const ROWS: Array[String] = ["ABCDEFG", "HIJKLMN", "OPQRSTU", "VWXYZ", ".,;-'"]
 const MAX_LEN: int = 24
 
 var text: String = ""

@@ -34,7 +34,7 @@ var tab: int = TAB_LETTERS
 var align_shift: int = -1
 ## Profile agreement 0..1 pushed by the mode (-1 = hidden).
 var match_value: float = -1.0
-const READ_AS: Array[int] = [4, 19, 0, 14] # E, T, A, O
+const READ_AS: Array[int] = [4, 19, 0, 14, 8, 13] # E, T, A, O, I, N
 
 var _tabs: HBoxContainer = null
 var _cols: HBoxContainer = null
@@ -115,7 +115,7 @@ func _ready() -> void:
 		var b: Button = Button.new()
 		b.text = String.chr(65 + plain)
 		b.theme_type_variation = "RubricButton" if plain == 4 else ""
-		b.custom_minimum_size = Vector2(118, 124)
+		b.custom_minimum_size = Vector2(96, 124)
 		b.pressed.connect(func() -> void:
 			if selected >= 0:
 				read_as.emit(selected, plain))
@@ -152,6 +152,17 @@ func set_ngrams(bi: Array[Dictionary], tri: Array[Dictionary]) -> void:
 func set_alignment(shift: int, m: float) -> void:
 	align_shift = shift
 	match_value = m
+	_refresh()
+
+
+## Selects a column from outside (the Multi-Wheel's chosen drum).
+func select_column(c: int) -> void:
+	column = c
+	selected = -1
+	var i: int = -1
+	for b: Node in _cols.get_children():
+		(b as Button).set_pressed_no_signal(i == c)
+		i += 1
 	_refresh()
 
 

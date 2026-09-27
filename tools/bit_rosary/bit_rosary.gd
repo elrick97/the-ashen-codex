@@ -13,6 +13,8 @@ const VIEWS: Array[String] = ["bin", "hex", "ascii", "dec"]
 
 var rows: Array[Dictionary] = []
 var view: String = "bin"
+## The editable strand's value, kept here so Undo restores it.
+var key_value: int = 0
 var pour_label: String = ""
 var _canvas: Control = null
 var _pour_btn: Button = null
@@ -75,11 +77,12 @@ func set_pour(label: String) -> void:
 
 
 func get_state() -> Dictionary:
-	return {"view": view}
+	return {"view": view, "k": key_value}
 
 
 func set_state(d: Dictionary) -> void:
 	view = str(d.get("view", "bin"))
+	key_value = int(d.get("k", key_value))
 	for i: int in range(VIEWS.size()):
 		_view_btns[i].set_pressed_no_signal(VIEWS[i] == view)
 	_canvas.queue_redraw()

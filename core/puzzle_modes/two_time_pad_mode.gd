@@ -58,7 +58,7 @@ func _build() -> void:
 
 func _update_fragment() -> void:
 	var frag: PackedByteArray = Crib.drag(stream, dragger.crib.to_ascii_buffer(), dragger.offset)
-	dragger.set_fragment(frag, Crib.is_plausible_upper(frag))
+	dragger.set_fragment(frag, Crib.reads_like_english(frag))
 
 
 func _on_pin(offset: int, row: int) -> void:
@@ -66,6 +66,13 @@ func _on_pin(offset: int, row: int) -> void:
 	if offset + crib.size() > stream.size():
 		return
 	var truth: PackedByteArray = inst.plain_bytes[row].slice(offset, offset + crib.size())
+	var other_truth: PackedByteArray = inst.plain_bytes[1 - row].slice(offset, offset + crib.size())
+	if truth != crib and other_truth == crib:
+		# Right words, right place, other letter: the fragment makes that plain to a reader,
+		# so the pin is filed where it belongs instead of being charged.
+		row = 1 - row
+		truth = other_truth
+		EventBus.toast.emit(tr("UI_CRIBDRAG_OTHER_LETTER"))
 	if truth == crib:
 		var other: PackedByteArray = Crib.drag(stream, crib, offset)
 		for i: int in range(crib.size()):

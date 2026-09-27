@@ -99,5 +99,25 @@ static func is_plausible_upper(fragment: PackedByteArray) -> bool:
 	return true
 
 
+## A stricter reading test for a dragged fragment: plausible characters, punctuation
+## followed by a space or line break, no doubled spaces, and English-like letters
+## (quadgram fitness per gram above -5.2 when there are enough letters to judge).
+static func reads_like_english(fragment: PackedByteArray) -> bool:
+	if not is_plausible_upper(fragment):
+		return false
+	var n: int = fragment.size()
+	for i: int in range(n):
+		var b: int = fragment[i]
+		var nxt: int = fragment[i + 1] if i + 1 < n else -1
+		if b in [46, 44, 59, 58, 33, 63] and nxt != -1 and nxt != 32 and nxt != 10:
+			return false
+		if b == 32 and nxt == 32:
+			return false
+	var letters: PackedInt32Array = TextUtil.letter_indices(fragment.get_string_from_ascii())
+	if letters.size() >= 4:
+		return EnglishScore.fitness(letters) / float(letters.size() - 3) > -5.2
+	return letters.size() > 0
+
+
 ## Space, newline and . , ; : ' ! ? - as byte values.
 const UPPER_MARKS: Array[int] = [32, 10, 46, 44, 59, 58, 39, 33, 63, 45]

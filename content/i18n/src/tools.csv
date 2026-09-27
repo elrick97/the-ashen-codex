@@ -69,3 +69,4 @@ UI_COACH_BIT_ROSARY,"Kett: ""Tap a bead to flip it. Dark is one, pale is nought.
 UI_COACH_KEY_DIAL,"Kett: ""Turn the dial. Watch the gauge, not your hopes."""
 UI_COACH_HAMMING_COMB,"Kett: ""Short tooth, likely key size. Tap it."""
 UI_COACH_CRIB_DRAGGER,"Kett: ""Drag a word you think is in one letter. If the other letter turns to sense beneath it, you've guessed right."""
+UI_CRIBDRAG_OTHER_LETTER,Those words belong to the other letter. Pinned there.

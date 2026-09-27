@@ -227,28 +227,28 @@ PZ_P07_TITLE,The Steward Grows Clever
 PZ_P07_BRIEF,Five wheels turn together. Line up each column's shape with English and set the drums.
 PZ_P07_HINT1,"Five teeth, five families. Split the letters by their place in the row before you stare at any of them."
 PZ_P07_HINT2,"Each family is a plain shift. Its tallest bar is often E, but in forty letters T, A or O can win; try them."
-PZ_P07_HINT3,"Pick a column, read its tallest bar as E and watch the shapes-agree score. Under about 80, try T, A or O instead."
+PZ_P07_HINT3,"Pick a column, read its tallest bar as E and watch the shapes-agree score. If another letter scores higher, keep the best."
 LTR_P07,"Warden Tallow,\n\nThe Lord sends a new cipher from his own library, five teeth to its wheel. Use it from this day.\n\nThe carts cross at Blackwater ford after moonrise. Count them twice and say nothing to the reeve.\n\nYour servant in eternity,\nVeneric Soll"
 LTR_P07_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by raven"
 PZ_P08_TITLE,Kasiski's Lens
 PZ_P08_BRIEF,Measure the gaps between repeated letters to learn how many teeth this key has.
 PZ_P08_HINT1,Look for the same three letters twice in a message this long. Short repeats can be chance; longer ones rarely are.
 PZ_P08_HINT2,Measure the distance between each repeat. The key's length divides most of those numbers.
-PZ_P08_HINT3,"Take the factor most spacings share, set that many wheels, then match each column's shape to English."
+PZ_P08_HINT3,"Take the largest factor that nearly all your spacings share, set that many wheels, then match each column's shape to English."
 LTR_P08,"Steward,\n\nYou try my patience. The tithe is not a suggestion, and Hollowmere is not exempt from it. Twice the tithe came short, and twice you blamed the reeve, the weather, the carts.\n\nCollect the tithe at Hollowmere before the new moon, or find yourself replaced before the new moon after that.\n\nBlood is owed, blood is paid, world without end.\n\nHollowmere remembers its tithe even when its steward forgets his sums, and the new moon does not wait on excuses. Recite it until you believe it. Blood is owed, blood is paid, world without end.\n\nSee the tithe is whole.\n\nCasimir Morrow-Veil"
 LTR_P08_FROM,"From Lord Casimir Morrow-Veil to Steward Veneric Soll, by raven"
 PZ_P09_TITLE,The Loom of Columns
 PZ_P09_BRIEF,Too few repeats to trust. Slide the loom until the strands look like English.
 PZ_P09_HINT1,"A few letters do repeat here, but too few to vote on a key length. Don't bet your blood on them."
 PZ_P09_HINT2,Split the letters into strands and test each width. English strands clump; a wrong width scatters.
-PZ_P09_HINT3,"Take the smallest width where the vial runs thick, then match each strand's shape to English on the tally."
+PZ_P09_HINT3,"Take the smallest width where the vial runs thick, then give each strand the reading where the shapes agree best."
 LTR_P09,"Tallow,\n\nWord from the manor: the night has moved. Bring the carts before dusk falls, not after moonrise as before. The old crossing floods whenever it rains, so use the north path this time and go quietly. Burn this note once you have read it.\n\nSoll"
 LTR_P09_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by hand"
 PZ_P10_TITLE,Bit Rosary
 PZ_P10_BRIEF,"Flip beads to pour one letter into another, pour twice to undo it, then dial the key."
-PZ_P10_HINT1,A bead only knows heads or tails. Flip the ones where your two rows don't agree.
-PZ_P10_HINT2,Pour the same key over the sum twice and it cancels itself out. That is the whole trick of it.
-PZ_P10_HINT3,"Once you have one letter, turn the dial through all its settings and keep whichever reads most like English."
+PZ_P10_HINT1,Beads first: a dark bead is a one. Flip the key beads wherever the letter and the wanted letter differ.
+PZ_P10_HINT2,"XOR undoes itself: pour the same key twice and the word comes back. At the dial, the gauge scores every key for you."
+PZ_P10_HINT3,"At the dial, turn slowly and stop where the gauge peaks; the note below will show words when you're there."
 PZ_P10_WORD,BLOOD
 LTR_P10,"They watch the north gate after dark now. Do not use the old path again, and burn this once you have read it."
 LTR_P10_FROM,"From an unnamed thrall of Hollowmere, passed hand to hand"
@@ -263,7 +263,7 @@ PZ_P12_TITLE,BOSS: The Twice-Used Pad
 PZ_P12_BRIEF,Drag a guessed word across both streams until real words answer it back.
 PZ_P12_HINT1,"Two letters, one careless key. Whatever you guess in one, you get for free in the other."
 PZ_P12_HINT2,"Slide a likely word along the combined stream. Where it fits, both sides turn to readable text."
-PZ_P12_HINT3,"Pin your crib where the words make sense, then use what falls out to guess the next word along."
+PZ_P12_HINT3,"Words from earlier letters make good cribs. When one reads true, pin it in the letter whose sender would write it."
 LTR_P12_A,"Warden Tallow,\n\nBe ready. The tithe falls on the night of the black moon, at the salt barn. Bring the ledger; count twice. The reeve is not to be trusted with the tally.\n\nYour servant in eternity,\nVeneric Soll"
 LTR_P12_A_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by raven"
 LTR_P12_B,"Casimir Morrow-Veil,\n\nOur friend in the Quill is no friend. Brother Ansgar sells them our routes, and has done since the salt barn burned. Silence him before new moon.\n\nYour servant in eternity,\nVeneric Soll"
@@ -386,8 +386,8 @@ DLG_A1_III_END_14,Kett didn't speak the whole ride back. Some choices you don't 
 DLG_A1_III_FRENZY_01,"The Thirst took me between one heartbeat and the next, same as always once I've told myself I'm fine."
 DLG_A1_III_FRENZY_02,"I don't remember choosing. I remember Kett's arm between my teeth, and the sound he didn't make."
 DLG_A1_III_FRENZY_03,"He shoved Isaak off with his free hand and said nothing, then or ever after."
-DLG_A1_III_FRENZY_04,The page with the salt barn written on it went into the mud with the rest of me.
-DLG_A1_III_FRENZY_05,"Get up. We don't have that letter anymore, so we'd better be quick about the rest."
+DLG_A1_III_FRENZY_04,"The letter I was working went into the mud with the rest of me, and a crib I'd been saving went with it."
+DLG_A1_III_FRENZY_05,"Get up. That copy's gone; we'll work the next one, and we'd better be quick about it."
 DLG_A1_III_FRENZY_06,He never once mentioned his arm. I never once thanked him for that.
 DLG_A1_VAULT_END_01,Brother Ansgar. Yes. My house knew that name before your Order finished paying him.
 DLG_A1_VAULT_END_02,You knew.
@@ -399,6 +399,8 @@ DLG_A1_VAULT_END_07,The quieter choice. Also the hungrier one. I imagine it stil
 DLG_A1_VAULT_END_08,"Your Order calls itself a secret, yet it reused the same trust in the same man for years."
 DLG_A1_VAULT_END_09,"The same as any lazy house reuses a key. Everything eternal repeats, Isaak. Even the ones who hunt us."
 DLG_A1_VAULT_END_10,I said nothing to that either. Some lessons you just have to sit in.
+DLG_A1_P10_AFTER_05,"Kett passed me his flask of pig's blood without a word. It tasted of shame, and it worked."
+DLG_A1_P10_AFTER_06,"One more letter, maybe two. I could hold that long."
 SPK_ISAAK,Isaak Varr
 SPK_KETT,Brother Kett
 SPK_MARQUISE,Marquise Ottilie Dray
@@ -551,6 +553,7 @@ UI_COACH_BIT_ROSARY,"Kett: ""Tap a bead to flip it. Dark is one, pale is nought.
 UI_COACH_KEY_DIAL,"Kett: ""Turn the dial. Watch the gauge, not your hopes."""
 UI_COACH_HAMMING_COMB,"Kett: ""Short tooth, likely key size. Tap it."""
 UI_COACH_CRIB_DRAGGER,"Kett: ""Drag a word you think is in one letter. If the other letter turns to sense beneath it, you've guessed right."""
+UI_CRIBDRAG_OTHER_LETTER,Those words belong to the other letter. Pinned there.
 UI_WARNING_RATING,Mature 17+
 UI_WARNING_TITLE,A Warning
 UI_WARNING_BODY,"This is a tale of blood. It contains written violence, strong language, feeding, grief and bleak choices. Nothing is shown that the words don't earn, but the words are not kind."

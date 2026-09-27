@@ -103,6 +103,13 @@ func _draw_comb() -> void:
 	for k: int in range(min_size, mini(max_size + 1, scores.size())):
 		if best < 0 or scores[k] < scores[best]:
 			best = k
+	# Multiples of the key size score as well as the size itself; mark the smallest
+	# size that is within 5% of the best.
+	if best >= 0:
+		for k2: int in range(min_size, best):
+			if scores[k2] <= scores[best] * 1.05:
+				best = k2
+				break
 	var sf: Font = ThemeBuilder.font("semibold")
 	for k: int in range(min_size, mini(max_size + 1, scores.size())):
 		var v: float = scores[k]

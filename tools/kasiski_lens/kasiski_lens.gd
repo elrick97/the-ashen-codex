@@ -128,6 +128,12 @@ func _refresh() -> void:
 	var best: int = 0
 	for f: int in range(tally_lo, mini(tally_hi, tally.size() - 1) + 1):
 		best = maxi(best, tally[f])
+	# Small factors divide everything, so the likeliest key length is the LARGEST factor
+	# that nearly every spacing shares (the rule Kasiski.likely_period uses).
+	var likely: int = 0
+	for f0: int in range(tally_lo, mini(tally_hi, tally.size() - 1) + 1):
+		if best > 0 and float(tally[f0]) >= 0.8 * float(best):
+			likely = f0
 	for f: int in range(tally_lo, tally_hi + 1):
 		var n: int = tally[f] if f < tally.size() else 0
 		var b: Button = Button.new()
@@ -135,9 +141,9 @@ func _refresh() -> void:
 		b.custom_minimum_size = Vector2(0, 150)
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		b.add_theme_font_size_override("font_size", ThemeBuilder.size(34))
-		if best > 0 and n == best:
+		if f == likely:
 			b.theme_type_variation = "RubricButton"
-		elif best > 0 and float(n) >= 0.75 * float(best):
+		elif best > 0 and float(n) >= 0.8 * float(best):
 			b.add_theme_color_override("font_color", Palette.RUBRIC)
 		if f == chosen:
 			b.add_theme_color_override("font_color", Palette.GOLD_LIGHT)

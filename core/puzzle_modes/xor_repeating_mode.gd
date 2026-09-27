@@ -30,6 +30,7 @@ func _build() -> void:
 
 func _choose(k: int) -> void:
 	keysize = k
+	dial.snapshot()
 	dial.set_columns(k)
 	dial.state_changed.emit()
 	show_tab(1)
@@ -45,6 +46,9 @@ func _key() -> PackedByteArray:
 
 
 func sync_views() -> void:
+	if keysize > 0:
+		# Undo can roll the dials back; the dials' column count is the truth.
+		keysize = dial.columns if dial.columns > 1 or keysize == 1 else 0
 	if keysize <= 0:
 		grid.set_bytes(cipher)
 		host.refresh_bar()

@@ -57,6 +57,7 @@ func _on_flip(_row: int, bit: int) -> void:
 	if stage != 1:
 		return
 	k ^= 1 << bit
+	rosary.key_value = k
 	sync_views()
 
 
@@ -69,6 +70,8 @@ func _on_pour() -> void:
 
 
 func sync_views() -> void:
+	if stage == 1:
+		k = rosary.key_value
 	match stage:
 		1:
 			rosary.set_rows([
@@ -143,6 +146,7 @@ func get_state() -> Dictionary:
 func set_state(d: Dictionary) -> void:
 	k = int(d.get("k", 0))
 	rosary.set_state(d.get("rosary", {}))
+	rosary.key_value = k
 	dial.set_state(d.get("dial", {}))
 	_enter_stage(int(d.get("stage", 1)))
 	pours = int(d.get("pours", 0))
@@ -151,6 +155,7 @@ func set_state(d: Dictionary) -> void:
 
 func apply_solution() -> void:
 	k = a ^ b
+	rosary.key_value = k
 	_enter_stage(3)
 	dial.set_value(0, int(inst.key))
 	sync_views()

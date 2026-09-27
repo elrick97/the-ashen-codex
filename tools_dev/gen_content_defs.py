@@ -49,7 +49,7 @@ PUZZLES = [
          norm="letters_only", key={"type": "word", "pool": ["ASHEN", "RAVEN", "THORN", "GRAVE", "EMBER"]},
          params={"period_given": 5, "period_max": 12}, costed=True, cost=1, codex=["a1_vigenere"],
          frenzy="a1_iii_frenzy", fo={"trial_cost": 2},
-         anti="Each drum changes only every fifth letter, so the preview reads as English only when every column is right, and turning drums blind costs a notch each. The per-column Tally shows a shapes-agree score for the drum's current setting; read-as E/T/A/O jumps cost 1 per try, so matching shapes costs about 5-10 Thirst while spinning drums costs far more."),
+         anti="Each drum changes only every fifth letter, so the preview reads as English only when every column is right, and turning drums blind costs a notch each. The per-column Tally shows a shapes-agree score for the drum's current setting; read-as E/T/A/O jumps cost 1 per try, so matching shapes costs about 10-15 Thirst while spinning drums costs far more."),
     dict(n=8, ch="a1_iii", mode="vigenere", tools=["kasiski_lens", "multi_wheel", "tally_scroll"], letters=["LTR_P08"],
          norm="letters_only", key={"type": "word", "pool": ["MORROW", "SHROUD", "CANDLE", "REQUIEM", "VESPERS"]},
          params={"period_given": 0, "period_max": 12}, costed=True, cost=1, codex=["a1_kasiski"],
@@ -76,11 +76,11 @@ PUZZLES = [
                  "targets": [{"msg": 0, "phrase_key": "PZ_P12_TARGET_NIGHT", "label_key": "PZ_P12_LABEL_NIGHT"},
                              {"msg": 1, "phrase_key": "PZ_P12_TARGET_NAME", "label_key": "PZ_P12_LABEL_NAME"}]},
          costed=True, cost=4, codex=["a1_otp"], frenzy="a1_iii_frenzy",
-         fo={"crib_tray_keys": ["PZ_P12_CRIB_1", "PZ_P12_CRIB_2", "PZ_P12_CRIB_4", "PZ_P12_CRIB_5", "PZ_P12_CRIB_6"]},
+         fo={"trial_cost": 6, "crib_tray_keys": ["PZ_P12_CRIB_1", "PZ_P12_CRIB_2", "PZ_P12_CRIB_4", "PZ_P12_CRIB_5", "PZ_P12_CRIB_6"]},
          anti="There is no preview of either letter: only XOR(C1, C2) is visible. Readable text appears only under a correct "
               "crib, which is the technique itself. Pinning commits the guess; a wrong pin costs 4, so spraying cribs is "
               "expensive. Winning needs the tithe-night phrase and the traitor's name recovered, which takes several "
-              "chained guesses. After a frenzy one tray crib is lost."),
+              "chained guesses. After a frenzy one tray crib is lost and a wrong pin costs 6."),
 ]
 
 CHAPTERS = [

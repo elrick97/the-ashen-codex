@@ -22,5 +22,5 @@ trial_cost = 4
 hint_keys = PackedStringArray("PZ_P12_HINT1", "PZ_P12_HINT2", "PZ_P12_HINT3")
 codex_unlocks = PackedStringArray("a1_otp")
 frenzy_dialogue = "a1_iii_frenzy"
-frenzy_overrides = {"crib_tray_keys": ["PZ_P12_CRIB_1", "PZ_P12_CRIB_2", "PZ_P12_CRIB_4", "PZ_P12_CRIB_5", "PZ_P12_CRIB_6"]}
-anti_cheese = "There is no preview of either letter: only XOR(C1, C2) is visible. Readable text appears only under a correct crib, which is the technique itself. Pinning commits the guess; a wrong pin costs 4, so spraying cribs is expensive. Winning needs the tithe-night phrase and the traitor's name recovered, which takes several chained guesses. After a frenzy one tray crib is lost."
+frenzy_overrides = {"trial_cost": 6, "crib_tray_keys": ["PZ_P12_CRIB_1", "PZ_P12_CRIB_2", "PZ_P12_CRIB_4", "PZ_P12_CRIB_5", "PZ_P12_CRIB_6"]}
+anti_cheese = "There is no preview of either letter: only XOR(C1, C2) is visible. Readable text appears only under a correct crib, which is the technique itself. Pinning commits the guess; a wrong pin costs 4, so spraying cribs is expensive. Winning needs the tithe-night phrase and the traitor's name recovered, which takes several chained guesses. After a frenzy one tray crib is lost and a wrong pin costs 6."
