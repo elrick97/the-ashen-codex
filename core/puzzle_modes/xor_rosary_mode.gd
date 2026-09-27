@@ -46,6 +46,7 @@ func _enter_stage(s: int) -> void:
 	stage = s
 	rosary.visible = stage < 3
 	lesson.visible = stage < 3
+	grid.visible = stage == 3
 	dial.visible = stage == 3
 	if stage == 2:
 		pours = 0

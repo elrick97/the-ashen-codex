@@ -35,8 +35,12 @@ func _ready() -> void:
 	Settings.apply()
 
 
-## Release every stream at shutdown so nothing is left referenced (clean exit logs).
-func _exit_tree() -> void:
+## Release every stream so nothing is left referenced at exit (clean logs). Called a few
+## frames before quitting (the audio thread drops playbacks asynchronously) and again
+## from _exit_tree as a fallback.
+func shutdown() -> void:
+	for t: Tween in get_tree().get_processed_tweens():
+		t.kill()
 	if _duck_tween != null:
 		_duck_tween.kill()
 	for p: AudioStreamPlayer in _pool + [_ambience, _drone, _heartbeat]:
@@ -44,6 +48,16 @@ func _exit_tree() -> void:
 			p.stop()
 			p.stream = null
 	_streams.clear()
+	_ambience_id = ""
+
+
+func _exit_tree() -> void:
+	shutdown()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		shutdown()
 
 
 func play(id: String, pitch: float = 1.0, volume_db: float = 0.0) -> void:

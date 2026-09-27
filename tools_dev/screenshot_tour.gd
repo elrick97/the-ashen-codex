@@ -41,7 +41,8 @@ func _ready() -> void:
 	print("TOUR DONE: %d screenshots in %s" % [shot, out_dir])
 	Save.delete_save()
 	main.queue_free()
-	await _frames(3)
+	Audio.shutdown()
+	await _frames(10)
 	get_tree().quit(0)
 
 
