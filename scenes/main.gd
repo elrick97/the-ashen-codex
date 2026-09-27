@@ -48,8 +48,28 @@ func _ready() -> void:
 	EventBus.thirst_level_changed.connect(_on_thirst_level)
 	EventBus.codex_unlocked.connect(_on_codex_unlocked)
 	_on_thirst_level(Thirst.level())
+	if OS.get_cmdline_user_args().has("--selftest"):
+		_selftest()
+		return
 	if not Engine.has_meta("tour"):
 		goto("boot")
+
+
+## `-- --selftest`: proves a build ships its content (used on exported builds).
+func _selftest() -> void:
+	var ok: bool = true
+	for n: int in range(1, 13):
+		var def: PuzzleDef = ctx.db.puzzle("a1_p%02d" % n)
+		if def == null:
+			ok = false
+			continue
+		var inst: PuzzleInstance = PuzzleFactory.build(def)
+		if inst.plaintexts.is_empty() or inst.plaintexts[0].begins_with("LTR_"):
+			ok = false
+	var fit: float = EnglishScore.fitness(TextUtil.letter_indices("THE TITHE IS OWED"))
+	print("SELFTEST puzzles=%d chapters=%d codex=%d dialogues=%d ngrams=%s ok=%s" % [
+		ctx.db.puzzles.size(), ctx.db.chapters.size(), ctx.db.codex.size(), ctx.db.dialogues.size(), str(fit < 0.0), str(ok)])
+	get_tree().quit(0 if ok and fit < 0.0 else 1)
 
 
 func _process(delta: float) -> void:
