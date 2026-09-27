@@ -22,8 +22,8 @@ UI_BOARD_TAB,Alphabet
 UI_CRIB_TAB,Crib
 UI_CRIB_PIN,Pin the crib
 UI_CRIB_LETTER,The letter
-UI_CRIB_HELP,Slide the crib. A cross marks a letter that contradicts itself.
-UI_CRIB_FITS,It fits. Every letter agrees.
+UI_CRIB_HELP,Slide the crib along the letters (spaces ignored). A cross marks a letter that contradicts itself.
+UI_CRIB_FITS,"Its letters agree with each other here. That's a candidate, not proof."
 UI_MULTI_PERIOD,%d wheels
 UI_MULTI_RUSTED,Rusted: every notch you turn costs Thirst.
 UI_KASISKI_TRAY,Factor tray: how many spacings each number divides

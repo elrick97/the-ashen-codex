@@ -48,11 +48,14 @@ static func solve_p04(inst: PuzzleInstance) -> Dictionary:
 ## pin those letters, then finish the rest statistically.
 static func solve_p05(inst: PuzzleInstance) -> Dictionary:
 	var c: String = inst.ciphertexts[0]
-	var crib: String = TranslationServer.translate(str(inst.param("crib_key", ""))).to_upper()
-	var pos: PackedInt32Array = Crib.substitution_positions(c, crib)
+	# As on the crib strip: letters only, so only letter-repeat patterns place the crib.
+	var letters: String = TextUtil.letters_only(c)
+	var crib: String = TextUtil.letters_only(TranslationServer.translate(str(inst.param("crib_key", ""))))
+	var pos: PackedInt32Array = Crib.substitution_positions(letters, crib)
 	var fixed: Dictionary = {}
 	if pos.size() >= 1:
-		var m: Dictionary = Crib.substitution_mapping(c, crib, pos[pos.size() - 1])
+		# Several consistent places are possible for a short crib; a sign-off sits last.
+		var m: Dictionary = Crib.substitution_mapping(letters, crib, pos[pos.size() - 1])
 		for k: Variant in m.keys():
 			fixed[int(k) - 65] = int(m[k]) - 65
 	var k: PackedInt32Array = SolverLib.solve_substitution(c, fixed)

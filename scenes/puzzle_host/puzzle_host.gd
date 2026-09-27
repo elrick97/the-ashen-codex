@@ -146,7 +146,11 @@ func _build() -> void:
 		ctx.progression.save()
 	_start_mode(int(a.get("variant", 0)), bool(a.get("frenzied", false)), a.get("tool_states", {}))
 	_layout.call_deferred()
-	_show_coach_marks.call_deferred()
+	if bool(a.get("frenzy_pending", false)):
+		# The app died during a frenzy: it still happens.
+		_on_frenzy.call_deferred()
+	else:
+		_show_coach_marks.call_deferred()
 
 
 func _layout() -> void:
@@ -199,6 +203,8 @@ func charge(amount: int, reason: String) -> void:
 	ctx.progression.charge(amount, reason)
 	if reason == "trial":
 		EventBus.sfx.emit("tick")
+	# Paid-for positions are saved with the payment (quitting can't keep one without the other).
+	save_now()
 	refresh_bar()
 
 
@@ -248,7 +254,7 @@ func resolve(v: PuzzleMode.Verdict) -> void:
 			refresh_bar()
 		PuzzleMode.Verdict.WRONG:
 			wrong_feedback()
-			charge(Thirst.config.wrong_commit, "wrong_commit")
+			charge(int(inst.param("wrong_cost", Thirst.config.wrong_commit)), "wrong_commit")
 			save_now()
 		_:
 			pass
@@ -302,6 +308,7 @@ func _on_frenzy() -> void:
 	if _frenzy_running or _finished or not is_inside_tree():
 		return
 	_frenzy_running = true
+	ctx.progression.active()["frenzy_pending"] = true
 	save_now()
 	EventBus.sfx.emit("frenzy")
 	EventBus.haptic.emit("thud")

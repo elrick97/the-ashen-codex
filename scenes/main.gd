@@ -120,7 +120,13 @@ func run_story() -> void:
 		"dialogue":
 			goto("dialogue", {"id": str(step["id"])})
 		"puzzle":
-			goto("puzzle", {"id": str(step["id"])})
+			var pid: String = str(step["id"])
+			if ctx.progression.is_solved(pid):
+				# Resumed on the folio of a solved letter: show it again, don't replay it.
+				var def: PuzzleDef = ctx.db.puzzle(pid)
+				goto("folio", {"puzzle_id": pid, "record": ctx.progression.puzzle_record(pid), "unlocked": def.codex_unlocks if def != null else PackedStringArray()})
+			else:
+				goto("puzzle", {"id": pid})
 		"summary":
 			goto("summary", {"chapter": ctx.progression.current_chapter().id})
 		"act_folio":

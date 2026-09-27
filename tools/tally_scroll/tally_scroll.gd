@@ -226,6 +226,7 @@ func _refresh() -> void:
 	var total: int = 0
 	for v: int in counts:
 		total += v
+	_info.visible = true
 	if tab == TAB_LETTERS:
 		if selected >= 0 and selected < counts.size():
 			var pct: float = 100.0 * float(counts[selected]) / float(maxi(total, 1))
@@ -239,7 +240,8 @@ func _refresh() -> void:
 			_read_label.text = (tr("UI_TALLY_READ_AS_COST") % [String.chr(65 + selected), read_as_e_cost]) if read_as_e_cost > 0 else (tr("UI_TALLY_READ_AS") % String.chr(65 + selected))
 	else:
 		_read_row.visible = false
-		_info.text = tr("UI_TALLY_GRAM_HELP")
+		_info.text = ""
+		_info.visible = false
 		_fill_grams()
 	_chart.queue_redraw()
 
@@ -346,7 +348,6 @@ func _chart_input(event: InputEvent) -> void:
 	if p.y > float(g["h"]) * 0.5:
 		return
 	var i: int = clampi(int(p.x / float(g["bw"])), 0, 25)
-	snapshot()
 	selected = i
 	EventBus.sfx.emit("tick")
 	EventBus.haptic.emit("tick")

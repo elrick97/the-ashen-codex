@@ -145,6 +145,7 @@ func record_frenzy(puzzle_id: String) -> void:
 	var a: Dictionary = active()
 	a["variant"] = int(a.get("variant", 0)) + 1
 	a["frenzied"] = true
+	a.erase("frenzy_pending")
 	a["tool_states"] = {}
 	a["mode_state"] = {}
 	Thirst.after_frenzy()
@@ -153,6 +154,11 @@ func record_frenzy(puzzle_id: String) -> void:
 
 ## Records the solved puzzle with its grade and clears the active record.
 func complete_puzzle(id: String) -> Dictionary:
+	if is_solved(id):
+		# The first seal stands; a replay can't launder the grade.
+		Save.data["active_puzzle"] = {}
+		save()
+		return puzzle_record(id)
 	var a: Dictionary = active()
 	var spent: int = int(a.get("thirst_spent", 0))
 	var rec: Dictionary = {

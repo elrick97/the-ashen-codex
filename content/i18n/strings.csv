@@ -7,10 +7,10 @@ PZ_P01_HINT3,"Turn it one notch at a time and read the first few words aloud. Th
 PZ_P02_TITLE,The Rusted Wheel
 PZ_P02_BRIEF,Read the tally before you spend blood turning the wheel by guesswork.
 PZ_P02_HINT1,"Don't spin the wheel blind, it costs you now. Look at the Tally Scroll first and see which bar stands tallest."
-PZ_P02_HINT2,In any honest letter one letter does most of the work. Find that tallest bar and count its distance to what it should be.
-PZ_P02_HINT3,"Read the tallest column as the commonest letter in plain speech, then turn the wheel that many stops before you spend another drop."
+PZ_P02_HINT2,"Frequency, boy. In English E carries the most weight, so the tallest cipher bar is almost surely E in disguise."
+PZ_P02_HINT3,Tap the tallest bar and press E. One press costs a drop; turning the rusted wheel by hand costs one per notch.
 PZ_P03_TITLE,Thirteen Turns
-PZ_P03_BRIEF,"Name each note's trick, then say what truly kept them secret."
+PZ_P03_BRIEF,"Set the wheel to each note's trick until it reads, then say what kept them secret."
 PZ_P03_HINT1,"Three notes, two little tricks. Watch whether a letter's place moves along the alphabet or flips end for end."
 PZ_P03_HINT2,"One trick always adds thirteen and undoes itself if you do it twice. The other flips the alphabet on its head, first for last."
 PZ_P03_HINT3,"Set the wheel to each note's trick until it reads, then seal. For the question, ask what a stranger would still lack after reading them."
@@ -107,7 +107,7 @@ DLG_A1_I_FRENZY_02,"I don't remember crossing the yard. I remember the smell, an
 DLG_A1_I_FRENZY_03,"By the time Kett hauls him off, the keeper is on the ground, and the letter is soaked through, dark with more than ink."
 DLG_A1_I_FRENZY_04,"Enough! Enough, boy, he's done, let him be!"
 DLG_A1_I_FRENZY_05,My hands wouldn't stop. Kett had to stop them for me.
-DLG_A1_I_FRENZY_06,"We'll not get that letter now. There'll be another raven, and a harder one, and you'll do better by it."
+DLG_A1_I_FRENZY_06,"That copy's ruined. The keeper had a second, fouled and harder to read. You'll do better by it."
 DLG_A1_VAULT_I_01,"So. The wheel again, the tally, and two children playing at monks in the reeds. Familiar work."
 DLG_A1_VAULT_I_02,My cousin used the same key for ninety years. He considered it tradition. I consider it evidence.
 DLG_A1_VAULT_I_03,"You drained the courier. I'd ask if you regret it, but pale-bloods rarely regret the meal, only the mess."
@@ -127,16 +127,16 @@ PZ_P05_TITLE,The Signature
 PZ_P05_BRIEF,Slide the given crib along the cipher until its pattern of repeats fits.
 PZ_P05_HINT1,The tally scroll won't settle this one; the commonest letters here don't fall in their usual order. Look at what a bureaucrat always writes.
 PZ_P05_HINT2,A crib is a guess you already trust. Slide it along the cipher until its repeats line up like a key in a lock.
-PZ_P05_HINT3,"Try the crib hard against the letter's very end, where a man like this always signs his name the same way."
+PZ_P05_HINT3,"Try the crib against the sign-off just before his name, where a man like this always writes the same words."
 PZ_P05_CRIB,YOUR SERVANT IN ETERNITY
 PZ_P05_CRIB_SHORT,IN ETERNITY
 LTR_P05,"My lord Casimir, forgive the haste of this hand.\nOur letters are read. Too many carts turned back at the ford, too many hounds waiting where none should wait, and no road to such knowledge but the raven road. I do not know if the reader is monk or renegade, but I know a fool's habit kept too long. From the next new moon I write in a new hand of my own devising, and the old wheel goes into the marsh mud. Say nothing of this to the household.\nYour servant in eternity, Veneric Soll"
 LTR_P05_FROM,"From Steward Veneric Soll to Lord Casimir Morrow-Veil, by raven"
 PZ_P06_TITLE,Bigrams in the Marsh
 PZ_P06_BRIEF,E is hiding and the word breaks are gone. Count pairs and triples instead.
-PZ_P06_HINT1,"The tally lies this time, boy. The clerk was told to starve the commonest letter, so the tallest bar is not E."
-PZ_P06_HINT2,Single letters will not save you here. Count pairs and triples instead: some shapes still cannot help repeating.
-PZ_P06_HINT3,"Find the three-letter shape that turns up more than any other. In English that is almost always one short, common word."
+PZ_P06_HINT1,"The tally lies this time, boy. The clerk starved the commonest letter, so trust the Triples tab over the tall bars."
+PZ_P06_HINT2,"Once THE is pinned, look at the letter just before each one. Short words like AT, TO and OF end right there."
+PZ_P06_HINT3,"Place the letters around every THE, then read the half-words between them and fill each gap the way you'd finish a word."
 LTR_P06,"Warden Tallow,\nThe carts turn south at the ford and climb north to the barn's back door, not the front. The hound naps past the midnight bell; a man stands watch on the stair till the dawn. Burn this fast.\nThe clerk, Wat Coln"
 LTR_P06_FROM,"From the Steward's clerk, Wat Coln, to Warden Mave Tallow, by hand"
 CDX_A1_SUBSTITUTION_TITLE,Monoalphabetic Substitution
@@ -187,7 +187,7 @@ DLG_A1_P05_REMARK_01,'Your servant in eternity.' He signed that on tithe rolls a
 DLG_A1_P05_REMARK_02,"A signature is a habit wearing a crown. He gave you the same four words every time, and thought it made him sound eternal."
 DLG_A1_P05_REMARK_03,"It made him easy to read, is what it did."
 DLG_A1_P05_REMARK_04,"Yes. That too. Immortals are terrible at noticing their own repetitions, Isaak. Remember that, chained or not."
-DLG_A1_P06_AFTER_01,"Blackwater ford, the barn's back door, a hound that slept past midnight. Kett read it back twice, like he didn't trust his own eyes."
+DLG_A1_P06_AFTER_01,"The ford, the barn's back door, a hound that slept past midnight. Kett read it back twice, like he didn't trust his own eyes."
 DLG_A1_P06_AFTER_02,He wrote around his own most common letter and still couldn't help himself. Wrote 'the' nine times in a letter about hiding things.
 DLG_A1_P06_AFTER_03,So you know the route now.
 DLG_A1_P06_AFTER_04,"We know the route. Knowing where the cart goes and knowing where Lise sleeps are two different maps, Wenna."
@@ -214,7 +214,7 @@ DLG_A1_II_FRENZY_04,"I heard her like she was shouting from the bottom of a well
 DLG_A1_II_FRENZY_05,"Kett hauled him back by the collar, hard as a man dragging a dog off a kill, and swore the whole while."
 DLG_A1_II_FRENZY_06,"That's enough! That's ENOUGH, Isaak, look at me, look at my one damned eye and nobody else's blood."
 DLG_A1_II_FRENZY_07,"The handler didn't die. I want that said plainly, for whatever plainness is worth after a thing like that."
-DLG_A1_II_FRENZY_08,"Wenna's copy was ruined past reading, soaked through with mud and worse. We'd have to catch the Steward's next letter clean."
+DLG_A1_II_FRENZY_08,"The copy was ruined past reading, soaked with mud and worse. We'd have to catch the Steward's next letter clean."
 DLG_A1_VAULT_II_01,A crib. Elegant. You didn't break his alphabet so much as let him hand you the sign-off he put on every letter.
 DLG_A1_VAULT_II_02,"He handed us more than that, eventually."
 DLG_A1_VAULT_II_03,"Vanity, Isaak. 'Your servant in eternity' is not devotion, it is a man admiring the sound of his own permanence."
@@ -479,6 +479,8 @@ UI_WIDGET_XOR_HELP,Flip any bead of the letter or the key. The poured strand is 
 UI_WIDGET_XOR_TWICE,Poured twice
 UI_ROSARY_EQ1,%s xor %s = %s\nWanted: %s
 UI_ROSARY_EQ2,Word: %s\nNow reads: %s
+UI_KEYLESS_UNREAD,Note %d still reads as nonsense.
+UI_WHEEL_SHIFT_LABEL,the shift
 UI_WHEEL_SHIFT,Shift
 UI_WHEEL_MIRROR,Mirror
 UI_WHEEL_KEY,the key
@@ -502,8 +504,8 @@ UI_BOARD_TAB,Alphabet
 UI_CRIB_TAB,Crib
 UI_CRIB_PIN,Pin the crib
 UI_CRIB_LETTER,The letter
-UI_CRIB_HELP,Slide the crib. A cross marks a letter that contradicts itself.
-UI_CRIB_FITS,It fits. Every letter agrees.
+UI_CRIB_HELP,Slide the crib along the letters (spaces ignored). A cross marks a letter that contradicts itself.
+UI_CRIB_FITS,"Its letters agree with each other here. That's a candidate, not proof."
 UI_MULTI_PERIOD,%d wheels
 UI_MULTI_RUSTED,Rusted: every notch you turn costs Thirst.
 UI_KASISKI_TRAY,Factor tray: how many spacings each number divides

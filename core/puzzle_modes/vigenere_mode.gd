@@ -40,7 +40,7 @@ func _build() -> void:
 		tools.append(loom)
 		labels.append("UI_TAB_LOOM")
 	wheels = host.add_tool("multi_wheel") as MultiWheel
-	wheels.configure(given if given > 0 else 1, given <= 0, period_max, inst.def.brute_force_costed)
+	wheels.configure(given if given > 0 else 1, given <= 0, period_max, inst.costed)
 	wheels.shifts_changed.connect(func(_s: PackedInt32Array) -> void: sync_views())
 	wheels.period_changed.connect(func(_p: int) -> void: _period_changed())
 	wheels.drum_notch.connect(func(_d: int) -> void: spend_trial())
@@ -51,7 +51,7 @@ func _build() -> void:
 	tools.append(wheels)
 	labels.append("UI_TAB_WHEELS")
 	tally = host.add_tool("tally_scroll") as TallyScroll
-	tally.configure(false, true, inst.trial_cost if inst.def.brute_force_costed else 0)
+	tally.configure(false, true, inst.trial_cost if inst.costed else 0)
 	tally.set_english(Frequency.ENGLISH, Frequency.COMMON_BIGRAMS, Frequency.COMMON_TRIGRAMS)
 	tally.column_selected.connect(func(_c: int) -> void: _update_tally())
 	tally.read_as.connect(_on_read_as)

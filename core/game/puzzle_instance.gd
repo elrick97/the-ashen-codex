@@ -10,6 +10,8 @@ var frenzied: bool = false
 ## def.params merged with def.frenzy_overrides when frenzied.
 var params: Dictionary = {}
 var trial_cost: int = 1
+## Brute force costs Thirst (the def's flag, or a frenzy override "costed": true).
+var costed: bool = false
 ## Normalized plaintexts (one per letter).
 var plaintexts: PackedStringArray = PackedStringArray()
 ## Letter-cipher ciphertexts (same normalization as plaintexts).

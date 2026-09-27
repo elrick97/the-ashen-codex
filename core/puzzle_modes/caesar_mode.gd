@@ -13,7 +13,7 @@ func _build() -> void:
 	card = InterlinearText.new()
 	host.set_letter_content(card)
 	wheel = host.add_tool("cipher_wheel") as CipherWheel
-	wheel.configure(false, inst.def.brute_force_costed)
+	wheel.configure(false, inst.costed)
 	wheel.shift_changed.connect(func(_s: int) -> void: sync_views())
 	wheel.notch_crossed.connect(func(_s: int) -> void: spend_trial())
 	track(wheel)
@@ -21,7 +21,7 @@ func _build() -> void:
 	var labels: PackedStringArray = PackedStringArray(["UI_TAB_WHEEL"])
 	if inst.def.tools.has("tally_scroll"):
 		tally = host.add_tool("tally_scroll") as TallyScroll
-		tally.configure(false, true, inst.trial_cost if inst.def.brute_force_costed else 0)
+		tally.configure(false, true, inst.trial_cost if inst.costed else 0)
 		tally.set_english(Frequency.ENGLISH, Frequency.COMMON_BIGRAMS, Frequency.COMMON_TRIGRAMS)
 		tally.set_counts(Frequency.counts(cipher))
 		tally.read_as.connect(_on_read_as)
@@ -60,7 +60,7 @@ func commit() -> Verdict:
 
 
 func status_text() -> String:
-	return tr("UI_MODE_CAESAR_RUSTED") % inst.trial_cost if inst.def.brute_force_costed else tr("UI_MODE_CAESAR")
+	return tr("UI_MODE_CAESAR_RUSTED") % inst.trial_cost if inst.costed else tr("UI_MODE_CAESAR")
 
 
 func get_state() -> Dictionary:

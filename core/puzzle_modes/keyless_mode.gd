@@ -9,6 +9,7 @@ var note_bar: HBoxContainer = null
 var note_buttons: Array[Button] = []
 var settings: Array[Dictionary] = [] # per note {"shift", "mode"}
 var current: int = 0
+var visited: Dictionary = {}
 var _loading: bool = false
 
 
@@ -30,8 +31,9 @@ func _build() -> void:
 		note_bar.add_child(b)
 		note_buttons.append(b)
 	wheel = host.add_tool("cipher_wheel") as CipherWheel
-	wheel.configure(true, false)
+	wheel.configure(true, inst.costed)
 	wheel.shift_changed.connect(func(_s: int) -> void: _store())
+	wheel.notch_crossed.connect(func(_s: int) -> void: spend_trial())
 	wheel.wheel_mode_changed.connect(func(_m: String) -> void: _store())
 	track(wheel)
 	select_note(0)
@@ -39,6 +41,7 @@ func _build() -> void:
 
 func select_note(i: int) -> void:
 	current = i
+	visited[i] = true
 	for k: int in range(note_buttons.size()):
 		note_buttons[k].set_pressed_no_signal(k == i)
 	_loading = true
@@ -79,14 +82,28 @@ func sync_views() -> void:
 func commit() -> Verdict:
 	for i: int in range(inst.ciphertexts.size()):
 		if not note_read_correctly(i):
+			EventBus.toast.emit(tr("UI_KEYLESS_UNREAD") % (i + 1))
 			return Verdict.WRONG
+	var keys: Array = answer_order()
+	var correct_key: String = str(inst.param("answer_keys", [])[int(inst.param("correct_answer", 0))])
 	var opts: PackedStringArray = PackedStringArray()
-	for k: Variant in inst.param("answer_keys", []):
+	for k: Variant in keys:
 		opts.append(tr(str(k)))
 	var panel: ChoicePanel = ChoicePanel.ask(host, tr(str(inst.param("question_key", ""))), opts)
 	panel.chosen.connect(func(idx: int) -> void:
-		host.resolve(Verdict.SOLVED if idx == int(inst.param("correct_answer", 0)) else Verdict.WRONG))
+		host.resolve(Verdict.SOLVED if str(keys[idx]) == correct_key else Verdict.WRONG))
 	return Verdict.NONE
+
+
+func can_commit() -> bool:
+	return visited.size() >= inst.ciphertexts.size()
+
+
+## The answers in a seeded order, so the right one isn't always in the same place.
+func answer_order() -> Array:
+	var keys: Array = inst.param("answer_keys", []).duplicate()
+	Pcg32.new(inst.seed_value, 303).shuffle(keys)
+	return keys
 
 
 func status_text() -> String:
@@ -94,7 +111,7 @@ func status_text() -> String:
 
 
 func get_state() -> Dictionary:
-	return {"settings": settings.duplicate(true), "current": current}
+	return {"settings": settings.duplicate(true), "current": current, "visited": visited.keys()}
 
 
 func set_state(d: Dictionary) -> void:
@@ -102,6 +119,8 @@ func set_state(d: Dictionary) -> void:
 	for i: int in range(mini(s.size(), settings.size())):
 		var e: Dictionary = s[i]
 		settings[i] = {"shift": int(e.get("shift", 0)), "mode": str(e.get("mode", CipherWheel.MODE_SHIFT))}
+	for v: Variant in d.get("visited", []):
+		visited[int(v)] = true
 	select_note(clampi(int(d.get("current", 0)), 0, settings.size() - 1))
 
 
@@ -109,4 +128,5 @@ func apply_solution() -> void:
 	var schemes: Array = inst.key
 	for i: int in range(settings.size()):
 		settings[i] = {"shift": 13, "mode": CipherWheel.MODE_SHIFT} if schemes[i] == "rot13" else {"shift": 0, "mode": CipherWheel.MODE_MIRROR}
+		visited[i] = true
 	select_note(current)

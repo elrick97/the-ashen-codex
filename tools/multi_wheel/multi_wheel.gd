@@ -22,6 +22,7 @@ var rusted: bool = false
 
 var _pos: PackedFloat32Array = PackedFloat32Array() # continuous notch position per drum
 var _vel: PackedFloat32Array = PackedFloat32Array()
+var _visual: PackedFloat32Array = PackedFloat32Array() # animation-only offsets
 var _drag_drum: int = -1
 var _drag_y: float = 0.0
 var _drag_start: float = 0.0
@@ -85,10 +86,12 @@ func set_period(n: int) -> void:
 		shifts[i] = old[i] if i < old.size() else 0
 	_pos = PackedFloat32Array()
 	_vel = PackedFloat32Array()
+	_visual = PackedFloat32Array()
 	_last_notch = PackedInt32Array()
 	for i: int in range(period):
 		_pos.append(float(shifts[i]))
 		_vel.append(0.0)
+		_visual.append(0.0)
 		_last_notch.append(shifts[i])
 	selected = clampi(selected, 0, period - 1)
 	if _stepper != null:
@@ -102,17 +105,19 @@ func set_shift(drum: int, k: int, animate: bool = true) -> void:
 		return
 	snapshot()
 	var target: int = posmod(k, 26)
+	var from: float = _pos[drum]
+	var delta: float = wrapf(float(target) - from, -13.0, 13.0)
 	shifts[drum] = target
 	_last_notch[drum] = target
+	_pos[drum] = float(target)
+	_vel[drum] = 0.0
 	if animate and not Settings.clear_mind:
-		var from: float = _pos[drum]
-		var delta: float = wrapf(float(target) - from, -13.0, 13.0)
+		_visual[drum] = -delta
 		var tw: Tween = create_tween()
 		tw.tween_method(func(v: float) -> void:
-			_pos[drum] = v
-			_drums.queue_redraw(), from, from + delta, 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	else:
-		_pos[drum] = float(target)
+			if drum < _visual.size():
+				_visual[drum] = v
+			_drums.queue_redraw(), -delta, 0.0, 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	EventBus.sfx.emit("detent")
 	shifts_changed.emit(shifts)
 	state_changed.emit()
@@ -158,6 +163,7 @@ func _drums_input(event: InputEvent) -> void:
 		var p: Vector2 = ToolBase.press_pos(event)
 		var d: int = clampi(int(p.x / _drum_w()), 0, period - 1)
 		snapshot()
+		_visual[d] = 0.0
 		_drag_drum = d
 		_drag_y = p.y
 		_drag_start = _pos[d]
@@ -242,7 +248,7 @@ func _draw_drums() -> void:
 			_drums.draw_rect(band, Color(0.94, 0.88, 0.74, 0.06))
 		var fs: int = int(minf(w * 0.55, 62.0))
 		for k: int in range(-3, 4):
-			var val: float = _pos[d] - float(k)
+			var val: float = _pos[d] + (_visual[d] if d < _visual.size() else 0.0) - float(k)
 			var li: int = posmod(int(round(val)), 26)
 			var frac: float = val - round(val)
 			var yy: float = cy + (float(k) + frac) * row_h

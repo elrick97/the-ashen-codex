@@ -22,5 +22,5 @@ trial_cost = 1
 hint_keys = PackedStringArray("PZ_P06_HINT1", "PZ_P06_HINT2", "PZ_P06_HINT3")
 codex_unlocks = PackedStringArray("a1_ngrams")
 frenzy_dialogue = "a1_ii_frenzy"
-frenzy_overrides = {}
-anti_cheese = "Word breaks are stripped and the clerk starved E, so single-letter counts mislead (T tops the tally, E sits mid-table). Pairs and triples (TH, HE, THE) anchor the alphabet; the rest is read off the words that appear. There is no dial to spin, and sealing a wrong complete alphabet costs 8."
+frenzy_overrides = {"wrong_cost": 16}
+anti_cheese = "Word breaks are stripped and the clerk starved E, so single-letter counts mislead (T tops the tally, E sits mid-table). Pairs and triples (TH, HE, THE) anchor the alphabet; the rest is read off the words that appear. There is no dial to spin, and sealing a wrong complete alphabet costs 8 (16 after a frenzy)."

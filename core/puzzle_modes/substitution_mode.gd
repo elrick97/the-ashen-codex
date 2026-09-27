@@ -11,6 +11,8 @@ var cipher: String = "" # as displayed (grouped for letters-only)
 var cipher_raw: String = ""
 var grouped: bool = false
 var crib: String = ""
+## The crib is matched on letters only, so word shapes can't give its place away.
+var cipher_letters: String = ""
 
 
 func _build() -> void:
@@ -29,8 +31,9 @@ func _build() -> void:
 	board.set_tiles(tiles)
 	var crib_key: String = str(inst.param("crib_key", ""))
 	if crib_key != "":
-		crib = tr(crib_key).to_upper()
-		board.configure_crib(crib, cipher_raw)
+		crib = TextUtil.letters_only(tr(crib_key))
+		cipher_letters = TextUtil.letters_only(cipher_raw)
+		board.configure_crib(crib, cipher_letters)
 		board.crib_moved.connect(func(_o: int) -> void: _update_crib())
 		board.crib_pin_requested.connect(_pin_crib)
 	board.mapping_changed.connect(sync_views)
@@ -43,7 +46,9 @@ func _build() -> void:
 	tally.set_counts(counts)
 	if ngrams:
 		tally.set_ngrams(Frequency.top_ngrams(cipher_raw, 2, 8, not grouped), Frequency.top_ngrams(cipher_raw, 3, 8, not grouped))
-	tally.letter_selected.connect(func(i: int) -> void: _on_tile_selected(String.chr(65 + i)))
+	tally.letter_selected.connect(func(i: int) -> void:
+		if counts[i] > 0:
+			_on_tile_selected(String.chr(65 + i)))
 	tally.gram_selected.connect(_highlight_gram)
 	track(tally)
 	if crib != "":
@@ -75,6 +80,7 @@ func _on_tile_selected(c: String) -> void:
 	for i: int in range(cipher.length()):
 		if cipher[i] == c:
 			card.underlined[i] = true
+	_highlight_crib()
 	card.refresh()
 
 
@@ -106,22 +112,35 @@ func _update_crib() -> void:
 	if crib == "":
 		return
 	var o: int = board.crib_offset
-	board.set_crib_status(Crib.substitution_letter_status(cipher_raw, crib, o), Crib.substitution_fits(cipher_raw, crib, o))
+	board.set_crib_status(Crib.substitution_letter_status(cipher_letters, crib, o), Crib.substitution_fits(cipher_letters, crib, o))
 	card.highlights.clear()
-	for k: int in range(crib.length()):
-		card.highlights[o + k] = Color(Palette.GOLD, 0.35)
+	_highlight_crib()
 	card.refresh()
 
 
+## Gold under the letters the crib strip currently covers (crib offset is in letters).
+func _highlight_crib() -> void:
+	if crib == "":
+		return
+	var o: int = board.crib_offset
+	var li: int = 0
+	for i: int in range(cipher.length()):
+		if TextUtil.is_upper(cipher.unicode_at(i)):
+			if li >= o and li < o + crib.length():
+				card.highlights[i] = Color(Palette.GOLD, 0.35)
+			li += 1
+
+
 func _pin_crib(offset: int) -> void:
-	var m: Dictionary = Crib.substitution_mapping(cipher_raw, crib, offset)
+	var m: Dictionary = Crib.substitution_mapping(cipher_letters, crib, offset)
 	if m.is_empty():
 		return
 	var merged: Dictionary = board.mapping.duplicate()
 	for c: Variant in m.keys():
 		var cs: String = String.chr(int(c))
 		var ps: String = String.chr(int(m[c]))
-		if board.locks.has(ps) and board._cipher_in_slot(ps) != cs:
+		# A locked tile stays where the player locked it, and a locked slot keeps its tile.
+		if board.is_locked_tile(cs) or (board.locks.has(ps) and board._cipher_in_slot(ps) != cs):
 			continue
 		for other: Variant in merged.keys():
 			if str(merged[other]) == ps:

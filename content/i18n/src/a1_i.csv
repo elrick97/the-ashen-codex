@@ -7,10 +7,10 @@ PZ_P01_HINT3,"Turn it one notch at a time and read the first few words aloud. Th
 PZ_P02_TITLE,The Rusted Wheel
 PZ_P02_BRIEF,Read the tally before you spend blood turning the wheel by guesswork.
 PZ_P02_HINT1,"Don't spin the wheel blind, it costs you now. Look at the Tally Scroll first and see which bar stands tallest."
-PZ_P02_HINT2,In any honest letter one letter does most of the work. Find that tallest bar and count its distance to what it should be.
-PZ_P02_HINT3,"Read the tallest column as the commonest letter in plain speech, then turn the wheel that many stops before you spend another drop."
+PZ_P02_HINT2,"Frequency, boy. In English E carries the most weight, so the tallest cipher bar is almost surely E in disguise."
+PZ_P02_HINT3,Tap the tallest bar and press E. One press costs a drop; turning the rusted wheel by hand costs one per notch.
 PZ_P03_TITLE,Thirteen Turns
-PZ_P03_BRIEF,"Name each note's trick, then say what truly kept them secret."
+PZ_P03_BRIEF,"Set the wheel to each note's trick until it reads, then say what kept them secret."
 PZ_P03_HINT1,"Three notes, two little tricks. Watch whether a letter's place moves along the alphabet or flips end for end."
 PZ_P03_HINT2,"One trick always adds thirteen and undoes itself if you do it twice. The other flips the alphabet on its head, first for last."
 PZ_P03_HINT3,"Set the wheel to each note's trick until it reads, then seal. For the question, ask what a stranger would still lack after reading them."
@@ -107,7 +107,7 @@ DLG_A1_I_FRENZY_02,"I don't remember crossing the yard. I remember the smell, an
 DLG_A1_I_FRENZY_03,"By the time Kett hauls him off, the keeper is on the ground, and the letter is soaked through, dark with more than ink."
 DLG_A1_I_FRENZY_04,"Enough! Enough, boy, he's done, let him be!"
 DLG_A1_I_FRENZY_05,My hands wouldn't stop. Kett had to stop them for me.
-DLG_A1_I_FRENZY_06,"We'll not get that letter now. There'll be another raven, and a harder one, and you'll do better by it."
+DLG_A1_I_FRENZY_06,"That copy's ruined. The keeper had a second, fouled and harder to read. You'll do better by it."
 DLG_A1_VAULT_I_01,"So. The wheel again, the tally, and two children playing at monks in the reeds. Familiar work."
 DLG_A1_VAULT_I_02,My cousin used the same key for ninety years. He considered it tradition. I consider it evidence.
 DLG_A1_VAULT_I_03,"You drained the courier. I'd ask if you regret it, but pale-bloods rarely regret the meal, only the mess."

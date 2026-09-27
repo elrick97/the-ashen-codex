@@ -69,7 +69,7 @@ func coach_tools() -> PackedStringArray:
 
 ## A costed trial (a wheel notch, a "read as E").
 func spend_trial() -> void:
-	if inst.def.brute_force_costed:
+	if inst.costed:
 		host.charge(inst.trial_cost, "trial")
 
 

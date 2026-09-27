@@ -58,7 +58,9 @@ func test_every_puzzle_seals_when_solved() -> void:
 			var panel: ChoicePanel = _find(host, "ChoicePanel") as ChoicePanel
 			assert_not_null(panel, "question panel shown")
 			if panel != null:
-				panel.chosen.emit(2)
+				var order: Array = host.mode.call("answer_order")
+				var correct: String = str(host.inst.param("answer_keys", [])[int(host.inst.param("correct_answer", 0))])
+				panel.chosen.emit(order.find(correct))
 			await wait_process_frames(2)
 			assert_true((main.get("ctx") as GameContext).progression.is_solved(id), id + " solved via question")
 		elif id == "a1_p10":

@@ -17,3 +17,7 @@ qa/screenshots/**/*.png
 !qa/screenshots/latest/
 !qa/screenshots/latest/**/*.png
 qa/*.log
+
+# Temporary probe scripts from playtest agents
+tests/solvers/_adv_*
+tests/**/*_tmp.gd*

@@ -90,7 +90,9 @@ func _ready() -> void:
 		nb.text = spec[0]
 		nb.custom_minimum_size = Vector2(130, 130)
 		var step: int = spec[1]
-		nb.pressed.connect(func() -> void: _move_crib(crib_offset + step))
+		nb.pressed.connect(func() -> void:
+			snapshot()
+			_move_crib(crib_offset + step))
 		crib_row.add_child(nb)
 	_pin_btn = Button.new()
 	_pin_btn.text = tr("UI_CRIB_PIN")
@@ -116,7 +118,19 @@ func set_tiles(t: Array[Dictionary]) -> void:
 
 func set_mapping(m: Dictionary) -> void:
 	mapping = m.duplicate()
+	_drop_empty_locks()
 	_board.queue_redraw()
+
+
+## A lock belongs to a placed tile; an empty slot is never locked.
+func _drop_empty_locks() -> void:
+	for plain: Variant in locks.keys():
+		if _cipher_in_slot(str(plain)) == "":
+			locks.erase(plain)
+
+
+func is_locked_tile(cipher: String) -> bool:
+	return mapping.has(cipher) and locks.has(str(mapping[cipher]))
 
 
 func set_crib_status(status: PackedInt32Array, fits: bool) -> void:
@@ -127,7 +141,12 @@ func set_crib_status(status: PackedInt32Array, fits: bool) -> void:
 
 
 func select(cipher: String) -> void:
-	selected = cipher
+	# Only letters that occur in the letter have tiles.
+	var known: bool = false
+	for t: Dictionary in tiles:
+		if str(t["c"]) == cipher:
+			known = true
+	selected = cipher if known else ""
 	_board.queue_redraw()
 
 
@@ -288,12 +307,15 @@ func _process(delta: float) -> void:
 	if not bool(_press["moved"]) and not bool(_press["long"]) and float(_press["time"]) >= LONG_PRESS and int(_press["slot"]) >= 0:
 		_press["long"] = true
 		var plain: String = String.chr(65 + int(_press["slot"]))
-		if _cipher_in_slot(plain) != "":
+		if locks.has(plain):
 			snapshot()
-			if locks.has(plain):
-				locks.erase(plain)
-			else:
-				locks[plain] = true
+			locks.erase(plain)
+			EventBus.sfx.emit("tile_snap")
+			state_changed.emit()
+			_board.queue_redraw()
+		elif _cipher_in_slot(plain) != "":
+			snapshot()
+			locks[plain] = true
 			EventBus.sfx.emit("tile_snap")
 			EventBus.haptic.emit("pulse")
 			state_changed.emit()
@@ -493,6 +515,7 @@ func _draw_crib() -> void:
 
 func _crib_input(event: InputEvent) -> void:
 	if ToolBase.is_press(event):
+		snapshot()
 		_crib_drag_x = ToolBase.press_pos(event).x
 		_crib_drag_offset = crib_offset
 	elif ToolBase.is_drag(event) and _crib_drag_x >= 0.0:

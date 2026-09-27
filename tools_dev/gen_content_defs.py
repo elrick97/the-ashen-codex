@@ -17,7 +17,7 @@ def hints(n):
 PUZZLES = [
     dict(n=1, ch="a1_i", mode="caesar", tools=["cipher_wheel"], letters=["LTR_P01"],
          norm="upper_keep", key={"type": "shift", "min": 3, "max": 23}, params={"show_tally": False},
-         costed=False, cost=1, codex=["a1_key"], frenzy="a1_i_frenzy", fo={},
+         costed=False, cost=1, codex=["a1_key"], frenzy="a1_i_frenzy", fo={"costed": True},
          anti="Tutorial. The live preview is the lesson: the player learns that the whole secret is one number on the wheel. "
               "25 non-trivial shifts is small enough that turning the wheel IS the attack; puzzle 2 then prices that attack."),
     dict(n=2, ch="a1_i", mode="caesar", tools=["cipher_wheel", "tally_scroll"], letters=["LTR_P02"],
@@ -29,23 +29,22 @@ PUZZLES = [
     dict(n=3, ch="a1_i", mode="keyless", tools=["cipher_wheel"], letters=["LTR_P03_A", "LTR_P03_B", "LTR_P03_C"],
          norm="upper_keep", key={"type": "scheme_mix", "schemes": ["rot13", "atbash"]},
          params={"question_key": "PZ_P03_Q", "answer_keys": ["PZ_P03_A1", "PZ_P03_A2", "PZ_P03_A3"], "correct_answer": 2},
-         costed=False, cost=1, codex=["a1_kerckhoffs"], frenzy="a1_i_frenzy", fo={},
+         costed=False, cost=1, codex=["a1_kerckhoffs"], frenzy="a1_i_frenzy", fo={"costed": True},
          anti="The free preview is deliberate: the lesson is that a keyless scheme falls the moment its method is known "
               "(Kerckhoffs). The assessment cannot be eyeballed: the seal requires naming the scheme of each note and then "
               "answering what actually protects these letters (nothing but the secrecy of the method). Wrong seals cost 8."),
     dict(n=4, ch="a1_ii", mode="substitution", tools=["substitution_board", "tally_scroll"], letters=["LTR_P04"],
          norm="upper_keep", key={"type": "perm"}, params={"ngrams": False},
-         costed=False, cost=1, codex=["a1_substitution"], frenzy="a1_ii_frenzy", fo={},
-         anti="26! keys; there is no dial to spin. The preview only shows letters the player has placed, so every letter must "
-              "be argued from frequency and word patterns. Partial placements are free; sealing a wrong full alphabet costs 8."),
+         costed=False, cost=1, codex=["a1_substitution"], frenzy="a1_ii_frenzy", fo={"wrong_cost": 16},
+         anti="26! keys; there is no dial to spin. The preview only shows letters the player has placed, so every letter must be argued from frequency and word patterns. Partial placements are free; sealing a wrong full alphabet costs 8 (16 after a frenzy)."),
     dict(n=5, ch="a1_ii", mode="substitution", tools=["substitution_board", "tally_scroll"], letters=["LTR_P05"],
          norm="upper_keep", key={"type": "perm"}, params={"crib_key": "PZ_P05_CRIB", "ngrams": False},
          costed=False, cost=1, codex=["a1_cribs"], frenzy="a1_ii_frenzy", fo={"crib_key": "PZ_P05_CRIB_SHORT"},
-         anti="Frequency alone is ambiguous here: O and T outnumber E in this letter, so a rank-order guess misreads it. The crib must be slid to the one offset where its letter pattern is self-consistent; pinning applies about eleven letters at once. The preview never places letters by itself. After a frenzy only IN ETERNITY survives the blood, pinning six letters instead of eleven."),
+         anti="Frequency alone is ambiguous here: O and T outnumber E in this letter, so a rank-order guess misreads it. The crib strip compares letters only (no spaces), so the player must slide it to where its letter-repeat pattern is self-consistent; 'agrees' means consistent, not proven. Pinning applies about eleven letters at once. The preview never places letters by itself. After a frenzy only IN ETERNITY survives the blood: six letters, and it agrees in more than one place."),
     dict(n=6, ch="a1_ii", mode="substitution", tools=["substitution_board", "tally_scroll"], letters=["LTR_P06"],
          norm="letters_only", key={"type": "perm"}, params={"ngrams": True, "group5": True},
-         costed=False, cost=1, codex=["a1_ngrams"], frenzy="a1_ii_frenzy", fo={},
-         anti="Word breaks are stripped and the clerk starved E, so single-letter counts mislead (T tops the tally, E sits mid-table). Pairs and triples (TH, HE, THE) anchor the alphabet; the rest is read off the words that appear. There is no dial to spin, and sealing a wrong complete alphabet costs 8."),
+         costed=False, cost=1, codex=["a1_ngrams"], frenzy="a1_ii_frenzy", fo={"wrong_cost": 16},
+         anti="Word breaks are stripped and the clerk starved E, so single-letter counts mislead (T tops the tally, E sits mid-table). Pairs and triples (TH, HE, THE) anchor the alphabet; the rest is read off the words that appear. There is no dial to spin, and sealing a wrong complete alphabet costs 8 (16 after a frenzy)."),
     dict(n=7, ch="a1_iii", mode="vigenere", tools=["multi_wheel", "tally_scroll"], letters=["LTR_P07"],
          norm="letters_only", key={"type": "word", "pool": ["ASHEN", "RAVEN", "THORN", "GRAVE", "EMBER"]},
          params={"period_given": 5, "period_max": 12}, costed=True, cost=1, codex=["a1_vigenere"],

@@ -22,5 +22,5 @@ trial_cost = 1
 hint_keys = PackedStringArray("PZ_P04_HINT1", "PZ_P04_HINT2", "PZ_P04_HINT3")
 codex_unlocks = PackedStringArray("a1_substitution")
 frenzy_dialogue = "a1_ii_frenzy"
-frenzy_overrides = {}
-anti_cheese = "26! keys; there is no dial to spin. The preview only shows letters the player has placed, so every letter must be argued from frequency and word patterns. Partial placements are free; sealing a wrong full alphabet costs 8."
+frenzy_overrides = {"wrong_cost": 16}
+anti_cheese = "26! keys; there is no dial to spin. The preview only shows letters the player has placed, so every letter must be argued from frequency and word patterns. Partial placements are free; sealing a wrong full alphabet costs 8 (16 after a frenzy)."

@@ -22,6 +22,8 @@ const FRICTION: float = 5.5
 var mode: String = MODE_SHIFT
 var shift: int = 0
 var _angle: float = 0.0 # continuous offset in notches
+var _visual: float = 0.0 # animation-only offset added when drawing
+var _anim: Tween = null
 var _dragging: bool = false
 var _last_ang: float = 0.0
 var _velocity: float = 0.0 # notches per second
@@ -72,10 +74,14 @@ func get_state() -> Dictionary:
 
 func set_state(d: Dictionary) -> void:
 	mode = str(d.get("mode", MODE_SHIFT))
-	_set_shift_internal(int(d.get("shift", 0)))
-	_angle = float(shift)
-	_last_notch = shift
+	var k: int = int(d.get("shift", 0))
+	_angle = float(k)
+	_last_notch = k
+	_visual = 0.0
+	shift = k
 	_refresh_buttons()
+	wheel_mode_changed.emit(mode)
+	shift_changed.emit(shift)
 	queue_redraw()
 
 
@@ -87,15 +93,19 @@ func turn_to(k: int, animate: bool = true) -> void:
 	var delta: float = wrapf(float(target) - from, -13.0, 13.0)
 	_velocity = 0.0
 	set_process(false)
-	if animate and not Settings.clear_mind:
-		var tw: Tween = create_tween()
-		tw.tween_method(func(v: float) -> void:
-			_angle = v
-			queue_redraw(), from, from + delta, 0.45).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		tw.tween_callback(func() -> void: _angle = float(target))
-	else:
-		_angle = float(target)
+	# The real angle jumps at once (notches are never counted for it); only the drawing
+	# eases from the old position through `_visual`.
+	_angle = float(target)
 	_last_notch = target
+	if _anim != null:
+		_anim.kill()
+	_visual = 0.0
+	if animate and not Settings.clear_mind:
+		_visual = -delta
+		_anim = create_tween()
+		_anim.tween_method(func(v: float) -> void:
+			_visual = v
+			queue_redraw(), -delta, 0.0, 0.45).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	_set_shift_internal(target)
 	EventBus.sfx.emit("detent")
 	EventBus.haptic.emit("snap")
@@ -157,6 +167,9 @@ func _gui_input(event: InputEvent) -> void:
 		if locked or mode == MODE_MIRROR:
 			_rattle()
 			return
+		if _anim != null:
+			_anim.kill()
+		_visual = 0.0
 		snapshot()
 		_dragging = true
 		_velocity = 0.0
@@ -277,7 +290,7 @@ func _draw() -> void:
 		var plain_letter: int = (25 - i) if mode == MODE_MIRROR else i
 		_draw_glyph(fnt, c + Vector2(cos(a_in), sin(a_in)) * r * 0.6, a_in, String.chr(65 + plain_letter), inner_fs, Palette.INK)
 		# Outer (cipher) ring: letter at plain position i is i + angle.
-		var a_out: float = win_a + step * (float(i) - _angle)
+		var a_out: float = win_a + step * (float(i) - _angle - _visual)
 		_draw_glyph(fnt, c + Vector2(cos(a_out), sin(a_out)) * r * 0.855, a_out, String.chr(65 + i), outer_fs, Palette.RUBRIC)
 		# Tick marks between outer letters
 		var at: float = a_out + step * 0.5
@@ -287,7 +300,7 @@ func _draw() -> void:
 	var label: String = str(shift) if mode == MODE_SHIFT else "<>"
 	var w: float = fnt.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, hub_fs).x
 	draw_string(fnt, c + Vector2(-w * 0.5, hub_fs * 0.1), label, HORIZONTAL_ALIGNMENT_LEFT, -1, hub_fs, Palette.GOLD_LIGHT)
-	var sub: String = (tr("UI_WHEEL_KEY") if mode == MODE_SHIFT else tr("UI_WHEEL_MIRRORED"))
+	var sub: String = tr("UI_WHEEL_MIRRORED") if mode == MODE_MIRROR else (tr("UI_WHEEL_SHIFT_LABEL") if allow_mirror else tr("UI_WHEEL_KEY"))
 	var sub_fs: int = int(r * 0.075)
 	var sw: float = fnt.get_string_size(sub, HORIZONTAL_ALIGNMENT_LEFT, -1, sub_fs).x
 	draw_string(fnt, c + Vector2(-sw * 0.5, hub_fs * 0.1 + sub_fs * 1.4), sub, HORIZONTAL_ALIGNMENT_LEFT, -1, sub_fs, Palette.ON_DARK_FADED)

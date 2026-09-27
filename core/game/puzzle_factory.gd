@@ -13,10 +13,13 @@ static func build(def: PuzzleDef, variant: int = 0, frenzied: bool = false) -> P
 	inst.seed_value = def.seed_for_variant(variant)
 	inst.params = def.params.duplicate(true)
 	inst.trial_cost = def.trial_cost
+	inst.costed = def.brute_force_costed
 	if frenzied:
 		for k: Variant in def.frenzy_overrides.keys():
 			if str(k) == "trial_cost":
 				inst.trial_cost = int(def.frenzy_overrides[k])
+			elif str(k) == "costed":
+				inst.costed = bool(def.frenzy_overrides[k])
 			else:
 				inst.params[k] = def.frenzy_overrides[k]
 	var rng: Pcg32 = Pcg32.new(inst.seed_value, def.number)

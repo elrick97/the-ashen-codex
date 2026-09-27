@@ -22,5 +22,5 @@ trial_cost = 1
 hint_keys = PackedStringArray("PZ_P03_HINT1", "PZ_P03_HINT2", "PZ_P03_HINT3")
 codex_unlocks = PackedStringArray("a1_kerckhoffs")
 frenzy_dialogue = "a1_i_frenzy"
-frenzy_overrides = {}
+frenzy_overrides = {"costed": true}
 anti_cheese = "The free preview is deliberate: the lesson is that a keyless scheme falls the moment its method is known (Kerckhoffs). The assessment cannot be eyeballed: the seal requires naming the scheme of each note and then answering what actually protects these letters (nothing but the secrecy of the method). Wrong seals cost 8."

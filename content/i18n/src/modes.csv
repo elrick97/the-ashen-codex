@@ -36,3 +36,5 @@ UI_WIDGET_XOR_HELP,Flip any bead of the letter or the key. The poured strand is 
 UI_WIDGET_XOR_TWICE,Poured twice
 UI_ROSARY_EQ1,%s xor %s = %s\nWanted: %s
 UI_ROSARY_EQ2,Word: %s\nNow reads: %s
+UI_KEYLESS_UNREAD,Note %d still reads as nonsense.
+UI_WHEEL_SHIFT_LABEL,the shift
