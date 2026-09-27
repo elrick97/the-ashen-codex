@@ -2,8 +2,9 @@ class_name EnglishScore
 extends RefCounted
 ## How English-like a byte string or letter sequence is.
 ##
-## score_bytes(): mean log-probability per byte under a simple English character model
-## (letters by Frequency.ENGLISH, space, punctuation, digits). The Key Dial's
+## score_bytes(): mean log-weight per byte under a simple English character model
+## (letters by Frequency.ENGLISH, space, punctuation, digits; the weights are not
+## normalized to sum to 1, so it is a score, not a true log-probability). The Key Dial's
 ## "English-ness" gauge shows gauge() of the same function, so the tool and the solvers
 ## rank candidates identically.
 ##
@@ -29,7 +30,7 @@ static var _tri: PackedFloat32Array = PackedFloat32Array()
 static var _loaded: bool = false
 
 
-## Mean log-probability per byte. Higher is more English-like.
+## Mean log-weight per byte. Higher is more English-like.
 static func score_bytes(data: PackedByteArray) -> float:
 	if data.is_empty():
 		return GAUGE_RANDOM

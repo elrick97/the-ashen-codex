@@ -44,6 +44,15 @@ func test_frequency_caesar_attacks() -> void:
 		assert_eq(Frequency.shift_by_chi_squared(c), s)
 
 
+func test_profile_match() -> void:
+	var c: PackedInt32Array = Frequency.counts(Caesar.encrypt(EnglishSample.TEXT, 11))
+	var right: float = Frequency.profile_match(c, 11)
+	assert_gt(right, 0.9, "shapes agree at the true shift")
+	for s: int in [0, 3, 10, 12, 20]:
+		assert_lt(Frequency.profile_match(c, s), right - 0.2, "wrong shift %d scores clearly lower" % s)
+	assert_eq(Frequency.profile_match(PackedInt32Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), 0), 0.0)
+
+
 func test_ngrams() -> void:
 	var bi: Dictionary = Frequency.ngram_counts("THE THEN", 2, true)
 	assert_eq(int(bi["TH"]), 2)

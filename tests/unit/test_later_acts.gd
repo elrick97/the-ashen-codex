@@ -85,7 +85,9 @@ func test_ecb_leaks_repeats_cbc_does_not() -> void:
 	var msg: PackedByteArray = "ABABABAB".to_ascii_buffer()
 	var ecb: PackedByteArray = CipherModes.ecb_encrypt(msg, 0xC0FFEE11)
 	assert_eq(ecb.slice(0, 2), ecb.slice(2, 4))
+	assert_false(CipherModes.ecb_decrypt(ecb.slice(0, ecb.size() - 1), 0xC0FFEE11)["ok"], "odd length rejected")
 	var cbc: PackedByteArray = CipherModes.cbc_encrypt(msg, 0xC0FFEE11, 0x5151)
+	assert_false(CipherModes.cbc_decrypt(cbc.slice(0, cbc.size() - 1), 0xC0FFEE11, 0x5151)["ok"], "odd length rejected")
 	assert_ne(cbc.slice(0, 2), cbc.slice(2, 4))
 	var rng: Pcg32 = Pcg32.new(67)
 	for _i: int in range(50):

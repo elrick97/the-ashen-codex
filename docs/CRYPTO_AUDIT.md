@@ -351,10 +351,10 @@ Counts are at the end of the report.
 
 | verdict | rows |
 |---|---|
-| OK | 175 |
-| WRONG | 13 |
-| MISLEADING | 32 |
+| OK | 142 |
+| WRONG | 12 |
+| MISLEADING | 35 |
 | UNVERIFIED | 3 |
-| **total** | **223** |
+| **total** | **192** |
 
-Some table rows group several strings or functions that share a verdict. The numbered list splits a few grouped rows into separate items (for example, item 1 covers three WRONG rows).
+Some table rows group several strings or functions that share a verdict. The numbered list and the table rows do not map one to one: item 1 covers three WRONG rows, item 5 three MISLEADING rows and item 9 two. The 42 list items therefore cover all 47 WRONG and MISLEADING rows.

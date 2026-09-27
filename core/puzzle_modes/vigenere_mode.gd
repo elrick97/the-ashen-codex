@@ -54,7 +54,7 @@ func _build() -> void:
 	tally.configure(false, true, inst.trial_cost if inst.def.brute_force_costed else 0)
 	tally.set_english(Frequency.ENGLISH, Frequency.COMMON_BIGRAMS, Frequency.COMMON_TRIGRAMS)
 	tally.column_selected.connect(func(_c: int) -> void: _update_tally())
-	tally.read_as_e.connect(_on_read_as_e)
+	tally.read_as.connect(_on_read_as)
 	track(tally)
 	tools.append(tally)
 	labels.append("UI_TAB_TALLY")
@@ -73,17 +73,24 @@ func _period_changed() -> void:
 func _update_tally() -> void:
 	var col: int = tally.column
 	if col >= 0 and col < wheels.period:
-		tally.set_counts(Frequency.counts(Vigenere.columns(cipher, wheels.period)[col]))
+		var cc: PackedInt32Array = Frequency.counts(Vigenere.columns(cipher, wheels.period)[col])
+		tally.set_counts(cc)
 		tally.show_read_as_e = true
+		tally.set_alignment(wheels.shifts[col], Frequency.profile_match(cc, wheels.shifts[col]))
 	else:
 		tally.set_counts(Frequency.counts(cipher))
 		tally.show_read_as_e = false
+		tally.set_alignment(-1, -1.0)
 	tally.select_letter(-1)
 
 
 func sync_views() -> void:
 	var plain: String = Vigenere.decrypt_with_shifts(cipher, wheels.shifts)
 	card.set_pair(TextUtil.group(cipher), TextUtil.group(plain))
+	var tc: int = tally.column if tally != null else -1
+	if tc >= 0 and tc < wheels.period:
+		var cc2: PackedInt32Array = Frequency.counts(Vigenere.columns(cipher, wheels.period)[tc])
+		tally.set_alignment(wheels.shifts[tc], Frequency.profile_match(cc2, wheels.shifts[tc]))
 	var p: int = wheels.period
 	card.cipher_colors.clear()
 	if p > 1 or loom != null:
@@ -94,12 +101,12 @@ func sync_views() -> void:
 	host.refresh_bar()
 
 
-func _on_read_as_e(letter: int) -> void:
+func _on_read_as(letter: int, plain_letter: int) -> void:
 	var col: int = tally.column
 	if col < 0 or col >= wheels.period:
 		return
 	spend_trial()
-	wheels.set_shift(col, Caesar.shift_between(Frequency.INDEX_E, letter))
+	wheels.set_shift(col, Caesar.shift_between(plain_letter, letter))
 	sync_views()
 
 

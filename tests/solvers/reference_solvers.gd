@@ -63,7 +63,7 @@ static func solve_p05(inst: PuzzleInstance) -> Dictionary:
 ## are flattened, so only multi-letter structure such as TH, HE, THE can anchor the key).
 static func solve_p06(inst: PuzzleInstance) -> Dictionary:
 	var c: String = inst.ciphertexts[0]
-	var k: PackedInt32Array = SolverLib.solve_substitution(c, {}, false, 40)
+	var k: PackedInt32Array = SolverLib.solve_substitution(c, {}, true, 40)
 	return {"key": SolverLib.to_key(SolverLib.polish_with_words(c, k, _word_set()))}
 
 

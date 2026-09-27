@@ -24,7 +24,7 @@ func _build() -> void:
 		tally.configure(false, true, inst.trial_cost if inst.def.brute_force_costed else 0)
 		tally.set_english(Frequency.ENGLISH, Frequency.COMMON_BIGRAMS, Frequency.COMMON_TRIGRAMS)
 		tally.set_counts(Frequency.counts(cipher))
-		tally.read_as_e.connect(_on_read_as_e)
+		tally.read_as.connect(_on_read_as)
 		tally.letter_selected.connect(_underline_letter)
 		track(tally)
 		tools.append(tally)
@@ -35,11 +35,13 @@ func _build() -> void:
 
 func sync_views() -> void:
 	card.set_pair(cipher, Caesar.decrypt(cipher, wheel.shift))
+	if tally != null:
+		tally.set_alignment(wheel.shift, Frequency.profile_match(Frequency.counts(cipher), wheel.shift))
 
 
-func _on_read_as_e(letter: int) -> void:
+func _on_read_as(letter: int, plain: int) -> void:
 	spend_trial()
-	wheel.turn_to(Caesar.shift_between(Frequency.INDEX_E, letter))
+	wheel.turn_to(Caesar.shift_between(plain, letter))
 	show_tab(0)
 	host.changed()
 

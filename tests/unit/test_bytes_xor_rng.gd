@@ -11,6 +11,7 @@ func test_hex() -> void:
 	assert_eq(BytesUtil.to_hex(PackedByteArray([1, 255, 16])), "01ff10")
 	assert_eq(BytesUtil.from_hex("01FF10"), PackedByteArray([1, 255, 16]))
 	assert_eq(BytesUtil.from_hex("0 1f f1 0"), PackedByteArray([1, 255, 16]))
+	assert_eq(BytesUtil.from_hex("01\tff\r\n10"), PackedByteArray([1, 255, 16]))
 	assert_eq(BytesUtil.from_hex("abc"), PackedByteArray())
 	assert_eq(BytesUtil.from_hex("zz"), PackedByteArray())
 

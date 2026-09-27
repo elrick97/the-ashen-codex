@@ -2,22 +2,22 @@ keys,en
 PZ_P04_TITLE,The Tithe Roll
 PZ_P04_BRIEF,"Drag cipher tiles onto plaintext letters, guided by the frequency histogram."
 PZ_P04_HINT1,"Look at the tally scroll before you touch a single tile, boy. Some bars are stone, others are dust."
-PZ_P04_HINT2,Count every cipher letter the way a hangman counts nooses. The tallest bar in English is almost always E.
+PZ_P04_HINT2,"Count every cipher letter. The tallest bars are usually E and T, but check them against short words before you trust them."
 PZ_P04_HINT3,"Pin your tallest bar to E, then hunt for a short three-letter word that keeps repeating. That is your next lock to pick."
 LTR_P04,"To Reeve Harl Bassett, at Hollowmere, by the Steward's own hand.\nThe tithe roll for the new moon stands thus. The Marsh Row households owe four measures each, save the Coopers, who owe six for their two grown sons and their mother besides. The millers on the Long Causeway owe five measures and a jar of the old vintage the Lord prefers. The Reed cottages by the water owe three measures each, and Widow Anwen owes but two, her holding being the smallest on the row.\nMark this well, Reeve. Of the last tithe, three jars had turned before they reached the tithe-house, gone black and sour in the heat of the cart. The Lord does not accept spoilage as an excuse, and neither will I. See that the jars are packed in wet moss this time, and see that your carters do not dawdle at the ford to drink what is not theirs to drink.\nOne name is added to this roll at the Lady's request, and not for the common roll: the girl called Lise, of the eel-trap cottages. She is not to be counted among the household quotas, and no receipt is to be written for her. You will understand me, Reeve, or in time you will.\nYour servant in eternity, Veneric Soll, Steward of House Morrow-Veil"
 LTR_P04_FROM,"From Steward Veneric Soll to Reeve Harl Bassett, by hand"
 PZ_P05_TITLE,The Signature
 PZ_P05_BRIEF,Slide the given crib along the cipher until its pattern of repeats fits.
-PZ_P05_HINT1,This letter is too short for the tally scroll to save you. Look instead at what a bureaucrat always writes.
+PZ_P05_HINT1,The tally scroll won't settle this one; the commonest letters here don't fall in their usual order. Look at what a bureaucrat always writes.
 PZ_P05_HINT2,A crib is a guess you already trust. Slide it along the cipher until its repeats line up like a key in a lock.
 PZ_P05_HINT3,"Try the crib hard against the letter's very end, where a man like this always signs his name the same way."
 PZ_P05_CRIB,YOUR SERVANT IN ETERNITY
-PZ_P05_CRIB_SHORT,YOUR SERVANT
+PZ_P05_CRIB_SHORT,IN ETERNITY
 LTR_P05,"My lord Casimir, forgive the haste of this hand.\nOur letters are read. Too many carts turned back at the ford, too many hounds waiting where none should wait, and no road to such knowledge but the raven road. I do not know if the reader is monk or renegade, but I know a fool's habit kept too long. From the next new moon I write in a new hand of my own devising, and the old wheel goes into the marsh mud. Say nothing of this to the household.\nYour servant in eternity, Veneric Soll"
 LTR_P05_FROM,"From Steward Veneric Soll to Lord Casimir Morrow-Veil, by raven"
 PZ_P06_TITLE,Bigrams in the Marsh
-PZ_P06_BRIEF,"Count letter pairs and triples, not single letters, to crack this flattened cipher."
-PZ_P06_HINT1,"The tally scroll lies flat this time, boy. Somebody's clerk was told to hide his favorite letter."
+PZ_P06_BRIEF,E is hiding and the word breaks are gone. Count pairs and triples instead.
+PZ_P06_HINT1,"The tally lies this time, boy. The clerk was told to starve the commonest letter, so the tallest bar is not E."
 PZ_P06_HINT2,Single letters will not save you here. Count pairs and triples instead: some shapes still cannot help repeating.
 PZ_P06_HINT3,"Find the three-letter shape that turns up more than any other. In English that is almost always one short, common word."
 LTR_P06,"Warden Tallow,\nThe carts turn south at the ford and climb north to the barn's back door, not the front. The hound naps past the midnight bell; a man stands watch on the stair till the dawn. Burn this fast.\nThe clerk, Wat Coln"
@@ -37,7 +37,7 @@ CDX_A1_CRIBS_ASIDE,"Bletchley Park's codebreakers leaned on cribs from formulaic
 CDX_A1_CRIBS_M1,Give me one line you always write and I will read every letter you ever send. Habit is a key left in the lock.
 CDX_A1_CRIBS_M2,"A crib does not solve the cipher. It just tells you where to push first, and pushing well is most of the trade."
 CDX_A1_NGRAMS_TITLE,Bigrams and Trigrams
-CDX_A1_NGRAMS_BODY,"A bigram is a pair of letters, a trigram a run of three. Even when a clerk flattens single-letter counts on purpose, the pairs and triples that make up ordinary words survive, because whole words still sit next to each other in the same order. In English, TH, HE, IN, ER and AN are the commonest bigrams; THE, AND and ING are the commonest trigrams. Count them across the cipher, word breaks or not, and the shapes of real language show through the disguise: which cipher letters tend to sit beside which others, and in what order, is a fingerprint no single swap can scrub away."
+CDX_A1_NGRAMS_BODY,"A bigram is a pair of letters, a trigram a run of three. Even when a clerk skews the single-letter counts on purpose, the pairs and triples that make up ordinary words survive, because words still sit side by side in the same order. In English, TH, HE, IN, ER and AN are the commonest bigrams; THE, AND and ING the commonest trigrams. Count them across the cipher, word breaks or not, and real language shows through: which cipher letters sit beside which others, and in what order, is a fingerprint no swap of single letters can scrub away."
 CDX_A1_NGRAMS_EXAMPLE,"PLAIN TRIGRAM:  THE (9 times)\nCIPHER TRIGRAM: ZIT (9 times)\n\nCount every run of three letters\nin the cipher. One shape turns up\nfar more than any other: ZIT.\nIn English the commonest trigram\nis almost always THE, so ZIT is\nvery likely THE in disguise."
 CDX_A1_NGRAMS_WRONG,"The clerk was told to write sparing of the commonest letter and thought that duty done. He never thought to break up his own favorite little words, and THE sat inside his careful letter as often as it ever had, waiting to be counted."
 CDX_A1_NGRAMS_ASIDE,"Modern language models are built on the same idea taken much further: predicting the next letter, word or token from the ones around it. Every autocomplete on your phone is a distant descendant of counting THE against AND."
@@ -67,7 +67,7 @@ DLG_A1_P05_AFTER_03,"Then the clock's already turned over once. He'll change his
 DLG_A1_P05_AFTER_04,"Small comfort, that we frightened him first."
 DLG_A1_P05_AFTER_05,Small comfort's the only kind Hollowmere hands out. Take it.
 DLG_A1_P05_REMARK_01,'Your servant in eternity.' He signed that on tithe rolls and threats alike. Vanity dressed as devotion.
-DLG_A1_P05_REMARK_02,"A signature is a habit wearing a crown. He gave you the same six words every time, and thought it made him sound eternal."
+DLG_A1_P05_REMARK_02,"A signature is a habit wearing a crown. He gave you the same four words every time, and thought it made him sound eternal."
 DLG_A1_P05_REMARK_03,"It made him easy to read, is what it did."
 DLG_A1_P05_REMARK_04,"Yes. That too. Immortals are terrible at noticing their own repetitions, Isaak. Remember that, chained or not."
 DLG_A1_P06_AFTER_01,"Blackwater ford, the barn's back door, a hound that slept past midnight. Kett read it back twice, like he didn't trust his own eyes."
@@ -98,7 +98,7 @@ DLG_A1_II_FRENZY_05,"Kett hauled him back by the collar, hard as a man dragging 
 DLG_A1_II_FRENZY_06,"That's enough! That's ENOUGH, Isaak, look at me, look at my one damned eye and nobody else's blood."
 DLG_A1_II_FRENZY_07,"The handler didn't die. I want that said plainly, for whatever plainness is worth after a thing like that."
 DLG_A1_II_FRENZY_08,"Wenna's copy was ruined past reading, soaked through with mud and worse. We'd have to catch the Steward's next letter clean."
-DLG_A1_VAULT_II_01,A crib. Elegant. You didn't break his alphabet so much as let him hand you the last six words of every letter he ever wrote.
+DLG_A1_VAULT_II_01,A crib. Elegant. You didn't break his alphabet so much as let him hand you the sign-off he put on every letter.
 DLG_A1_VAULT_II_02,"He handed us more than that, eventually."
 DLG_A1_VAULT_II_03,"Vanity, Isaak. 'Your servant in eternity' is not devotion, it is a man admiring the sound of his own permanence."
 DLG_A1_VAULT_II_04,"You drank from the courier girl. I wonder if you tasted her fear, or only her blood."

@@ -1,22 +1,22 @@
 keys,en
-PZ_P01_TITLE,"The First Letter"
+PZ_P01_TITLE,The First Letter
 PZ_P01_BRIEF,"Turn the wheel until the letter reads true, then seal your answer."
 PZ_P01_HINT1,"Look at the wheel, boy. Somewhere among its stops is the one number that makes this letter speak."
-PZ_P01_HINT2,"This is old Caesar's trick: every letter walked forward the same number of stops. Turn the outer ring and watch the words wake."
+PZ_P01_HINT2,This is old Caesar's trick: every letter walked forward the same number of stops. Turn the outer ring and watch the words wake.
 PZ_P01_HINT3,"Turn it one notch at a time and read the first few words aloud. The moment they sound like speech instead of noise, seal it."
-PZ_P02_TITLE,"The Rusted Wheel"
-PZ_P02_BRIEF,"Read the tally before you spend blood turning the wheel by guesswork."
+PZ_P02_TITLE,The Rusted Wheel
+PZ_P02_BRIEF,Read the tally before you spend blood turning the wheel by guesswork.
 PZ_P02_HINT1,"Don't spin the wheel blind, it costs you now. Look at the Tally Scroll first and see which bar stands tallest."
-PZ_P02_HINT2,"In any honest letter one letter does most of the work. Find that tallest bar and count its distance to what it should be."
+PZ_P02_HINT2,In any honest letter one letter does most of the work. Find that tallest bar and count its distance to what it should be.
 PZ_P02_HINT3,"Read the tallest column as the commonest letter in plain speech, then turn the wheel that many stops before you spend another drop."
-PZ_P03_TITLE,"Thirteen Turns"
+PZ_P03_TITLE,Thirteen Turns
 PZ_P03_BRIEF,"Name each note's trick, then say what truly kept them secret."
-PZ_P03_HINT1,"Three notes, three little tricks. Look for one that never changes a letter's shape, only its place in the alphabet."
+PZ_P03_HINT1,"Three notes, two little tricks. Watch whether a letter's place moves along the alphabet or flips end for end."
 PZ_P03_HINT2,"One trick always adds thirteen and undoes itself if you do it twice. The other flips the alphabet on its head, first for last."
-PZ_P03_HINT3,"Name each note's trick, then ask yourself plainly what is left to hide once the trick itself is known. Answer that, and seal."
-PZ_P03_Q,"What truly protects these three notes?"
-PZ_P03_A1,"The number of turns given to the wheel"
-PZ_P03_A2,"The Court's wax seal pressed on each letter"
+PZ_P03_HINT3,"Set the wheel to each note's trick until it reads, then seal. For the question, ask what a stranger would still lack after reading them."
+PZ_P03_Q,What truly protects these three notes?
+PZ_P03_A1,The number of turns given to the wheel
+PZ_P03_A2,The Court's wax seal pressed on each letter
 PZ_P03_A3,"Nothing, once the trick itself is known"
 LTR_P01,"Reeve Bassett,\nThe new moon falls in nine nights. See the tithe-house at Reedmouth aired and swept, the rushes changed, and the rotten planking by the door replaced before the carts arrive. Count every head in the village yourself, cellar and loft besides. Last season's tally was short, and the Lord forgives nothing twice.\nYour servant in eternity,\nVeneric Soll"
 LTR_P01_FROM,"From Steward Veneric Soll to Reeve Harl Bassett, by raven"
@@ -28,34 +28,34 @@ LTR_P03_B,"Aldric,\nStrange news from the steward's tower: he no longer writes h
 LTR_P03_B_FROM,"From Dame Petra Ashcombe to Lord Aldric Penrose, by hand"
 LTR_P03_C,"Ysolde,\nYou will laugh: I have dressed this letter in one of our little court tricks, and not one soul at court will trouble to unpick it. I confess I am pleased with my own cleverness, and mean to gloat of it at the feast.\nYour admirer in wit,\nAldric"
 LTR_P03_C_FROM,"From Lord Aldric Penrose to Lady Ysolde Crane, by hand"
-CDX_A1_KEY_TITLE,"The Key"
+CDX_A1_KEY_TITLE,The Key
 CDX_A1_KEY_BODY,"A cipher hides a message inside a rule. A key is the one secret piece of that rule: without it the message is noise, with it the message is plain. The simplest key is a number. Take the Caesar shift: write out the alphabet, then slide it forward by some fixed count, and swap every letter in your message for the one now standing under it. Slide it back by the same count and the message returns. The rule can be public knowledge. The key, how far you slid it, is the only thing that must stay hidden."
-CDX_A1_KEY_EXAMPLE,"key = shift 3 (Suetonius)\n\nplain:  VENI VIDI VICI\ncipher: YHQL YLGL YLFL"
+CDX_A1_KEY_EXAMPLE,key = shift 3 (Suetonius)\n\nplain:  VENI VIDI VICI\ncipher: YHQL YLGL YLFL
 CDX_A1_KEY_WRONG,"House Morrow-Veil once believed the wheel itself was the secret, and burned a captured one as a trophy. It changed nothing; a new wheel is carved in an afternoon. The number was the secret all along, and it never left the steward's head."
-CDX_A1_KEY_ASIDE,"This is a Caesar cipher, a shift cipher with a fixed offset applied to every letter. Modern cryptography still separates algorithm from key; the same idea underlies AES and password hashing, where the method stays public and only the key stays secret."
-CDX_A1_KEY_M1,"Twenty-six letters, one number. Lose the number and you've lost nothing worth losing; lose the key and you've lost everything."
+CDX_A1_KEY_ASIDE,This is a Caesar cipher: one fixed shift applied to every letter. Modern ciphers such as AES keep the same split: the algorithm is public and only the key is secret.
+CDX_A1_KEY_M1,In a Caesar the number IS the key. Lose the method and you've lost little; lose the number and you've lost everything.
 CDX_A1_KEY_M2,"Real ciphers get fancier than this, boy, but every last one still boils down to: what's the key, and who's got it."
-CDX_A1_KEYSPACE_TITLE,"The Key Space"
-CDX_A1_KEYSPACE_BODY,"Every cipher has a key space: the full list of keys someone could try. A Caesar shift has twenty-six possible values, one of which leaves the message unchanged and so is never used, leaving twenty-five worth trying. Twenty-five is nothing. A patient clerk, let alone a cipher-monk with an hour and a cup of wine, can turn a wheel twenty-five times and read every result. This is the whole weakness of the shift cipher: its key space is so small that brute force costs almost nothing. Any cipher's true strength is measured by how large and how searchable its key space is, not by how clever its rule looks."
+CDX_A1_KEYSPACE_TITLE,The Key Space
+CDX_A1_KEYSPACE_BODY,"Every cipher has a key space: the full list of keys someone could try. A Caesar shift has twenty-six possible values, one of which leaves the message unchanged, leaving twenty-five worth trying. Twenty-five is nothing. A patient clerk can turn a wheel twenty-five times and read every result. That is the shift cipher's first weakness: brute force costs almost nothing. A large key space is necessary for strength but not enough on its own; as the next pages show, a cipher with an enormous key space can still fall to statistics."
 CDX_A1_KEYSPACE_EXAMPLE,"cipher: FRGH\ntry shift 1:  EQFG (no)\ntry shift 3:  CODE (yes)\n25 shifts, only one plain result"
 CDX_A1_KEYSPACE_WRONG,"The house assumed twenty-six was a wall too high to climb, and rarely bothered to change the shift at all. A single monk with patience proved that twenty-five tries is not a wall. It is an afternoon."
 CDX_A1_KEYSPACE_ASIDE,"Modern key spaces are measured in bits: a 128-bit AES key has about 3.4 x 10^38 possibilities, far beyond brute force even for governments. A Caesar shift's key space is under 5 bits, smaller than one password character."
 CDX_A1_KEYSPACE_M1,"Twenty-five guesses. I've drunk more cups than that before breakfast, and I don't recommend either habit."
-CDX_A1_KEYSPACE_M2,"Small key space is a sickness. Big key space is only a start; you still need the key itself to stay secret."
-CDX_A1_FREQUENCY_TITLE,"Frequency Analysis"
+CDX_A1_KEYSPACE_M2,Small key space is a sickness. Big key space is only a start; you still need the key itself to stay secret.
+CDX_A1_FREQUENCY_TITLE,Frequency Analysis
 CDX_A1_FREQUENCY_BODY,"No language uses its letters evenly. In English, E appears about 12.7 percent of the time, T about 9.1 percent, A about 8.2 percent, and letters like Q and Z hardly appear at all. This unevenness survives a Caesar shift: shift every letter by the same amount and the tallest bar in a letter count moves with it. Count the letters of a shifted message, find the tallest bar, and assume it stands for E; the distance between that bar and E's true place is the shift itself. This method was first described in the ninth century by the scholar al-Kindi, and remains the standard first attack on any cipher that shifts or swaps letters one for one."
 CDX_A1_FREQUENCY_EXAMPLE,"tally of a shifted letter (66 total):\nJ: 12   Y: 7   Q: 5   T: 5   M: 4\nJ is tallest, so J probably = E\nJ is 5 steps past E, so shift = 5"
 CDX_A1_FREQUENCY_WRONG,"The stewards believed changing their wording each season would hide the cipher. It never mattered: whatever words they chose, English still favored E over every other letter, and the tallest bar always gave the shift away."
 CDX_A1_FREQUENCY_ASIDE,"This is a classic ciphertext-only attack. Modern block and stream ciphers are built so frequency analysis fails: their output should look statistically uniform, hiding any letter's true popularity entirely."
-CDX_A1_FREQUENCY_M1,"The tallest bar in the tally never lies to you, boy. People do. Numbers, mostly, don't."
-CDX_A1_FREQUENCY_M2,"This trick only breaks shifts and swaps. Anything cleverer scrambles the tally too, but you have to start somewhere."
-CDX_A1_KERCKHOFFS_TITLE,"Kerckhoffs's Principle"
+CDX_A1_FREQUENCY_M1,"The tallest bar is only a strong bet, boy. Short letters and crafty clerks bend it. Check it against the words."
+CDX_A1_FREQUENCY_M2,"Counting breaks shifts and swaps, and later every column of a many-toothed key. You'll count till your eyes bleed."
+CDX_A1_KERCKHOFFS_TITLE,Kerckhoffs's Principle
 CDX_A1_KERCKHOFFS_BODY,"A cipher should stay secure even if your enemy knows exactly how it works down to the last detail; the only thing that must stay secret is the key. Auguste Kerckhoffs wrote this down in 1883. Judged by that rule, ROT13 and Atbash are not ciphers at all, they are tricks with no key. ROT13 always shifts every letter by exactly thirteen, so doing it twice returns the original text, since thirteen plus thirteen is twenty-six. Atbash always reverses the alphabet, A for Z, B for Y, and so on, and is likewise its own reverse. Neither hides anything once you know its name; secret here means only unfamiliar, never protected."
 CDX_A1_KERCKHOFFS_EXAMPLE,"plain:   THE ORDER READS\nrot13:   GUR BEQRE ERNQF\natbash:  GSV LIWVI IVZWH\neither one, twice, gives plain again"
 CDX_A1_KERCKHOFFS_WRONG,"House Morrow-Veil used Atbash for petty court gossip, trusting an old trick to look mysterious. Once the Order simply named the scheme aloud, every note the house had ever sent fell open the same afternoon."
 CDX_A1_KERCKHOFFS_ASIDE,"Kerckhoffs's principle is why modern cryptography publishes its algorithms openly and argues about them in public; secrecy lives only in the key. ROT13 itself was popularized on Usenet in the 1980s, to hide spoilers, never to protect anything."
 CDX_A1_KERCKHOFFS_M1,"No key, no secret. ROT13 and Atbash are party tricks, not locks, and I'll argue with any fool who calls them ciphers."
-CDX_A1_KERCKHOFFS_M2,"Kerckhoffs said it plain in 1883: assume your enemy knows the whole method already. Only the key gets to hide."
+CDX_A1_KERCKHOFFS_M2,Kerckhoffs said it plain in 1883: assume your enemy knows the whole method already. Only the key gets to hide.
 CDX_A1_KERCKHOFFS_M3,"Real locks have moving parts I haven't shown you yet, boy. These two don't. That's rather the point of starting here."
 DLG_A1_VAULT_OPEN_01,"Isaak wakes to iron and candlelight, the chain cold against his wrists."
 DLG_A1_VAULT_OPEN_02,"Awake. Good. I have read the Order's reports on you, and I find I do not believe half of them."
@@ -64,55 +64,55 @@ DLG_A1_VAULT_OPEN_04,"You want blood. I offer ink instead, and paper enough for 
 DLG_A1_VAULT_OPEN_05,"Water first. My throat's full of dust, and I've a story that wants telling properly."
 DLG_A1_VAULT_OPEN_06,"Water, then. I want the method, Isaak Varr, not the myth the Quill likes to tell about itself."
 DLG_A1_VAULT_OPEN_07,"The method. Fine. It starts in Hollowmere, the autumn I was nineteen, before I knew what I was."
-DLG_A1_VAULT_OPEN_08,"Begin."
-DLG_A1_I_INTRO_01,"The reeds hiss in the wind off Blackwater ford. A boy crouches beside a one-eyed monk with a sling."
-DLG_A1_I_INTRO_02,"You've missed the last three."
+DLG_A1_VAULT_OPEN_08,Begin.
+DLG_A1_I_INTRO_01,The reeds hiss in the wind off Blackwater ford. A boy crouches beside a one-eyed monk with a sling.
+DLG_A1_I_INTRO_02,You've missed the last three.
 DLG_A1_I_INTRO_03,"Shut your mouth and watch the sky, boy."
 DLG_A1_I_INTRO_04,"The sling cracks. A raven drops out of the dusk like a stone, a scrap of oilcloth bound to its leg."
-DLG_A1_I_INTRO_05,"That's a Morrow-Veil bird. You'll have the whole house down on us."
+DLG_A1_I_INTRO_05,That's a Morrow-Veil bird. You'll have the whole house down on us.
 DLG_A1_I_INTRO_06,"Brother Kett, if you please, since we're to be properly introduced over a corpse."
-DLG_A1_I_INTRO_07,"Isaak. What's in the oilcloth?"
+DLG_A1_I_INTRO_07,Isaak. What's in the oilcloth?
 DLG_A1_I_INTRO_08,"Orders, boy. Turned to nonsense by a trick of the alphabet, and nonsense again the moment you know the trick."
-DLG_A1_I_INTRO_09,"How do you undo it?"
+DLG_A1_I_INTRO_09,How do you undo it?
 DLG_A1_I_INTRO_10,"With this, and one number they think is safe because it's only a number. That's called a key, and it's worth stealing."
-DLG_A1_I_INTRO_11,"A number can't be a secret."
+DLG_A1_I_INTRO_11,A number can't be a secret.
 DLG_A1_I_INTRO_12,"Twenty-six of them can, if you're lazy and never change it. Watch the wheel, and I'll show you how lazy men get caught."
 DLG_A1_I_INTRO_13,Do we change ours?
 DLG_A1_I_INTRO_14,"Every new moon. Brother Ansgar keeps the Order's keys, and he trusts nobody. Not even me. Especially not me."
 DLG_A1_P01_AFTER_01,"Now you know what a key is, boy. It's the only thing they're hiding; everything else you're welcome to."
-DLG_A1_P01_AFTER_02,"Almost too easy."
-DLG_A1_P01_AFTER_03,"Wait till they get lazier still. It only gets worse for them from here."
+DLG_A1_P01_AFTER_02,Almost too easy.
+DLG_A1_P01_AFTER_03,Wait till they get lazier still. It only gets worse for them from here.
 DLG_A1_P02_AFTER_01,"Three families gone into the reeds, and the reeve wants hounds sent after them like they're game."
 DLG_A1_P02_AFTER_02,"Hounds cost money the reeve doesn't have. He's begging, not commanding. Write that down; it matters."
-DLG_A1_P02_AFTER_03,"It matters that House Morrow-Veil is running short of frightened people to work its fields."
+DLG_A1_P02_AFTER_03,It matters that House Morrow-Veil is running short of frightened people to work its fields.
 DLG_A1_P02_REMARK_01,"Twenty-five shifts. My own cousins still trust a wheel with twenty-five shifts, as if laziness were a virtue."
 DLG_A1_P02_REMARK_02,"A key space that small is not a lock. It is an invitation, politely worded."
-DLG_A1_P03_AFTER_01,"An alphabet of his own devising. What does that even mean?"
+DLG_A1_P03_AFTER_01,An alphabet of his own devising. What does that even mean?
 DLG_A1_P03_AFTER_02,"It means the steward's bored of borrowed tricks and built one of his own. Worse for us, better for the lesson."
-DLG_A1_P03_AFTER_03,"Worse how?"
+DLG_A1_P03_AFTER_03,Worse how?
 DLG_A1_P03_AFTER_04,"No key hiding in a drawer this time, boy. The whole alphabet's the secret now. We'll want frequency, patience, and Hollowmere."
 DLG_A1_I_END_01,"They take the next courier at the ford: a thin thrall named Odo Lusk, a satchel of ravens' orders on his back."
-DLG_A1_I_END_02,"He's shaking. He knows what we are."
+DLG_A1_I_END_02,He's shaking. He knows what we are.
 DLG_A1_I_END_03,"He knows what you are, boy. Thirst's up in your eyes already. Don't."
 DLG_A1_I_END_04,"The hunger's a fist round my throat, and here's supper begging for its life."
-DLG_A1_I_END_C1,"Drain him."
-DLG_A1_I_END_C2,"Spare him; drink Kett's pig's blood instead."
-DLG_A1_I_END_05,"Odo Lusk does not finish his sentence."
+DLG_A1_I_END_C1,Drain him.
+DLG_A1_I_END_C2,Spare him; drink Kett's pig's blood instead.
+DLG_A1_I_END_05,Odo Lusk does not finish his sentence.
 DLG_A1_I_END_06,"I don't remember letting go. Kett does; he tells me after, quietly, like a man reporting weather."
 DLG_A1_I_END_07,"Pig's blood, boy, not his. Drink it slow, let the lad run, and doctor his letter so the blame falls on damp."
-DLG_A1_I_END_08,"Odo runs like the marsh is on fire behind him. Some part of me hopes he keeps running."
+DLG_A1_I_END_08,Odo runs like the marsh is on fire behind him. Some part of me hopes he keeps running.
 DLG_A1_I_END_09,"Either way, Hollowmere has one less letter reaching House Morrow-Veil tonight."
 DLG_A1_I_FRENZY_01,"The Thirst rises faster than Isaak can master it, and the raven-keeper's lantern is too warm, too close, too alive."
 DLG_A1_I_FRENZY_02,"I don't remember crossing the yard. I remember the smell, and then I remember nothing kind."
 DLG_A1_I_FRENZY_03,"By the time Kett hauls him off, the keeper is on the ground, and the letter is soaked through, dark with more than ink."
 DLG_A1_I_FRENZY_04,"Enough! Enough, boy, he's done, let him be!"
-DLG_A1_I_FRENZY_05,"My hands wouldn't stop. Kett had to stop them for me."
+DLG_A1_I_FRENZY_05,My hands wouldn't stop. Kett had to stop them for me.
 DLG_A1_I_FRENZY_06,"We'll not get that letter now. There'll be another raven, and a harder one, and you'll do better by it."
 DLG_A1_VAULT_I_01,"So. The wheel again, the tally, and two children playing at monks in the reeds. Familiar work."
-DLG_A1_VAULT_I_02,"My cousin used the same key for ninety years. He considered it tradition. I consider it evidence."
+DLG_A1_VAULT_I_02,My cousin used the same key for ninety years. He considered it tradition. I consider it evidence.
 DLG_A1_VAULT_I_03,"You drained the courier. I'd ask if you regret it, but pale-bloods rarely regret the meal, only the mess."
 DLG_A1_VAULT_I_04,"You let the courier run on pig's blood and a doctored letter. Sentiment, from a thing that eats people. Quaint."
 DLG_A1_VAULT_I_05,"And you frenzied besides, on some wretched keeper. The Order's reports were not exaggerating after all."
 DLG_A1_VAULT_I_06,"Tell me of this alphabet the steward is supposedly devising. Did he steal it, or did he build it?"
-DLG_A1_VAULT_I_07,"You'll have to let me get there."
+DLG_A1_VAULT_I_07,You'll have to let me get there.
 DLG_A1_VAULT_I_08,"Then get there, Isaak Varr. I am not a patient woman, but I am a thorough one."

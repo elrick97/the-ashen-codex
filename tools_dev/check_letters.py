@@ -80,7 +80,7 @@ def check(v):
     need("LTR_P05", 60 <= words(t) <= 100, "60-100 words (has %d)" % words(t))
     need("LTR_P05", crib == "YOUR SERVANT IN ETERNITY", "PZ_P05_CRIB is YOUR SERVANT IN ETERNITY")
     need("LTR_P05", t.upper().count(crib) == 1, "contains the crib exactly once")
-    need("PZ_P05_CRIB_SHORT", txt("PZ_P05_CRIB_SHORT").upper() == "YOUR SERVANT", "PZ_P05_CRIB_SHORT is YOUR SERVANT")
+    need("PZ_P05_CRIB_SHORT", txt("PZ_P05_CRIB_SHORT").upper() == "IN ETERNITY", "PZ_P05_CRIB_SHORT is IN ETERNITY")
     t = txt("LTR_P06")
     L = letters(t)
     c = Counter(L).most_common(3)

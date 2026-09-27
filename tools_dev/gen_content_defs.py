@@ -41,48 +41,36 @@ PUZZLES = [
     dict(n=5, ch="a1_ii", mode="substitution", tools=["substitution_board", "tally_scroll"], letters=["LTR_P05"],
          norm="upper_keep", key={"type": "perm"}, params={"crib_key": "PZ_P05_CRIB", "ngrams": False},
          costed=False, cost=1, codex=["a1_cribs"], frenzy="a1_ii_frenzy", fo={"crib_key": "PZ_P05_CRIB_SHORT"},
-         anti="Short letter: single-letter counts are ambiguous. The crib must be slid to the one offset where its letter "
-              "pattern is self-consistent; pinning applies ~11 letters at once. The preview never places letters by itself. "
-              "After a frenzy only 'YOUR SERVANT' survives the blood, so fewer letters are pinned."),
+         anti="Frequency alone is ambiguous here: O and T outnumber E in this letter, so a rank-order guess misreads it. The crib must be slid to the one offset where its letter pattern is self-consistent; pinning applies about eleven letters at once. The preview never places letters by itself. After a frenzy only IN ETERNITY survives the blood, pinning six letters instead of eleven."),
     dict(n=6, ch="a1_ii", mode="substitution", tools=["substitution_board", "tally_scroll"], letters=["LTR_P06"],
          norm="letters_only", key={"type": "perm"}, params={"ngrams": True, "group5": True},
          costed=False, cost=1, codex=["a1_ngrams"], frenzy="a1_ii_frenzy", fo={},
-         anti="Word breaks are stripped and single-letter counts are flattened by the E-sparing clerk, so the Letters tab "
-              "misleads. Only pairs/triples (TH, HE, THE) anchor the alphabet. Wrong full seals cost 8."),
+         anti="Word breaks are stripped and the clerk starved E, so single-letter counts mislead (T tops the tally, E sits mid-table). Pairs and triples (TH, HE, THE) anchor the alphabet; the rest is read off the words that appear. There is no dial to spin, and sealing a wrong complete alphabet costs 8."),
     dict(n=7, ch="a1_iii", mode="vigenere", tools=["multi_wheel", "tally_scroll"], letters=["LTR_P07"],
          norm="letters_only", key={"type": "word", "pool": ["ASHEN", "RAVEN", "THORN", "GRAVE", "EMBER"]},
          params={"period_given": 5, "period_max": 12}, costed=True, cost=1, codex=["a1_vigenere"],
          frenzy="a1_iii_frenzy", fo={"trial_cost": 2},
-         anti="Each drum only changes every fifth letter, so the preview never reads as English until all five are right; "
-              "eyeballing one column is hopeless. Notches cost 1 (2 after a frenzy). The per-column Tally Scroll plus "
-              "'read as E' sets each drum for 1 Thirst."),
+         anti="Each drum changes only every fifth letter, so the preview reads as English only when every column is right, and turning drums blind costs a notch each. The per-column Tally shows a shapes-agree score for the drum's current setting; read-as E/T/A/O jumps cost 1 per try, so matching shapes costs about 5-10 Thirst while spinning drums costs far more."),
     dict(n=8, ch="a1_iii", mode="vigenere", tools=["kasiski_lens", "multi_wheel", "tally_scroll"], letters=["LTR_P08"],
          norm="letters_only", key={"type": "word", "pool": ["MORROW", "SHROUD", "CANDLE", "REQUIEM", "VESPERS"]},
          params={"period_given": 0, "period_max": 12}, costed=True, cost=1, codex=["a1_kasiski"],
          frenzy="a1_iii_frenzy", fo={"trial_cost": 2},
-         anti="Unknown period: without it the column tallies are mush and every notch costs Thirst. Kasiski spacings on the "
-              "free lens give the period; then the drums fall to per-column frequency."),
+         anti="Unknown period. The period stepper and tallies are free, and at the right period each column's shape lines up with English (at a wrong one nothing does), so testing widths on the tally is a slow cousin of the index of coincidence. The Kasiski lens is faster: the factor most spacings share. Either way every drum notch still costs Thirst."),
     dict(n=9, ch="a1_iii", mode="vigenere", tools=["column_loom", "multi_wheel", "tally_scroll"], letters=["LTR_P09"],
          norm="letters_only", key={"type": "word", "pool": ["VEIL", "ASHES", "GRIEF", "EMBERS"]},
          params={"period_given": 0, "period_max": 12}, costed=True, cost=1, codex=["a1_ioc"],
          frenzy="a1_iii_frenzy", fo={"trial_cost": 2},
-         anti="Too short and too varied for Kasiski. The free Column Loom's IoC vial finds N; notches still cost, so guessing "
-              "periods on the drums is expensive."),
+         anti="Only a few short repeats occur, at chance level, so Kasiski misleads here. The free Column Loom's IoC vial finds N (prefer the smallest N whose vial runs thick; multiples of the key length also score high). As on puzzle 8 the stepper and tallies are free, and every drum notch costs Thirst."),
     dict(n=10, ch="a1_iii", mode="xor_rosary", tools=["bit_rosary", "key_dial"], letters=["LTR_P10"],
-         norm="ascii", key={"type": "byte", "min": 65, "max": 250, "exclude": [96]},
+         norm="ascii", key={"type": "byte", "min": 65, "max": 250},
          params={"stage2_word_key": "PZ_P10_WORD", "stage1_pool": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
          costed=False, cost=1, codex=["a1_xor", "a1_single_xor"], frenzy="a1_iii_frenzy", fo={},
-         anti="Stage 1 needs the XOR relation (flip exactly the beads where A and B differ); the wanted strand is shown, the key "
-              "is not. Stage 3: dial turns are free on purpose because the lesson is the scoring function; the gauge is the "
-              "same English score the solvers use, and 256 keys is exactly where brute force plus a scorer is the right tool. "
-              "Keys that merely flip letter case (0x20) are excluded so no key reads as English by accident."),
+         anti="Stage 1 needs the XOR relation: flip exactly the beads where the letter and the wanted letter differ; the key is never shown. Stage 3: dial turns are free on purpose because the lesson is the scoring function: the gauge is the same English score the solvers use, and 256 keys is exactly where brute force plus a scorer is the right tool. Keys 65-250 always set bit 6 or 7, so no key merely flips letter case (0x20) and no wrong key reads as English by accident."),
     dict(n=11, ch="a1_iii", mode="xor_repeating", tools=["hamming_comb", "key_dial"], letters=["LTR_P11"],
          norm="ascii", key={"type": "phrase", "pool": ["NOX AETERNA", "WE DO NOT END", "BLOOD IS OWED", "SALT AND ASHES"]},
          params={"keysize_min": 2, "keysize_max": 40},
          costed=False, cost=1, codex=["a1_repeating_xor"], frenzy="a1_iii_frenzy", fo={},
-         anti="Each dial controls one transposed strand, and a strand is every k-th byte, so it never reads as text on its own; "
-              "only the per-strand English gauge (frequency scoring) finds each byte. The key size must come from the Hamming "
-              "comb first; with the wrong size no dial setting scores well."),
+         anti="The key size comes from the Hamming comb: the true size or a multiple scores lowest (a multiple also decrypts correctly and is accepted). Each dial sets every k-th byte, so the live preview reads as English only when all dials are right; the per-strand gauges (frequency scoring) find each byte. At a wrong size no setting makes every strand gauge high."),
     dict(n=12, ch="a1_iii", mode="two_time_pad", tools=["crib_dragger"], letters=["LTR_P12_A", "LTR_P12_B"],
          norm="upper_ascii", key={"type": "pad"},
          params={"crib_tray_keys": ["PZ_P12_CRIB_1", "PZ_P12_CRIB_2", "PZ_P12_CRIB_3", "PZ_P12_CRIB_4", "PZ_P12_CRIB_5", "PZ_P12_CRIB_6"],

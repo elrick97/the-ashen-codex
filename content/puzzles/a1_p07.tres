@@ -23,4 +23,4 @@ hint_keys = PackedStringArray("PZ_P07_HINT1", "PZ_P07_HINT2", "PZ_P07_HINT3")
 codex_unlocks = PackedStringArray("a1_vigenere")
 frenzy_dialogue = "a1_iii_frenzy"
 frenzy_overrides = {"trial_cost": 2}
-anti_cheese = "Each drum only changes every fifth letter, so the preview never reads as English until all five are right; eyeballing one column is hopeless. Notches cost 1 (2 after a frenzy). The per-column Tally Scroll plus 'read as E' sets each drum for 1 Thirst."
+anti_cheese = "Each drum changes only every fifth letter, so the preview reads as English only when every column is right, and turning drums blind costs a notch each. The per-column Tally shows a shapes-agree score for the drum's current setting; read-as E/T/A/O jumps cost 1 per try, so matching shapes costs about 5-10 Thirst while spinning drums costs far more."

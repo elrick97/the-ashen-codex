@@ -65,9 +65,56 @@ static func solve_substitution(ciphertext: String, fixed: Dictionary = {}, use_t
 	return best
 
 
-## Hill-climb: keep swapping pairs of plaintext assignments while the score improves.
+## Hill-climb: keep swapping pairs of plaintext assignments while the score improves;
+## when no swap helps, try rotating three letters among those present (a 3-cycle such as
+## C->Y->K->C can't be undone by any single swap), then go back to swaps.
 static func _climb(c: PackedInt32Array, key: PackedInt32Array, fixed: Dictionary, tri: bool) -> PackedInt32Array:
 	var score: float = _score(c, key, tri)
+	var present: Array[int] = []
+	var seen: Dictionary = {}
+	for v: int in c:
+		if not seen.has(v) and not fixed.has(v):
+			seen[v] = true
+			present.append(v)
+	var improved: bool = true
+	while improved:
+		improved = _swap_pass(c, key, fixed, tri)
+		score = _score(c, key, tri)
+		if not improved:
+			improved = _cycle_pass(c, key, present, tri, score)
+	return key
+
+
+static func _cycle_pass(c: PackedInt32Array, key: PackedInt32Array, present: Array[int], tri: bool, score: float) -> bool:
+	for i: int in range(present.size()):
+		for j: int in range(i + 1, present.size()):
+			for k: int in range(j + 1, present.size()):
+				var a: int = present[i]
+				var b: int = present[j]
+				var d: int = present[k]
+				var va: int = key[a]
+				var vb: int = key[b]
+				var vd: int = key[d]
+				for rot: int in range(2):
+					if rot == 0:
+						key[a] = vb
+						key[b] = vd
+						key[d] = va
+					else:
+						key[a] = vd
+						key[b] = va
+						key[d] = vb
+					if _score(c, key, tri) > score:
+						return true
+				key[a] = va
+				key[b] = vb
+				key[d] = vd
+	return false
+
+
+static func _swap_pass(c: PackedInt32Array, key: PackedInt32Array, fixed: Dictionary, tri: bool) -> bool:
+	var score: float = _score(c, key, tri)
+	var any: bool = false
 	var improved: bool = true
 	while improved:
 		improved = false
@@ -84,10 +131,11 @@ static func _climb(c: PackedInt32Array, key: PackedInt32Array, fixed: Dictionary
 				if s > score:
 					score = s
 					improved = true
+					any = true
 				else:
 					key[b] = key[a]
 					key[a] = t
-	return key
+	return any
 
 
 ## Word patterns: with word breaks kept, keep swapping letters while more of the reading
@@ -123,7 +171,42 @@ static func polish_with_words(ciphertext: String, cipher_to_plain: PackedInt32Ar
 				else:
 					key[b] = key[a]
 					key[a] = t
+		if not improved:
+			improved = _word_cycles(ciphertext, key, words, present, movable, counts, spaced, best)
+			if improved:
+				best = _word_score(ciphertext, key, words) if spaced else _segment_score(ciphertext, key, words)
 	return key
+
+
+## Three-letter rotations involving two letters in the text and one that is either in the
+## text or unused (e.g. true C and K read as Y and C, with Y unused).
+static func _word_cycles(ciphertext: String, key: PackedInt32Array, words: Dictionary, present: Array[int], movable: Array[int], counts: PackedInt32Array, spaced: bool, best: int) -> bool:
+	for i: int in range(present.size()):
+		for j: int in range(i + 1, present.size()):
+			for d: int in movable:
+				var a: int = present[i]
+				var b: int = present[j]
+				if d == a or d == b or (counts[d] > 0 and d < b):
+					continue
+				var va: int = key[a]
+				var vb: int = key[b]
+				var vd: int = key[d]
+				for rot: int in range(2):
+					if rot == 0:
+						key[a] = vb
+						key[b] = vd
+						key[d] = va
+					else:
+						key[a] = vd
+						key[b] = va
+						key[d] = vb
+					var s: int = _word_score(ciphertext, key, words) if spaced else _segment_score(ciphertext, key, words)
+					if s > best:
+						return true
+				key[a] = va
+				key[b] = vb
+				key[d] = vd
+	return false
 
 
 ## Letters without word breaks: the most letters that can be covered by real words
@@ -181,11 +264,18 @@ static func _score(c: PackedInt32Array, key: PackedInt32Array, tri: bool) -> flo
 	return s
 
 
-## Vigenere columns by frequency: chi-squared best Caesar shift for each column.
+## Vigenere columns by frequency, exactly as the game teaches: for each column, the shift
+## whose English row lines up best with the column's tally (Frequency.profile_match,
+## the Tally Scroll's "shapes agree" score).
 static func vigenere_shifts(ciphertext: String, period: int) -> PackedInt32Array:
 	var out: PackedInt32Array = PackedInt32Array()
 	for col: String in Vigenere.columns(ciphertext, period):
-		out.append(Frequency.shift_by_chi_squared(col))
+		var counts: PackedInt32Array = Frequency.counts(col)
+		var best: int = 0
+		for s: int in range(26):
+			if Frequency.profile_match(counts, s) > Frequency.profile_match(counts, best):
+				best = s
+		out.append(best)
 	return out
 
 

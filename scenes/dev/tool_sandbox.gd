@@ -85,7 +85,7 @@ func open_tool(id: String) -> void:
 			t.set_english(Frequency.ENGLISH, Frequency.COMMON_BIGRAMS, Frequency.COMMON_TRIGRAMS)
 			t.set_counts(Frequency.counts(cipher))
 			t.set_ngrams(Frequency.top_ngrams(cipher, 2, 8, true), Frequency.top_ngrams(cipher, 3, 8, true))
-			t.read_as_e.connect(func(i: int) -> void: _card.set_plain(Caesar.decrypt(cipher, Caesar.shift_between(4, i))))
+			t.read_as.connect(func(i: int, p: int) -> void: _card.set_plain(Caesar.decrypt(cipher, Caesar.shift_between(p, i))))
 		"substitution_board":
 			var key: String = Substitution.random_key(Pcg32.new(3))
 			var sc2: String = Substitution.encrypt(SAMPLE, key)

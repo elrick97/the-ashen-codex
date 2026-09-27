@@ -55,7 +55,8 @@ static func untranspose(cols: Array[PackedByteArray], total: int) -> PackedByteA
 	return out
 
 
-## Random pad bytes (a one-time pad, if it is used once and kept secret).
+## Pseudo-random pad bytes from the seeded PCG32. Good enough for a game letter; a real
+## one-time pad needs truly random bytes (and must be used once and kept secret).
 static func random_pad(rng: Pcg32, length: int) -> PackedByteArray:
 	var out: PackedByteArray = PackedByteArray()
 	out.resize(length)

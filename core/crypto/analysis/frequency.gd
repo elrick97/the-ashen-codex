@@ -70,6 +70,23 @@ static func chi_squared(letter_counts: PackedInt32Array) -> float:
 	return chi
 
 
+## How well a letter count matches English if the text was shifted by `shift`: the
+## cosine similarity between the counts read back through the shift and the English
+## profile. About 0.9 or more when the shapes line up; roughly 0.3-0.6 when they don't.
+static func profile_match(letter_counts: PackedInt32Array, shift: int) -> float:
+	var dot: float = 0.0
+	var na: float = 0.0
+	var nb: float = 0.0
+	for p: int in range(26):
+		var c: float = float(letter_counts[posmod(p + shift, 26)])
+		dot += c * ENGLISH[p]
+		na += c * c
+		nb += ENGLISH[p] * ENGLISH[p]
+	if na == 0.0:
+		return 0.0
+	return dot / (sqrt(na) * sqrt(nb))
+
+
 ## Caesar shift under the assumption that the peak cipher letter stands for E.
 static func shift_from_peak(ciphertext: String) -> int:
 	return Caesar.shift_between(INDEX_E, peak(ciphertext))

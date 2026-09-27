@@ -23,4 +23,4 @@ hint_keys = PackedStringArray("PZ_P11_HINT1", "PZ_P11_HINT2", "PZ_P11_HINT3")
 codex_unlocks = PackedStringArray("a1_repeating_xor")
 frenzy_dialogue = "a1_iii_frenzy"
 frenzy_overrides = {}
-anti_cheese = "Each dial controls one transposed strand, and a strand is every k-th byte, so it never reads as text on its own; only the per-strand English gauge (frequency scoring) finds each byte. The key size must come from the Hamming comb first; with the wrong size no dial setting scores well."
+anti_cheese = "The key size comes from the Hamming comb: the true size or a multiple scores lowest (a multiple also decrypts correctly and is accepted). Each dial sets every k-th byte, so the live preview reads as English only when all dials are right; the per-strand gauges (frequency scoring) find each byte. At a wrong size no setting makes every strand gauge high."

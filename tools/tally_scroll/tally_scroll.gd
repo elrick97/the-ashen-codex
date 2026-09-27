@@ -3,10 +3,13 @@ extends ToolBase
 ## Free analysis: how often each cipher letter occurs, drawn above the English baseline.
 ## Tabs for pairs and triples (bigrams/trigrams) when the puzzle allows, and a column
 ## selector when the letter is several Caesars interleaved (Vigenere).
-## Tapping a bar selects that cipher letter; "Read it as E" asks the mode to act.
+## Tapping a bar selects that cipher letter; "Read it as E / T / A / O" asks the mode to
+## act. When the mode sets an alignment (the wheel's current shift), the English row is
+## drawn under the cipher letters it would stand for, so matching shapes can be seen,
+## and a "shapes agree" readout (Frequency.profile_match) is shown.
 
 signal letter_selected(index: int)
-signal read_as_e(index: int)
+signal read_as(index: int, plain: int)
 signal column_selected(column: int)
 signal gram_selected(gram: String)
 
@@ -27,13 +30,19 @@ var columns: int = 0
 var column: int = -1 # -1 = whole text
 var selected: int = -1
 var tab: int = TAB_LETTERS
+## Shift the English row is drawn at (-1 = plain A..Z order).
+var align_shift: int = -1
+## Profile agreement 0..1 pushed by the mode (-1 = hidden).
+var match_value: float = -1.0
+const READ_AS: Array[int] = [4, 19, 0, 14] # E, T, A, O
 
 var _tabs: HBoxContainer = null
 var _cols: HBoxContainer = null
 var _cols_scroll: ScrollContainer = null
 var _chart: Control = null
 var _info: Label = null
-var _read_btn: Button = null
+var _read_row: HBoxContainer = null
+var _read_label: Label = null
 var _grams: HBoxContainer = null
 var _gram_left: VBoxContainer = null
 var _gram_right: VBoxContainer = null
@@ -94,12 +103,23 @@ func _ready() -> void:
 	_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(_info)
-	_read_btn = Button.new()
-	_read_btn.theme_type_variation = "RubricButton"
-	_read_btn.pressed.connect(func() -> void:
-		if selected >= 0:
-			read_as_e.emit(selected))
-	row.add_child(_read_btn)
+	_read_row = HBoxContainer.new()
+	_read_row.add_theme_constant_override("separation", 8)
+	box.add_child(_read_row)
+	_read_label = Label.new()
+	_read_label.theme_type_variation = "LightLabel"
+	_read_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_read_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_read_row.add_child(_read_label)
+	for plain: int in READ_AS:
+		var b: Button = Button.new()
+		b.text = String.chr(65 + plain)
+		b.theme_type_variation = "RubricButton" if plain == 4 else ""
+		b.custom_minimum_size = Vector2(118, 124)
+		b.pressed.connect(func() -> void:
+			if selected >= 0:
+				read_as.emit(selected, plain))
+		_read_row.add_child(b)
 	_refresh()
 
 
@@ -125,6 +145,13 @@ func set_counts(c: PackedInt32Array) -> void:
 func set_ngrams(bi: Array[Dictionary], tri: Array[Dictionary]) -> void:
 	bigrams = bi
 	trigrams = tri
+	_refresh()
+
+
+## The English row slides with the wheel; `m` is the shapes-agree score (or -1).
+func set_alignment(shift: int, m: float) -> void:
+	align_shift = shift
+	match_value = m
 	_refresh()
 
 
@@ -205,11 +232,13 @@ func _refresh() -> void:
 			_info.text = tr("UI_TALLY_SELECTED") % [String.chr(65 + selected), counts[selected], total, pct]
 		else:
 			_info.text = tr("UI_TALLY_TAP")
-		_read_btn.visible = show_read_as_e and selected >= 0
+		if match_value >= 0.0:
+			_info.text += "  " + tr("UI_TALLY_MATCH") % int(round(match_value * 100.0))
+		_read_row.visible = show_read_as_e and selected >= 0
 		if selected >= 0:
-			_read_btn.text = (tr("UI_TALLY_READ_E_COST") % [String.chr(65 + selected), read_as_e_cost]) if read_as_e_cost > 0 else (tr("UI_TALLY_READ_E") % String.chr(65 + selected))
+			_read_label.text = (tr("UI_TALLY_READ_AS_COST") % [String.chr(65 + selected), read_as_e_cost]) if read_as_e_cost > 0 else (tr("UI_TALLY_READ_AS") % String.chr(65 + selected))
 	else:
-		_read_btn.visible = false
+		_read_row.visible = false
 		_info.text = tr("UI_TALLY_GRAM_HELP")
 		_fill_grams()
 	_chart.queue_redraw()
@@ -291,20 +320,22 @@ func _draw_chart() -> void:
 		_chart.draw_char(f, Vector2(x + (bw - cw) * 0.5, half - 12.0), ch, fs, Palette.GOLD_LIGHT if i == selected else Color("f0b8a8"))
 		if i == selected:
 			_chart.draw_rect(Rect2(x + 1, 6, bw - 2, half - 12), Palette.GOLD_LIGHT, false, 3.0)
-	# Bottom: English baseline (plain letters)
+	# Bottom: English baseline. Aligned: under cipher letter i sits the English letter it
+	# would stand for at the wheel's current shift, so matching shapes line up.
 	for i: int in range(26):
 		var x2: float = i * bw
-		var e: float = english[i] if i < english.size() else 0.0
+		var p: int = posmod(i - align_shift, 26) if align_shift >= 0 else i
+		var e: float = english[p] if p < english.size() else 0.0
 		var bh2: float = bar_area * e / max_share
-		_chart.draw_rect(Rect2(x2 + 3, half + 44.0, bw - 6, bh2), Color(Palette.VELLUM_SHADOW, 0.9))
-		var ch2: String = String.chr(65 + i)
+		_chart.draw_rect(Rect2(x2 + 3, half + 44.0, bw - 6, bh2), Color(Palette.VELLUM_SHADOW, 0.9) if align_shift < 0 else Color("c9b27c"))
+		var ch2: String = String.chr(65 + p)
 		var cw2: float = f.get_char_size(ch2.unicode_at(0), fs).x
 		_chart.draw_char(f, Vector2(x2 + (bw - cw2) * 0.5, half + 34.0), ch2, fs, Palette.ON_DARK)
 	_chart.draw_line(Vector2(0, half), Vector2(w, half), Palette.GOLD, 2.0)
 	var lf: Font = ThemeBuilder.font("italic")
 	var lfs: int = ThemeBuilder.size(30)
 	_chart.draw_string(lf, Vector2(8, 34), tr("UI_TALLY_THIS_LETTER"), HORIZONTAL_ALIGNMENT_LEFT, -1, lfs, Palette.ON_DARK_FADED)
-	_chart.draw_string(lf, Vector2(8, h - 12), tr("UI_TALLY_ENGLISH"), HORIZONTAL_ALIGNMENT_LEFT, -1, lfs, Palette.ON_DARK_FADED)
+	_chart.draw_string(lf, Vector2(8, h - 12), tr("UI_TALLY_ENGLISH_ALIGNED") if align_shift >= 0 else tr("UI_TALLY_ENGLISH"), HORIZONTAL_ALIGNMENT_LEFT, -1, lfs, Palette.ON_DARK_FADED)
 
 
 func _chart_input(event: InputEvent) -> void:

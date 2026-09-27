@@ -11,9 +11,9 @@ PZ_P02_HINT2,In any honest letter one letter does most of the work. Find that ta
 PZ_P02_HINT3,"Read the tallest column as the commonest letter in plain speech, then turn the wheel that many stops before you spend another drop."
 PZ_P03_TITLE,Thirteen Turns
 PZ_P03_BRIEF,"Name each note's trick, then say what truly kept them secret."
-PZ_P03_HINT1,"Three notes, three little tricks. Look for one that never changes a letter's shape, only its place in the alphabet."
+PZ_P03_HINT1,"Three notes, two little tricks. Watch whether a letter's place moves along the alphabet or flips end for end."
 PZ_P03_HINT2,"One trick always adds thirteen and undoes itself if you do it twice. The other flips the alphabet on its head, first for last."
-PZ_P03_HINT3,"Name each note's trick, then ask yourself plainly what is left to hide once the trick itself is known. Answer that, and seal."
+PZ_P03_HINT3,"Set the wheel to each note's trick until it reads, then seal. For the question, ask what a stranger would still lack after reading them."
 PZ_P03_Q,What truly protects these three notes?
 PZ_P03_A1,The number of turns given to the wheel
 PZ_P03_A2,The Court's wax seal pressed on each letter
@@ -32,11 +32,11 @@ CDX_A1_KEY_TITLE,The Key
 CDX_A1_KEY_BODY,"A cipher hides a message inside a rule. A key is the one secret piece of that rule: without it the message is noise, with it the message is plain. The simplest key is a number. Take the Caesar shift: write out the alphabet, then slide it forward by some fixed count, and swap every letter in your message for the one now standing under it. Slide it back by the same count and the message returns. The rule can be public knowledge. The key, how far you slid it, is the only thing that must stay hidden."
 CDX_A1_KEY_EXAMPLE,key = shift 3 (Suetonius)\n\nplain:  VENI VIDI VICI\ncipher: YHQL YLGL YLFL
 CDX_A1_KEY_WRONG,"House Morrow-Veil once believed the wheel itself was the secret, and burned a captured one as a trophy. It changed nothing; a new wheel is carved in an afternoon. The number was the secret all along, and it never left the steward's head."
-CDX_A1_KEY_ASIDE,"This is a Caesar cipher, a shift cipher with a fixed offset applied to every letter. Modern cryptography still separates algorithm from key; the same idea underlies AES and password hashing, where the method stays public and only the key stays secret."
-CDX_A1_KEY_M1,"Twenty-six letters, one number. Lose the number and you've lost nothing worth losing; lose the key and you've lost everything."
+CDX_A1_KEY_ASIDE,This is a Caesar cipher: one fixed shift applied to every letter. Modern ciphers such as AES keep the same split: the algorithm is public and only the key is secret.
+CDX_A1_KEY_M1,In a Caesar the number IS the key. Lose the method and you've lost little; lose the number and you've lost everything.
 CDX_A1_KEY_M2,"Real ciphers get fancier than this, boy, but every last one still boils down to: what's the key, and who's got it."
 CDX_A1_KEYSPACE_TITLE,The Key Space
-CDX_A1_KEYSPACE_BODY,"Every cipher has a key space: the full list of keys someone could try. A Caesar shift has twenty-six possible values, one of which leaves the message unchanged and so is never used, leaving twenty-five worth trying. Twenty-five is nothing. A patient clerk, let alone a cipher-monk with an hour and a cup of wine, can turn a wheel twenty-five times and read every result. This is the whole weakness of the shift cipher: its key space is so small that brute force costs almost nothing. Any cipher's true strength is measured by how large and how searchable its key space is, not by how clever its rule looks."
+CDX_A1_KEYSPACE_BODY,"Every cipher has a key space: the full list of keys someone could try. A Caesar shift has twenty-six possible values, one of which leaves the message unchanged, leaving twenty-five worth trying. Twenty-five is nothing. A patient clerk can turn a wheel twenty-five times and read every result. That is the shift cipher's first weakness: brute force costs almost nothing. A large key space is necessary for strength but not enough on its own; as the next pages show, a cipher with an enormous key space can still fall to statistics."
 CDX_A1_KEYSPACE_EXAMPLE,"cipher: FRGH\ntry shift 1:  EQFG (no)\ntry shift 3:  CODE (yes)\n25 shifts, only one plain result"
 CDX_A1_KEYSPACE_WRONG,"The house assumed twenty-six was a wall too high to climb, and rarely bothered to change the shift at all. A single monk with patience proved that twenty-five tries is not a wall. It is an afternoon."
 CDX_A1_KEYSPACE_ASIDE,"Modern key spaces are measured in bits: a 128-bit AES key has about 3.4 x 10^38 possibilities, far beyond brute force even for governments. A Caesar shift's key space is under 5 bits, smaller than one password character."
@@ -47,8 +47,8 @@ CDX_A1_FREQUENCY_BODY,"No language uses its letters evenly. In English, E appear
 CDX_A1_FREQUENCY_EXAMPLE,"tally of a shifted letter (66 total):\nJ: 12   Y: 7   Q: 5   T: 5   M: 4\nJ is tallest, so J probably = E\nJ is 5 steps past E, so shift = 5"
 CDX_A1_FREQUENCY_WRONG,"The stewards believed changing their wording each season would hide the cipher. It never mattered: whatever words they chose, English still favored E over every other letter, and the tallest bar always gave the shift away."
 CDX_A1_FREQUENCY_ASIDE,"This is a classic ciphertext-only attack. Modern block and stream ciphers are built so frequency analysis fails: their output should look statistically uniform, hiding any letter's true popularity entirely."
-CDX_A1_FREQUENCY_M1,"The tallest bar in the tally never lies to you, boy. People do. Numbers, mostly, don't."
-CDX_A1_FREQUENCY_M2,"This trick only breaks shifts and swaps. Anything cleverer scrambles the tally too, but you have to start somewhere."
+CDX_A1_FREQUENCY_M1,"The tallest bar is only a strong bet, boy. Short letters and crafty clerks bend it. Check it against the words."
+CDX_A1_FREQUENCY_M2,"Counting breaks shifts and swaps, and later every column of a many-toothed key. You'll count till your eyes bleed."
 CDX_A1_KERCKHOFFS_TITLE,Kerckhoffs's Principle
 CDX_A1_KERCKHOFFS_BODY,"A cipher should stay secure even if your enemy knows exactly how it works down to the last detail; the only thing that must stay secret is the key. Auguste Kerckhoffs wrote this down in 1883. Judged by that rule, ROT13 and Atbash are not ciphers at all, they are tricks with no key. ROT13 always shifts every letter by exactly thirteen, so doing it twice returns the original text, since thirteen plus thirteen is twenty-six. Atbash always reverses the alphabet, A for Z, B for Y, and so on, and is likewise its own reverse. Neither hides anything once you know its name; secret here means only unfamiliar, never protected."
 CDX_A1_KERCKHOFFS_EXAMPLE,"plain:   THE ORDER READS\nrot13:   GUR BEQRE ERNQF\natbash:  GSV LIWVI IVZWH\neither one, twice, gives plain again"
@@ -119,22 +119,22 @@ DLG_A1_VAULT_I_08,"Then get there, Isaak Varr. I am not a patient woman, but I a
 PZ_P04_TITLE,The Tithe Roll
 PZ_P04_BRIEF,"Drag cipher tiles onto plaintext letters, guided by the frequency histogram."
 PZ_P04_HINT1,"Look at the tally scroll before you touch a single tile, boy. Some bars are stone, others are dust."
-PZ_P04_HINT2,Count every cipher letter the way a hangman counts nooses. The tallest bar in English is almost always E.
+PZ_P04_HINT2,"Count every cipher letter. The tallest bars are usually E and T, but check them against short words before you trust them."
 PZ_P04_HINT3,"Pin your tallest bar to E, then hunt for a short three-letter word that keeps repeating. That is your next lock to pick."
 LTR_P04,"To Reeve Harl Bassett, at Hollowmere, by the Steward's own hand.\nThe tithe roll for the new moon stands thus. The Marsh Row households owe four measures each, save the Coopers, who owe six for their two grown sons and their mother besides. The millers on the Long Causeway owe five measures and a jar of the old vintage the Lord prefers. The Reed cottages by the water owe three measures each, and Widow Anwen owes but two, her holding being the smallest on the row.\nMark this well, Reeve. Of the last tithe, three jars had turned before they reached the tithe-house, gone black and sour in the heat of the cart. The Lord does not accept spoilage as an excuse, and neither will I. See that the jars are packed in wet moss this time, and see that your carters do not dawdle at the ford to drink what is not theirs to drink.\nOne name is added to this roll at the Lady's request, and not for the common roll: the girl called Lise, of the eel-trap cottages. She is not to be counted among the household quotas, and no receipt is to be written for her. You will understand me, Reeve, or in time you will.\nYour servant in eternity, Veneric Soll, Steward of House Morrow-Veil"
 LTR_P04_FROM,"From Steward Veneric Soll to Reeve Harl Bassett, by hand"
 PZ_P05_TITLE,The Signature
 PZ_P05_BRIEF,Slide the given crib along the cipher until its pattern of repeats fits.
-PZ_P05_HINT1,This letter is too short for the tally scroll to save you. Look instead at what a bureaucrat always writes.
+PZ_P05_HINT1,The tally scroll won't settle this one; the commonest letters here don't fall in their usual order. Look at what a bureaucrat always writes.
 PZ_P05_HINT2,A crib is a guess you already trust. Slide it along the cipher until its repeats line up like a key in a lock.
 PZ_P05_HINT3,"Try the crib hard against the letter's very end, where a man like this always signs his name the same way."
 PZ_P05_CRIB,YOUR SERVANT IN ETERNITY
-PZ_P05_CRIB_SHORT,YOUR SERVANT
+PZ_P05_CRIB_SHORT,IN ETERNITY
 LTR_P05,"My lord Casimir, forgive the haste of this hand.\nOur letters are read. Too many carts turned back at the ford, too many hounds waiting where none should wait, and no road to such knowledge but the raven road. I do not know if the reader is monk or renegade, but I know a fool's habit kept too long. From the next new moon I write in a new hand of my own devising, and the old wheel goes into the marsh mud. Say nothing of this to the household.\nYour servant in eternity, Veneric Soll"
 LTR_P05_FROM,"From Steward Veneric Soll to Lord Casimir Morrow-Veil, by raven"
 PZ_P06_TITLE,Bigrams in the Marsh
-PZ_P06_BRIEF,"Count letter pairs and triples, not single letters, to crack this flattened cipher."
-PZ_P06_HINT1,"The tally scroll lies flat this time, boy. Somebody's clerk was told to hide his favorite letter."
+PZ_P06_BRIEF,E is hiding and the word breaks are gone. Count pairs and triples instead.
+PZ_P06_HINT1,"The tally lies this time, boy. The clerk was told to starve the commonest letter, so the tallest bar is not E."
 PZ_P06_HINT2,Single letters will not save you here. Count pairs and triples instead: some shapes still cannot help repeating.
 PZ_P06_HINT3,"Find the three-letter shape that turns up more than any other. In English that is almost always one short, common word."
 LTR_P06,"Warden Tallow,\nThe carts turn south at the ford and climb north to the barn's back door, not the front. The hound naps past the midnight bell; a man stands watch on the stair till the dawn. Burn this fast.\nThe clerk, Wat Coln"
@@ -154,7 +154,7 @@ CDX_A1_CRIBS_ASIDE,"Bletchley Park's codebreakers leaned on cribs from formulaic
 CDX_A1_CRIBS_M1,Give me one line you always write and I will read every letter you ever send. Habit is a key left in the lock.
 CDX_A1_CRIBS_M2,"A crib does not solve the cipher. It just tells you where to push first, and pushing well is most of the trade."
 CDX_A1_NGRAMS_TITLE,Bigrams and Trigrams
-CDX_A1_NGRAMS_BODY,"A bigram is a pair of letters, a trigram a run of three. Even when a clerk flattens single-letter counts on purpose, the pairs and triples that make up ordinary words survive, because whole words still sit next to each other in the same order. In English, TH, HE, IN, ER and AN are the commonest bigrams; THE, AND and ING are the commonest trigrams. Count them across the cipher, word breaks or not, and the shapes of real language show through the disguise: which cipher letters tend to sit beside which others, and in what order, is a fingerprint no single swap can scrub away."
+CDX_A1_NGRAMS_BODY,"A bigram is a pair of letters, a trigram a run of three. Even when a clerk skews the single-letter counts on purpose, the pairs and triples that make up ordinary words survive, because words still sit side by side in the same order. In English, TH, HE, IN, ER and AN are the commonest bigrams; THE, AND and ING the commonest trigrams. Count them across the cipher, word breaks or not, and real language shows through: which cipher letters sit beside which others, and in what order, is a fingerprint no swap of single letters can scrub away."
 CDX_A1_NGRAMS_EXAMPLE,"PLAIN TRIGRAM:  THE (9 times)\nCIPHER TRIGRAM: ZIT (9 times)\n\nCount every run of three letters\nin the cipher. One shape turns up\nfar more than any other: ZIT.\nIn English the commonest trigram\nis almost always THE, so ZIT is\nvery likely THE in disguise."
 CDX_A1_NGRAMS_WRONG,"The clerk was told to write sparing of the commonest letter and thought that duty done. He never thought to break up his own favorite little words, and THE sat inside his careful letter as often as it ever had, waiting to be counted."
 CDX_A1_NGRAMS_ASIDE,"Modern language models are built on the same idea taken much further: predicting the next letter, word or token from the ones around it. Every autocomplete on your phone is a distant descendant of counting THE against AND."
@@ -184,7 +184,7 @@ DLG_A1_P05_AFTER_03,"Then the clock's already turned over once. He'll change his
 DLG_A1_P05_AFTER_04,"Small comfort, that we frightened him first."
 DLG_A1_P05_AFTER_05,Small comfort's the only kind Hollowmere hands out. Take it.
 DLG_A1_P05_REMARK_01,'Your servant in eternity.' He signed that on tithe rolls and threats alike. Vanity dressed as devotion.
-DLG_A1_P05_REMARK_02,"A signature is a habit wearing a crown. He gave you the same six words every time, and thought it made him sound eternal."
+DLG_A1_P05_REMARK_02,"A signature is a habit wearing a crown. He gave you the same four words every time, and thought it made him sound eternal."
 DLG_A1_P05_REMARK_03,"It made him easy to read, is what it did."
 DLG_A1_P05_REMARK_04,"Yes. That too. Immortals are terrible at noticing their own repetitions, Isaak. Remember that, chained or not."
 DLG_A1_P06_AFTER_01,"Blackwater ford, the barn's back door, a hound that slept past midnight. Kett read it back twice, like he didn't trust his own eyes."
@@ -215,7 +215,7 @@ DLG_A1_II_FRENZY_05,"Kett hauled him back by the collar, hard as a man dragging 
 DLG_A1_II_FRENZY_06,"That's enough! That's ENOUGH, Isaak, look at me, look at my one damned eye and nobody else's blood."
 DLG_A1_II_FRENZY_07,"The handler didn't die. I want that said plainly, for whatever plainness is worth after a thing like that."
 DLG_A1_II_FRENZY_08,"Wenna's copy was ruined past reading, soaked through with mud and worse. We'd have to catch the Steward's next letter clean."
-DLG_A1_VAULT_II_01,A crib. Elegant. You didn't break his alphabet so much as let him hand you the last six words of every letter he ever wrote.
+DLG_A1_VAULT_II_01,A crib. Elegant. You didn't break his alphabet so much as let him hand you the sign-off he put on every letter.
 DLG_A1_VAULT_II_02,"He handed us more than that, eventually."
 DLG_A1_VAULT_II_03,"Vanity, Isaak. 'Your servant in eternity' is not devotion, it is a man admiring the sound of his own permanence."
 DLG_A1_VAULT_II_04,"You drank from the courier girl. I wonder if you tasted her fear, or only her blood."
@@ -224,28 +224,28 @@ DLG_A1_VAULT_II_06,And a hound's handler nearly died for your restraint failing 
 DLG_A1_VAULT_II_07,Ask what you actually want to ask.
 DLG_A1_VAULT_II_08,"Very well. How did the many-toothed key fall into a monk's hands, Isaak? Keys like that are not lost. They are given, or stolen."
 PZ_P07_TITLE,The Steward Grows Clever
-PZ_P07_BRIEF,Five wheels turn together. Find each column's peak and set the drums.
+PZ_P07_BRIEF,Five wheels turn together. Line up each column's shape with English and set the drums.
 PZ_P07_HINT1,"Five teeth, five families. Split the letters by their place in the row before you stare at any of them."
-PZ_P07_HINT2,Each family is just a shift wearing a mask. Read its tallest bar as E and the drum falls into place.
-PZ_P07_HINT3,Set one drum at a time and watch the scroll; it will tell you the moment a column reads true.
+PZ_P07_HINT2,"Each family is a plain shift. Its tallest bar is often E, but in forty letters T, A or O can win; try them."
+PZ_P07_HINT3,"Pick a column, read its tallest bar as E and watch the shapes-agree score. Under about 80, try T, A or O instead."
 LTR_P07,"Warden Tallow,\n\nThe Lord sends a new cipher from his own library, five teeth to its wheel. Use it from this day.\n\nThe carts cross at Blackwater ford after moonrise. Count them twice and say nothing to the reeve.\n\nYour servant in eternity,\nVeneric Soll"
 LTR_P07_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by raven"
 PZ_P08_TITLE,Kasiski's Lens
 PZ_P08_BRIEF,Measure the gaps between repeated letters to learn how many teeth this key has.
-PZ_P08_HINT1,Look for the same three letters showing up twice in a message this long. That is never an accident.
+PZ_P08_HINT1,Look for the same three letters twice in a message this long. Short repeats can be chance; longer ones rarely are.
 PZ_P08_HINT2,Measure the distance between each repeat. The key's length divides most of those numbers.
-PZ_P08_HINT3,"Take the common factor of your spacings, split the text into that many columns, then read each peak."
+PZ_P08_HINT3,"Take the factor most spacings share, set that many wheels, then match each column's shape to English."
 LTR_P08,"Steward,\n\nYou try my patience. The tithe is not a suggestion, and Hollowmere is not exempt from it. Twice the tithe came short, and twice you blamed the reeve, the weather, the carts.\n\nCollect the tithe at Hollowmere before the new moon, or find yourself replaced before the new moon after that.\n\nBlood is owed, blood is paid, world without end.\n\nHollowmere remembers its tithe even when its steward forgets his sums, and the new moon does not wait on excuses. Recite it until you believe it. Blood is owed, blood is paid, world without end.\n\nSee the tithe is whole.\n\nCasimir Morrow-Veil"
 LTR_P08_FROM,"From Lord Casimir Morrow-Veil to Steward Veneric Soll, by raven"
 PZ_P09_TITLE,The Loom of Columns
-PZ_P09_BRIEF,Too short for repeats to help. Slide the loom until the strands look like English.
-PZ_P09_HINT1,Nothing repeats twice in a note this short. Don't waste an hour hunting for a pattern that isn't there.
+PZ_P09_BRIEF,Too few repeats to trust. Slide the loom until the strands look like English.
+PZ_P09_HINT1,"A few letters do repeat here, but too few to vote on a key length. Don't bet your blood on them."
 PZ_P09_HINT2,Split the letters into strands and test each width. English strands clump; a wrong width scatters.
-PZ_P09_HINT3,"Find the width where the vial reads truest, then read each strand's tallest bar as E."
+PZ_P09_HINT3,"Take the smallest width where the vial runs thick, then match each strand's shape to English on the tally."
 LTR_P09,"Tallow,\n\nWord from the manor: the night has moved. Bring the carts before dusk falls, not after moonrise as before. The old crossing floods whenever it rains, so use the north path this time and go quietly. Burn this note once you have read it.\n\nSoll"
 LTR_P09_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by hand"
 PZ_P10_TITLE,Bit Rosary
-PZ_P10_BRIEF,"Flip the beads that differ, then pour the byte twice to find the key."
+PZ_P10_BRIEF,"Flip beads to pour one letter into another, pour twice to undo it, then dial the key."
 PZ_P10_HINT1,A bead only knows heads or tails. Flip the ones where your two rows don't agree.
 PZ_P10_HINT2,Pour the same key over the sum twice and it cancels itself out. That is the whole trick of it.
 PZ_P10_HINT3,"Once you have one letter, turn the dial through all its settings and keep whichever reads most like English."
@@ -255,7 +255,7 @@ LTR_P10_FROM,"From an unnamed thrall of Hollowmere, passed hand to hand"
 PZ_P11_TITLE,The Litany Key
 PZ_P11_BRIEF,"Find the key's length on the comb, then tune each strand to its truest English."
 PZ_P11_HINT1,"A prayer repeated is still a prayer. Somewhere in this cipher, the same words keep answering themselves."
-PZ_P11_HINT2,Compare blocks of bytes against each other. The size where they agree most is the key's length.
+PZ_P11_HINT2,"Compare blocks of bytes. The size where they differ least is the key's length, or a multiple of it."
 PZ_P11_HINT3,Split the bytes into that many strands and turn each dial until its strand scores like English.
 LTR_P11,"Casimir Morrow-Veil,\n\nOur friend in the Quill is worth ten spies. He sits among the cipher-monks and copies their manifests before the ink is dry, and for a purse of silver and a promise of turned blood he tells us which routes the Order walks and which raven-roosts they watch.\n\nHe calls himself devout. He is merely for sale, which is a kind of devotion I understand far better than prayer.\n\nThrough him we know the Order reads more of our mail than either of us would like, and that they have not yet broken the new cipher. Use that ignorance while it lasts. Do not write his name where a courier might read it.\n\nYour servant in eternity,\nVeneric Soll"
 LTR_P11_FROM,"From Steward Veneric Soll to Lord Casimir Morrow-Veil, by raven"
@@ -266,7 +266,7 @@ PZ_P12_HINT2,"Slide a likely word along the combined stream. Where it fits, both
 PZ_P12_HINT3,"Pin your crib where the words make sense, then use what falls out to guess the next word along."
 LTR_P12_A,"Warden Tallow,\n\nBe ready. The tithe falls on the night of the black moon, at the salt barn. Bring the ledger; count twice. The reeve is not to be trusted with the tally.\n\nYour servant in eternity,\nVeneric Soll"
 LTR_P12_A_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by raven"
-LTR_P12_B,"Casimir Morrow Veil,\n\nOur friend in the Quill is no friend. Brother Ansgar sells them our routes, and has done since the salt barn burned. Silence him before new moon.\n\nYour servant in eternity,\nVeneric Soll"
+LTR_P12_B,"Casimir Morrow-Veil,\n\nOur friend in the Quill is no friend. Brother Ansgar sells them our routes, and has done since the salt barn burned. Silence him before new moon.\n\nYour servant in eternity,\nVeneric Soll"
 LTR_P12_B_FROM,"From Steward Veneric Soll to Lord Casimir Morrow-Veil, by raven"
 PZ_P12_TARGET_NIGHT,the night of the black moon
 PZ_P12_TARGET_NAME,Brother Ansgar
@@ -284,23 +284,23 @@ CDX_A1_VIGENERE_EXAMPLE,PT  ATTACKATDAWN\nKEY LEMON\nCT  LXFOPVEFRNHR
 CDX_A1_VIGENERE_WRONG,"House Morrow-Veil trusted a single clever word to guard every letter for a season. They changed the wheel once and then trusted it, as if cleverness bought silence forever. It did not; it only bought time, and time is what the Order had plenty of."
 CDX_A1_VIGENERE_ASIDE,"Modern ciphers still fear a repeating key. A stream cipher that reuses its keystream, or a block cipher run in a mode that behaves like one, leaks exactly the way this one does: patterns in the key become patterns in the world."
 CDX_A1_VIGENERE_M1,"Five wheels, not five secrets. Same trick five times over, wearing five different hats. Don't let it scare you, boy."
-CDX_A1_VIGENERE_M2,"I'm rounding here: the real fight was who wrote it first, some Italian or some Frenchman. Doesn't change how you crack it."
+CDX_A1_VIGENERE_M2,Bellaso wrote it; Vigenere got the credit centuries later by mistake. Doesn't change how you crack it.
 CDX_A1_KASISKI_TITLE,Kasiski's Lens: measuring the gaps
-CDX_A1_KASISKI_BODY,"If the same three or four letters appear twice in a Vigenere ciphertext, it is usually because the same plaintext letters lined up with the same stretch of key, some whole number of key-lengths apart. Measure the distance between each repeat, and the key's true length will divide most of those distances. Short repeats can happen by pure chance, so trust trigrams and longer, and trust a pattern that shows up more than once. Friedrich Kasiski published this attack in 1863. Charles Babbage broke Vigenere ciphers by a similar method roughly a decade earlier, but he never published his work, so his name waited a century for credit."
-CDX_A1_KASISKI_EXAMPLE,CT  KBRSCXPVPJGFFIXWRCQXYYBPUQNCJBBPU\nBPU repeats at 22 and 30\ngap = 8 = 2 x 4\ntry a key length of 4
+CDX_A1_KASISKI_BODY,"If the same three or four letters appear twice in a Vigenere ciphertext, it is usually because the same plaintext letters lined up with the same stretch of key, some whole number of key-lengths apart. Measure the distance between each repeat, and the key's true length will divide most of those distances. Short repeats can happen by pure chance, so trust trigrams and longer, and trust a factor that several distances share. Friedrich Kasiski published this attack in 1863. Charles Babbage broke Vigenere ciphers by a similar method earlier, in the 1850s, but never published it."
+CDX_A1_KASISKI_EXAMPLE,"key VEIL (unknown), letters only:\nOLMEDXPPDWWHZHIEOLMYZAUZJRIYYXPPOM\nOLM at 0 and 16: gap 16\nXPP at 5 and 29: gap 24\nBSZ at 34 and 46: gap 12\nall three share the factors 2 and 4\ntry 4 (the largest shared), then 2"
 CDX_A1_KASISKI_WRONG,"The steward believed a long enough message could never repeat itself by accident, so he never varied his key mid-letter. Patience alone unravelled him; the repeats were sitting in plain sight the entire time."
 CDX_A1_KASISKI_ASIDE,"The same idea drives modern traffic analysis: repeated patterns in encrypted data, even without breaking the cipher itself, tell an analyst about structure, timing, or reused keys underneath."
 CDX_A1_KASISKI_M1,Coincidences happen. Two repeats might be luck. Ten repeats at the same spacing is a confession.
 CDX_A1_KASISKI_M2,Babbage did this first and told nobody. A monk who doesn't publish is a monk who gets forgotten.
 CDX_A1_IOC_TITLE,Index of Coincidence: the shape of a language
-CDX_A1_IOC_BODY,"Every language has a fingerprint: some letters turn up far more often than others, so two letters drawn at random from real English are more likely to match than two drawn from gibberish. The index of coincidence measures that odds of a match: IC equals the sum of each letter's count times one less than itself, divided by the text's length times one less than itself. Ordinary English scores near 0.066 to 0.067. Purely random letters score near 0.038. Split a Vigenere ciphertext into the wrong number of columns and each column still looks random. Split it into the right number, matching the key's length, and every column suddenly looks like English again. William Friedman formalised this measure in 1922."
+CDX_A1_IOC_BODY,"Every language has a fingerprint: some letters turn up far more often than others, so two letters drawn at random from real English match more often than two drawn from gibberish. The index of coincidence measures those odds: the sum of each letter's count times one less than itself, divided by the text's length times one less than itself. English scores near 0.066 to 0.067; random letters near 0.038. Split a Vigenere ciphertext into the wrong number of columns and each column looks nearly random. Split it into the key's length, or a multiple of it, and every column looks like English again. William Friedman described the measure in 1922."
 CDX_A1_IOC_EXAMPLE,"ATTACKATDAWN, N = 12 letters\nA x4  T x3  others x1 each\nIC = (12+6) / (12x11) = 0.136\nshort text, so this reads high"
 CDX_A1_IOC_WRONG,"The Court assumed any cipher without repeated words was safe from counting. They never counted the letters themselves. A vial of blood-purity, or a column of tallies, cares nothing for a clever vocabulary."
 CDX_A1_IOC_ASIDE,"The index of coincidence still helps modern analysts fingerprint a language or detect that two supposedly random streams are secretly related, long before anyone reads a single decrypted word."
 CDX_A1_IOC_M1,"Random letters land near 0.038. English lands near 0.067. Memorise both, forget the decimals if you must."
 CDX_A1_IOC_M2,Twelve letters is too few to trust. I picked a short example so you could count it on your fingers.
 CDX_A1_XOR_TITLE,"Bits, Bytes and the Chalice: what XOR is"
-CDX_A1_XOR_BODY,"Every letter the alchemists write becomes a byte, eight little beads that are each either lit or dark. XOR compares two beads and lights the result only when exactly one of them was lit; two dark or two lit beads both go dark. Flip the same bead twice with the same key and it returns to where it started, because a thing XORed with itself vanishes, and a thing XORed with darkness stays itself. XOR is its own undoing, which is exactly why the Court's alchemists love it: one chalice pours the cipher on, and the very same chalice, poured again, pours it back off. The bead widget on this page lets you pour it yourself."
+CDX_A1_XOR_BODY,"Every letter the alchemists write becomes a byte, eight little beads, each dark (one) or pale (nought). XOR compares two beads and darkens the result only when exactly one of them was dark; two pale or two dark beads both give pale. Pour the same key over a byte twice and it returns to where it started, because a thing XORed with itself vanishes and a thing XORed with nought stays itself. XOR is its own undoing, which is why the Court's alchemists love it: one chalice pours the cipher on, and the very same chalice, poured again, pours it back off. The bead widget on this page lets you pour it yourself."
 CDX_A1_XOR_EXAMPLE,A = 01000001\nA xor A = 00000000\nA xor 0 = 01000001
 CDX_A1_XOR_WRONG,"The alchemists assumed a chalice poured twice was twice as strong. It is not; poured twice with the same key, it undoes itself completely, which is a lesson in arithmetic dressed up as a lesson in wine."
 CDX_A1_XOR_ASIDE,"XOR is the workhorse of real ciphers too: stream ciphers, block-cipher modes and one-time pads all lean on the same self-cancelling trick to combine key and message."
@@ -310,11 +310,11 @@ CDX_A1_SINGLE_XOR_TITLE,"The Single Chalice: one key, two hundred fifty six gues
 CDX_A1_SINGLE_XOR_BODY,"Pour one single key-byte over an entire message and you get single-byte XOR, which is nothing more than a Caesar cipher wearing bytes instead of letters. There are only two hundred fifty six possible keys, few enough to try every single one. For each candidate key, undo the pour and ask how English the result looks: common letters common, spaces where you expect them, no strings of nonsense. Score every candidate that way and the true key stands out from the noise, the same as reading the tallest bar of a frequency chart once told you which shift was Caesar's."
 CDX_A1_SINGLE_XOR_EXAMPLE,"PT  MEET AT DUSK\nKEY one byte, 0x2B\nCT  666E6E7F0B6A7F0B6F7E7860\ntry all 256, score English"
 CDX_A1_SINGLE_XOR_WRONG,"The Court believed one key-byte poured over a whole message was safe simply because there were hundreds of choices. Two hundred fifty six is a crowd to a man guessing blind, and nothing at all to a scale that scores every guess at once."
-CDX_A1_SINGLE_XOR_ASIDE,"This exact technique, scoring every single-byte key by letter frequency, is a standard first exercise in modern cryptography training, because it teaches the scoring habit every later attack in this game reuses."
-CDX_A1_SINGLE_XOR_M1,"Two hundred fifty six keys. Count them on your fingers forty times, or let the gauge do it."
+CDX_A1_SINGLE_XOR_ASIDE,"Scoring every single-byte key by how English its output looks is a common early exercise in cryptanalysis practice sets, and the same scoring habit returns in every later attack in this game."
+CDX_A1_SINGLE_XOR_M1,"Two hundred fifty-six keys. Count them on your fingers about twenty-six times over, or let the gauge do it."
 CDX_A1_SINGLE_XOR_M2,Same trick as reading the wheel's tallest bar as E. Bytes just make it look scarier.
 CDX_A1_REPEATING_XOR_TITLE,The Litany Key: Vigenere in bytes
-CDX_A1_REPEATING_XOR_BODY,"Repeat a short key over and over and XOR it against a long message, byte by byte, and you have built the same machine as Vigenere, only in bytes instead of letters. Finding the key's length works differently here: measure the Hamming distance, the count of differing bits, between blocks of the ciphertext, divide by the block size, and average across several pairs. The key size giving the smallest normalized distance is usually the true one, since blocks under a matching key line up like English lines up with itself. Split the bytes into that many strands; each was XORed with one repeated byte, so it falls to the same single-chalice attack."
+CDX_A1_REPEATING_XOR_BODY,"Repeat a short key against a long message, byte by byte, and you have built Vigenere again, in bytes. To find the key's length, take the Hamming distance, the count of differing bits, between neighbouring blocks, divide by the block size, and average over several pairs. The true size, or a multiple of it, scores lowest, because blocks under the same key bytes differ only as much as English differs from English. Prefer the smallest size that scores nearly as well as the best. Split the bytes into that many strands; each was XORed with one repeated byte, so it falls to the single-byte attack."
 CDX_A1_REPEATING_XOR_EXAMPLE,"this is a test\nwokka wokka!!!\nhamming distance = 37 bits\ntry sizes, keep the smallest"
 CDX_A1_REPEATING_XOR_WRONG,"The steward trusted a single line of liturgy to guard everything he wrote, believing scripture too sacred to be predictable. Sacred words repeat by design; that is exactly what made them countable."
 CDX_A1_REPEATING_XOR_ASIDE,"This attack is the classic first step against repeating-key XOR in real cryptanalysis exercises, and the same Hamming-distance trick appears whenever an analyst suspects two supposedly independent streams share a hidden period."
@@ -327,7 +327,7 @@ CDX_A1_OTP_WRONG,"The Order assumed any two intercepted letters must hide two di
 CDX_A1_OTP_ASIDE,"This exact failure sank Soviet intelligence traffic in the VENONA program of the 1940s. Its modern descendant is nonce reuse in stream ciphers and in AES-GCM, where a repeated nonce leaks the keystream and, in GCM's case, can let a forger fake new messages entirely."
 CDX_A1_OTP_M1,A pad used once is a vault. A pad used twice is a diary somebody left open.
 CDX_A1_OTP_M2,Perfect secrecy needs a truly random key as long as the message. Real houses almost never manage all four conditions at once.
-CDX_A1_OTP_M3,"VENONA took codebreakers years to crack open, and it only worked because the Soviets got lazy first. Laziness is the whole lesson of this act."
+CDX_A1_OTP_M3,VENONA worked because wartime pad makers duplicated pages under pressure. One reused page was enough. Remember that.
 DLG_A1_III_INTRO_01,I lifted this off the steward's writing box while his clerk was busy choking on a fish bone.
 DLG_A1_III_INTRO_02,What is it?
 DLG_A1_III_INTRO_03,"One line, in his own hand: the key has five teeth."
@@ -364,7 +364,7 @@ DLG_A1_P11_AFTER_02,Say that again.
 DLG_A1_P11_AFTER_03,"Someone in the Order is theirs, Kett. Someone reads what we read."
 DLG_A1_P11_AFTER_04,Not a name yet. Just a shadow with a habit and a price.
 DLG_A1_P11_AFTER_05,We have to find out who.
-DLG_A1_P11_REMARK_01,A liturgy makes a poor secret and a fine key. Sacred words repeat because men need to be certain of them.
+DLG_A1_P11_REMARK_01,"A liturgy makes a fine prayer and a poor key. Sacred words repeat, and everyone at Court can recite them."
 DLG_A1_P11_REMARK_02,Your Order should have known that better than my house does.
 DLG_A1_P11_REMARK_03,We're finding that out.
 DLG_A1_III_END_01,The last pad gave up two names where there should have been one. The second was Brother Ansgar.
@@ -460,7 +460,7 @@ UI_MODE_SUB_NGRAMS,"No word breaks, and E is hiding. Pairs and triples still tal
 UI_MODE_VIG_PERIOD,Set to %d wheels.
 UI_MODE_VIG_GIVEN,The key has %d teeth. Set each wheel by its own column. Notches cost %d.
 UI_MODE_VIG_KASISKI,Unknown key length. Hold repeated letters to measure them. Notches cost %d.
-UI_MODE_VIG_IOC,Unknown key length and too short for Kasiski. Slide the loom. Notches cost %d.
+UI_MODE_VIG_IOC,"Unknown key length, and too few repeats to trust Kasiski. Slide the loom. Notches cost %d."
 UI_ROSARY_STAGE1,Kett's lesson: which key pours %s into %s?
 UI_ROSARY_STAGE2,"Kett's lesson: pour the word, then pour it again. Pours: %d"
 UI_ROSARY_POUR,Pour the key in
@@ -474,7 +474,7 @@ UI_MODE_REPXOR_2,"%d strands, one dial each. Every strand is single-byte XOR."
 UI_MODE_OTP,"One pad, used twice. Drag cribs; pin the ones that read true. A wrong pin costs %d."
 UI_WIDGET_SHIFT_HELP,"Turn the ring. At one setting, and only one, the line reads true."
 UI_WIDGET_FREQ_HELP,"Shift %d. The tallest cipher bar is %s. The profile slides, its shape does not."
-UI_WIDGET_IOC_HELP,A letter under the key VEIL. Slide N: at 4 (and 8) each strand is one Caesar of English and the vial thickens.
+UI_WIDGET_IOC_HELP,"A letter under the key VEIL. Slide N: at 4 and its multiples (8, 12) each strand is one Caesar of English and the vial thickens. Factors such as 2 rise a little too."
 UI_WIDGET_XOR_HELP,Flip any bead of the letter or the key. The poured strand is their XOR; pour the key again and the letter returns.
 UI_WIDGET_XOR_TWICE,Poured twice
 UI_ROSARY_EQ1,%s xor %s = %s\nWanted: %s
@@ -489,8 +489,10 @@ UI_TALLY_TRIPLES,Triples
 UI_TALLY_ALL,All
 UI_TALLY_SELECTED,%s: %d of %d letters (%.1f%%)
 UI_TALLY_TAP,Tap a bar to pick a cipher letter. Counting is free.
-UI_TALLY_READ_E,Read %s as E
-UI_TALLY_READ_E_COST,Read %s as E (+%d)
+UI_TALLY_READ_AS,Read %s as:
+UI_TALLY_READ_AS_COST,Read %s as (each try +%d):
+UI_TALLY_MATCH,Shapes agree: %d%%
+UI_TALLY_ENGLISH_ALIGNED,"English, lined up at the wheel's setting"
 UI_TALLY_GRAM_HELP,"Tap a pair or triple to see it on the page. English leans on TH, HE and THE."
 UI_TALLY_IN_LETTER,In this letter
 UI_TALLY_IN_ENGLISH,In English
@@ -526,8 +528,8 @@ UI_DIAL_GAUGE,English-ness
 UI_COMB_SELECTED,Key size %d: %.2f differing bits per byte
 UI_COMB_GO,Transpose into %d strands
 UI_COMB_GO_NONE,Pick a tooth first
-UI_COMB_TAP,The shortest tooth is the likeliest key size. Tap a tooth to read it.
-UI_COMB_TITLE,Average bits that differ between neighbouring blocks (shorter is better)
+UI_COMB_TAP,The shortest tooth is the key size or a multiple of it. Prefer the smallest size that is nearly as short.
+UI_COMB_TITLE,Average differing bits per byte between neighbouring blocks (shorter is better)
 UI_KEYBOARD_TITLE,Write a crib
 UI_KEYBOARD_SPACE,space
 UI_KEYBOARD_DELETE,delete
@@ -541,7 +543,7 @@ UI_COACH_CIPHER_WHEEL,"Kett: ""Drag the outer ring with your thumb. The red lett
 UI_COACH_TALLY_SCROLL,"Kett: ""Count first. Tall bars are loud letters. English shouts E, T and A."""
 UI_COACH_SUBSTITUTION_BOARD,"Kett: ""Drag a red tile into the slot of the letter you think it hides. Hold a slot to lock a sure one."""
 UI_COACH_MULTI_WHEEL,"Kett: ""One wheel per tooth of the key. Drag each drum up or down."""
-UI_COACH_KASISKI_LENS,"Kett: ""Hold a letter on the page. Repeats sit a key-length apart, the lazy bastards."""
+UI_COACH_KASISKI_LENS,"Kett: ""Hold a letter on the page. Repeats sit a multiple of the key's length apart, the lazy bastards."""
 UI_COACH_COLUMN_LOOM,"Kett: ""Slide N. When the strands are each plain English shifted, the vial runs red and thick."""
 UI_COACH_BIT_ROSARY,"Kett: ""Tap a bead to flip it. Dark is one, pale is nought. The chalice mixes two strands."""
 UI_COACH_KEY_DIAL,"Kett: ""Turn the dial. Watch the gauge, not your hopes."""

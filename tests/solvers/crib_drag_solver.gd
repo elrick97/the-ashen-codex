@@ -296,8 +296,11 @@ func _reads_true(ctx: PackedByteArray) -> bool:
 			return false
 		if b == 32 and nxt == 32:
 			return false
-		# Letters use . , ; and the apostrophe; colons, bangs, queries and dashes read as noise.
-		if b in [45, 58, 33, 63]:
+		# Letters use . , ; and the apostrophe; colons, bangs and queries read as noise, and a
+		# hyphen only joins two letters (Morrow-Veil).
+		if b in [58, 33, 63]:
+			return false
+		if b == 45 and ((prv != -1 and not TextUtil.is_upper(prv)) or (nxt != -1 and not TextUtil.is_upper(nxt))):
 			return false
 	var words: PackedStringArray = _words(ctx)
 	for i2: int in range(1, words.size() - 1):

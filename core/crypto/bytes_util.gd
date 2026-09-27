@@ -17,9 +17,13 @@ static func to_hex(data: PackedByteArray) -> String:
 	return "".join(parts)
 
 
-## Parses hex (either case, whitespace ignored). Returns empty on malformed input.
+## Parses hex (either case; spaces, tabs and line breaks ignored). Returns empty on
+## malformed input.
 static func from_hex(hex: String) -> PackedByteArray:
-	var clean: String = hex.strip_edges().replace(" ", "").replace("\n", "").to_lower()
+	var clean: String = ""
+	for ch: String in hex.to_lower():
+		if ch != " " and ch != "\t" and ch != "\n" and ch != "\r":
+			clean += ch
 	var out: PackedByteArray = PackedByteArray()
 	if clean.length() % 2 != 0:
 		return out

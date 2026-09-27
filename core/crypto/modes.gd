@@ -35,6 +35,8 @@ static func ecb_encrypt(data: PackedByteArray, key32: int) -> PackedByteArray:
 
 
 static func ecb_decrypt(data: PackedByteArray, key32: int) -> Dictionary:
+	if data.is_empty() or data.size() % BlockCipher.BLOCK_BYTES != 0:
+		return {"ok": false, "data": PackedByteArray()}
 	var out: PackedByteArray = PackedByteArray()
 	for i: int in range(0, data.size() - 1, 2):
 		_append_block(out, BlockCipher.decrypt_block(_block_at(data, i), key32))
@@ -52,6 +54,8 @@ static func cbc_encrypt(data: PackedByteArray, key32: int, iv: int) -> PackedByt
 
 
 static func cbc_decrypt(data: PackedByteArray, key32: int, iv: int) -> Dictionary:
+	if data.is_empty() or data.size() % BlockCipher.BLOCK_BYTES != 0:
+		return {"ok": false, "data": PackedByteArray()}
 	var out: PackedByteArray = PackedByteArray()
 	var prev: int = iv & 0xFFFF
 	for i: int in range(0, data.size() - 1, 2):
