@@ -1,0 +1,19 @@
+# Godot 4
+.godot/
+/build/
+/.tools/
+*.tmp
+*.translation
+export_credentials.cfg
+*.apk
+*.aab
+*.ipa
+*.x86_64
+*.exe
+*.pck
+
+# QA output: keep only the latest screenshot set
+qa/screenshots/**/*.png
+!qa/screenshots/latest/
+!qa/screenshots/latest/**/*.png
+qa/*.log

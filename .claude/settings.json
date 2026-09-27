@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(godot *)",
+      "Bash(./tools_dev/godot.sh *)",
+      "Bash(./.tools/godot/*)",
+      "Bash(xvfb-run *)",
+      "Bash(timeout *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(python3 *)",
+      "Bash(mkdir *)",
+      "Bash(ls *)",
+      "Bash(unzip *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:fonts.google.com)",
+      "WebFetch(domain:docs.godotengine.org)"
+    ],
+    "deny": [
+      "Bash(git push *)",
+      "Bash(sudo *)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gcloud/**)",
+      "Read(~/.gnupg/**)"
+    ]
+  }
+}
