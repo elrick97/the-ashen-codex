@@ -10,7 +10,7 @@ var _scroll: ScrollContainer = null
 
 func _build() -> void:
 	var dim: ColorRect = ColorRect.new()
-	dim.color = Color(0.03, 0.02, 0.02, 0.97)
+	dim.color = Color(0.03, 0.02, 0.02, 1.0)
 	dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(dim)
 	var root: MarginContainer = make_safe_root(24)

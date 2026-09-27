@@ -76,7 +76,10 @@ func _draw() -> void:
 		if unknown_reading.has(i):
 			draw_line(Vector2(cx - 10, base_y), Vector2(cx + 10, base_y), Color(Palette.INK_FADED, 0.5), 2.0)
 			continue
-		var ch: String = String.chr(b) if b >= 33 and b <= 126 else ("_" if b == 32 else ".")
+		if b == 32:
+			draw_circle(Vector2(cx, base_y - _txt_size * 0.3), 3.0, Color(Palette.INK_FADED, 0.35))
+			continue
+		var ch: String = String.chr(b) if b >= 33 and b <= 126 else "."
 		var col: Color = reading_colors.get(i, Palette.INK if (b >= 32 and b <= 126) else Color(Palette.INK_FADED, 0.6))
 		if b == 32:
 			col = Color(Palette.INK_FADED, 0.35)

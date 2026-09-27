@@ -27,6 +27,8 @@ var crib_status: PackedInt32Array = PackedInt32Array()
 var crib_window: String = "" # ciphertext for the crib view
 var crib_fits: bool = false
 var tab: int = 0
+## When the mode draws its own tab bar, the board hides its internal one.
+var external_tabs: bool = false
 
 var _tabs: HBoxContainer = null
 var _board: Control = null
@@ -160,7 +162,7 @@ func set_state(d: Dictionary) -> void:
 func _sync_tabs() -> void:
 	if _tabs == null:
 		return
-	_tabs.visible = crib_enabled
+	_tabs.visible = crib_enabled and not external_tabs
 	if not crib_enabled:
 		tab = 0
 	var i: int = 0
@@ -479,7 +481,7 @@ func _draw_crib() -> void:
 			var box: Rect2 = Rect2(x + 2, y1 + 14, cw - 4, 90)
 			_crib.draw_rect(box, Color("efe3c8") if st != 0 else Color("e8b4a4"))
 			_crib.draw_rect(box, Palette.GOLD if crib_fits else Palette.GOLD_TEXT, false, 3.0 if crib_fits else 1.5)
-			_crib.draw_char(f, Vector2(x + 12, y2 + 20), crib_text[ci], 46, Palette.INK)
+			_crib.draw_char(f, Vector2(x + 12, y1 + 76), crib_text[ci], 46, Palette.INK)
 			if st == 0:
 				# A cross (shape, not only colour) marks a contradiction.
 				var cc: Vector2 = Vector2(x + cw * 0.5, y1 + 118)

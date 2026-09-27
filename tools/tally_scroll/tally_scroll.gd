@@ -235,19 +235,19 @@ func _fill_grams() -> void:
 	grid.add_theme_constant_override("h_separation", 8)
 	grid.add_theme_constant_override("v_separation", 8)
 	_gram_left.add_child(grid)
-	for i: int in range(mini(8, mine.size())):
+	for i: int in range(mini(6, mine.size())):
 		var gram: String = str(mine[i]["gram"])
 		var b: Button = Button.new()
 		b.text = "%s  %d" % [gram, int(mine[i]["count"])]
 		b.add_theme_font_override("font", ThemeBuilder.font("mono_bold"))
 		b.add_theme_font_size_override("font_size", ThemeBuilder.size(34))
 		b.add_theme_color_override("font_color", Palette.RUBRIC)
-		b.custom_minimum_size = Vector2(0, 110)
+		b.custom_minimum_size = Vector2(0, 96)
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		b.pressed.connect(func() -> void: gram_selected.emit(gram))
 		grid.add_child(b)
 	var eng: Label = Label.new()
-	eng.text = "\n".join(theirs)
+	eng.text = "\n".join(theirs.slice(0, 6))
 	eng.theme_type_variation = "LightLabel"
 	eng.add_theme_font_override("font", ThemeBuilder.font("mono_bold"))
 	eng.add_theme_font_size_override("font_size", ThemeBuilder.size(38))

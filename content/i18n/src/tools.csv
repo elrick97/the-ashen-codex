@@ -18,7 +18,7 @@ UI_TALLY_THIS_LETTER,This letter
 UI_TALLY_ENGLISH,English
 UI_BOARD_TAB,Alphabet
 UI_CRIB_TAB,Crib
-UI_CRIB_PIN,Pin the crib to the alphabet
+UI_CRIB_PIN,Pin the crib
 UI_CRIB_LETTER,The letter
 UI_CRIB_HELP,Slide the crib. A cross marks a letter that contradicts itself.
 UI_CRIB_FITS,It fits. Every letter agrees.

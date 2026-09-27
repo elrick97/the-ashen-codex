@@ -50,6 +50,7 @@ func _build() -> void:
 	menu.text = tr("UI_MENU")
 	menu.theme_type_variation = "GhostButton"
 	menu.custom_minimum_size = Vector2(150, 144)
+	menu.add_theme_font_size_override("font_size", mini(ThemeBuilder.size(ThemeBuilder.SIZE_BUTTON), 50))
 	menu.pressed.connect(func() -> void: main.open_overlay("settings"))
 	top.add_child(menu)
 	var title: Label = Label.new()
@@ -65,6 +66,7 @@ func _build() -> void:
 	codex.text = tr("UI_CODEX_TAB")
 	codex.theme_type_variation = "RubricButton"
 	codex.custom_minimum_size = Vector2(150, 144)
+	codex.add_theme_font_size_override("font_size", mini(ThemeBuilder.size(ThemeBuilder.SIZE_BUTTON), 50))
 	codex.pressed.connect(_open_codex)
 	top.add_child(codex)
 
@@ -122,6 +124,13 @@ func _build() -> void:
 	seal_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	seal_button.pressed.connect(_on_seal)
 	bottom.add_child(seal_button)
+	# Action labels wrap instead of widening the screen at the largest text size.
+	for b: Button in [undo_button, hint_button, seal_button]:
+		b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		b.add_theme_font_size_override("font_size", mini(ThemeBuilder.size(ThemeBuilder.SIZE_BUTTON), 54))
+	undo_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	hint_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	seal_button.size_flags_stretch_ratio = 1.6
 
 	_save_timer = Timer.new()
 	_save_timer.one_shot = true
@@ -141,7 +150,9 @@ func _build() -> void:
 
 
 func _layout() -> void:
-	letter_card.custom_minimum_size.y = clampf(size.y * 0.27, 330.0, 620.0)
+	# Bigger text needs more room for the tools, so the card gives some back.
+	var give: float = (Settings.text_scale() - 1.0) * 280.0
+	letter_card.custom_minimum_size.y = clampf(size.y * 0.25 - give, 260.0, 580.0)
 
 
 func _start_mode(variant: int, frenzied: bool, state: Dictionary) -> void:

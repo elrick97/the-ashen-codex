@@ -124,6 +124,15 @@ static func build() -> Theme:
 	t.set_stylebox("grabber_highlight", "VScrollBar", sb_grab)
 	t.set_stylebox("grabber_pressed", "VScrollBar", sb_grab)
 
+	var cb_normal: StyleBoxFlat = StyleBoxFlat.new()
+	cb_normal.bg_color = Color(1, 1, 1, 0.04)
+	cb_normal.border_color = Color(Palette.GOLD, 0.5)
+	cb_normal.border_width_bottom = 2
+	cb_normal.set_content_margin_all(24)
+	var cb_hover: StyleBoxFlat = cb_normal.duplicate()
+	cb_hover.bg_color = Color(1, 1, 1, 0.08)
+	for st: String in ["normal", "pressed", "hover", "hover_pressed", "focus", "disabled"]:
+		t.set_stylebox(st, "CheckButton", cb_hover if st.begins_with("hover") else cb_normal)
 	t.set_font_size("font_size", "CheckButton", size(SIZE_BODY))
 	t.set_color("font_color", "CheckButton", Palette.ON_DARK)
 	t.set_color("font_hover_color", "CheckButton", Palette.GOLD_LIGHT)

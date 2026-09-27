@@ -40,6 +40,8 @@ func _ready() -> void:
 	await _run()
 	print("TOUR DONE: %d screenshots in %s" % [shot, out_dir])
 	Save.delete_save()
+	main.queue_free()
+	await _frames(3)
 	get_tree().quit(0)
 
 
@@ -189,12 +191,9 @@ func _extra_start_views(n: int, host: PuzzleHost) -> void:
 			await _snap("p04_tally")
 			m.show_tab(0)
 		5:
-			var b: SubstitutionBoard = host.mode.get("board")
-			b.tab = 1
-			b.call("_sync_tabs")
+			m.show_tab(1)
 			await _snap("p05_crib")
-			b.tab = 0
-			b.call("_sync_tabs")
+			m.show_tab(0)
 		6:
 			var t: TallyScroll = host.mode.get("tally")
 			m.show_tab(1)

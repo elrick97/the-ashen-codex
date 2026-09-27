@@ -46,7 +46,11 @@ func _build() -> void:
 	tally.letter_selected.connect(func(i: int) -> void: _on_tile_selected(String.chr(65 + i)))
 	tally.gram_selected.connect(_highlight_gram)
 	track(tally)
-	make_tabs([board, tally], PackedStringArray(["UI_TAB_BOARD", "UI_TAB_TALLY"]))
+	if crib != "":
+		board.external_tabs = true
+		make_tabs([board, board, tally], PackedStringArray(["UI_TAB_BOARD", "UI_CRIB_TAB", "UI_TAB_TALLY"]))
+	else:
+		make_tabs([board, tally], PackedStringArray(["UI_TAB_BOARD", "UI_TAB_TALLY"]))
 	_update_crib()
 	sync_views()
 
@@ -129,6 +133,20 @@ func _pin_crib(offset: int) -> void:
 	EventBus.sfx.emit("tile_snap")
 	EventBus.haptic.emit("snap")
 	sync_views()
+
+
+## Tabs may share a tool (the board serves Alphabet and Crib); show whichever is chosen.
+func show_tab(i: int) -> void:
+	current_tab = i
+	var chosen: Control = tabs[i] if i < tabs.size() else null
+	for t: Control in tabs:
+		t.visible = t == chosen
+	for k: int in range(tab_buttons.size()):
+		tab_buttons[k].set_pressed_no_signal(k == i)
+	if crib != "" and chosen == board:
+		board.tab = 1 if i == 1 else 0
+		board.call("_sync_tabs")
+	EventBus.sfx.emit("page_turn")
 
 
 func can_commit() -> bool:

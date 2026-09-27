@@ -45,16 +45,20 @@ func _build() -> void:
 	place.text = tr("UI_PLACE_VAULT") if location == "vault" else tr("UI_PLACE_MEMORY")
 	place.theme_type_variation = "LightSmallLabel"
 	place.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	place.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	place.custom_minimum_size.x = 200
 	top.add_child(place)
 	var hist: Button = Button.new()
 	hist.text = tr("UI_HISTORY")
 	hist.theme_type_variation = "GhostButton"
+	hist.add_theme_font_size_override("font_size", mini(ThemeBuilder.size(ThemeBuilder.SIZE_BUTTON), 48))
 	hist.pressed.connect(_show_history)
 	top.add_child(hist)
 	_fast_btn = Button.new()
 	_fast_btn.text = tr("UI_FAST")
 	_fast_btn.theme_type_variation = "GhostButton"
 	_fast_btn.toggle_mode = true
+	_fast_btn.add_theme_font_size_override("font_size", mini(ThemeBuilder.size(ThemeBuilder.SIZE_BUTTON), 48))
 	_fast_btn.toggled.connect(func(on: bool) -> void:
 		_fast = on
 		if on and not _typing and not runner.has_choices():

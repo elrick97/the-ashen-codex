@@ -7,6 +7,7 @@ extends PuzzleMode
 var dragger: CribDragger = null
 var card_a: InterlinearText = null
 var card_b: InterlinearText = null
+var goal: Label = null
 var stream: PackedByteArray = PackedByteArray()
 var known: Array[PackedByteArray] = []
 
@@ -21,6 +22,12 @@ func _build() -> void:
 		known.append(kb)
 	var box: VBoxContainer = VBoxContainer.new()
 	box.add_theme_constant_override("separation", 8)
+	goal = Label.new()
+	goal.theme_type_variation = "RubricLabel"
+	goal.add_theme_font_override("font", ThemeBuilder.font("mono_bold"))
+	goal.add_theme_font_size_override("font_size", ThemeBuilder.size(36))
+	goal.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	box.add_child(goal)
 	for i: int in range(2):
 		var l: Label = Label.new()
 		l.text = tr(inst.def.sender_keys[i]) if i < inst.def.sender_keys.size() else ""
@@ -38,6 +45,7 @@ func _build() -> void:
 	host.set_letter_content(box)
 	host.set_sender("")
 	dragger = host.add_tool("crib_dragger") as CribDragger
+	dragger.show_targets = false
 	dragger.configure(stream, inst.extras["crib_tray"])
 	dragger.offset_changed.connect(func(_o: int) -> void: _update_fragment())
 	dragger.crib_changed.connect(func(_c: String) -> void: _update_fragment())
@@ -103,6 +111,10 @@ func sync_views() -> void:
 	for t: Dictionary in inst.extras["targets"]:
 		tl.append({"label": str(t["label_key"]), "text": _target_text(t)})
 	dragger.set_targets(tl)
+	var lines: PackedStringArray = PackedStringArray()
+	for t2: Dictionary in tl:
+		lines.append("%s %s" % [tr(str(t2["label"])), str(t2["text"])])
+	goal.text = "\n".join(lines)
 	host.refresh_bar()
 
 

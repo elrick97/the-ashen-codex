@@ -7,6 +7,8 @@ extends PuzzleMode
 var rosary: BitRosary = null
 var dial: KeyDial = null
 var grid: ByteGrid = null
+var lesson: Label = null
+var card: VBoxContainer = null
 var stage: int = 1
 var k: int = 0
 var pours: int = 0
@@ -19,8 +21,16 @@ func _build() -> void:
 	a = int(inst.extras["stage1_a"])
 	b = int(inst.extras["stage1_b"])
 	word = inst.extras["stage2_word"]
+	card = VBoxContainer.new()
+	lesson = Label.new()
+	lesson.theme_type_variation = "MonoLabel"
+	lesson.add_theme_font_size_override("font_size", ThemeBuilder.size(52))
+	lesson.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	card.add_child(lesson)
 	grid = ByteGrid.new()
-	host.set_letter_content(grid)
+	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	card.add_child(grid)
+	host.set_letter_content(card)
 	rosary = host.add_tool("bit_rosary") as BitRosary
 	rosary.bead_flipped.connect(_on_flip)
 	rosary.pour_pressed.connect(_on_pour)
@@ -35,6 +45,7 @@ func _build() -> void:
 func _enter_stage(s: int) -> void:
 	stage = s
 	rosary.visible = stage < 3
+	lesson.visible = stage < 3
 	dial.visible = stage == 3
 	if stage == 2:
 		pours = 0
@@ -66,6 +77,7 @@ func sync_views() -> void:
 				{"label": "UI_ROSARY_RESULT", "value": a ^ k, "kind": "result"},
 				{"label": "UI_ROSARY_TARGET", "value": b, "kind": "target"}])
 			rosary.set_pour("")
+			lesson.text = tr("UI_ROSARY_EQ1") % [String.chr(a), BytesUtil.byte_to_bits(k), _glyph(a ^ k), String.chr(b)]
 			grid.set_bytes(PackedByteArray([a, k, a ^ k, b]))
 			host.set_sender(tr("UI_ROSARY_STAGE1") % [String.chr(a), String.chr(b)])
 		2:
@@ -82,6 +94,7 @@ func sync_views() -> void:
 				{"label": "UI_ROSARY_RESULT", "value": first, "kind": "result"}])
 			rosary.set_pour(tr("UI_ROSARY_POUR_AGAIN") if pours == 1 else (tr("UI_ROSARY_POUR") if pours == 0 else ""))
 			grid.set_bytes(shown)
+			lesson.text = tr("UI_ROSARY_EQ2") % [word.get_string_from_ascii(), BytesUtil.to_printable(shown)]
 			host.set_sender(tr("UI_ROSARY_STAGE2") % pours)
 		3:
 			var c: PackedByteArray = inst.cipher_bytes[0]
@@ -90,6 +103,10 @@ func sync_views() -> void:
 			dial.set_gauges(PackedFloat32Array([EnglishScore.gauge(dec)]))
 			host.set_sender(tr(inst.def.sender_keys[0]) if inst.def.sender_keys.size() > 0 else "")
 	host.refresh_bar()
+
+
+static func _glyph(v: int) -> String:
+	return String.chr(v) if v >= 33 and v <= 126 else "0x" + BytesUtil.byte_to_hex(v)
 
 
 func can_commit() -> bool:

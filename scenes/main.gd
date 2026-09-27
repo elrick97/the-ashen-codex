@@ -266,7 +266,7 @@ func _layout_layers() -> void:
 	_wipe_mat.set_shader_parameter("rect_size", s)
 	var m: Vector4 = SafeArea.margins(self)
 	_toast.custom_minimum_size = Vector2(s.x - 160.0, 0)
-	_toast.position = Vector2(80, s.y - m.w - 420.0)
+	_toast.position = Vector2(80, m.y + 250.0)
 	_toast.size = Vector2(s.x - 160.0, 0)
 
 

@@ -42,7 +42,7 @@ func _draw() -> void:
 		if rng.randf() < 0.7:
 			draw_circle(c, 2.5, Palette.GOLD_LIGHT)
 	var f: Font = ThemeBuilder.font("fraktur")
-	var fs: int = int(size.y * 0.66)
+	var fs: int = int(minf(size.x, size.y) * 0.66)
 	var w: float = f.get_string_size(letter, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
 	var base: Vector2 = Vector2((size.x - w) * 0.5, size.y * 0.5 + f.get_ascent(fs) * 0.38)
 	draw_string(f, base + Vector2(3, 3), letter, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Color(0, 0, 0, 0.25))

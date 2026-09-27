@@ -39,9 +39,10 @@ void fragment() {
 	col = mix(col, vec3(0.45, 0.02, 0.02), edge * vignette * 0.55);
 	float corner = smoothstep(0.55, 1.05, r) * ink;
 	col = mix(col, vec3(0.06, 0.04, 0.03), corner * 0.85);
-	// Drips: columns of blood from the top, confined to the top 22% of the screen.
+	// Drips: columns of blood from the top edge, confined to the top 6% (the title bar),
+	// so they never run over the letter card or the tools.
 	float colx = floor(uv.x * 36.0);
-	float len = (0.04 + 0.18 * hash1(colx)) * drip;
+	float len = (0.015 + 0.045 * hash1(colx)) * drip;
 	float w = 0.3 + 0.4 * hash1(colx + 7.0);
 	float inside = step(abs(fract(uv.x * 36.0) - 0.5), w * 0.5) * step(uv.y, len);
 	float bulb = step(length(vec2((fract(uv.x * 36.0) - 0.5) / 36.0, uv.y - len) * vec2(1.0, rect_size.y / rect_size.x)), 0.006 * drip);

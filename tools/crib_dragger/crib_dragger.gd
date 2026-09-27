@@ -11,7 +11,7 @@ signal row_changed(row: int)
 signal crib_changed(crib: String)
 signal pin_requested(offset: int, row: int)
 
-const CELLS_PER_LINE: int = 14
+const CELLS_PER_LINE: int = 12
 const LINES: int = 4
 
 var stream: PackedByteArray = PackedByteArray()
@@ -24,6 +24,8 @@ var custom: PackedStringArray = PackedStringArray()
 var offset: int = 0
 var row: int = 0 # which letter the crib is placed in
 var targets: Array[Dictionary] = [] # [{"label", "text"}]
+## The host may show the targets elsewhere (the boss puts them on the letter card).
+var show_targets: bool = true
 
 var _grid: Control = null
 var _tray_box: HBoxContainer = null
@@ -45,7 +47,7 @@ func _ready() -> void:
 	add_child(box)
 	var tray_scroll: ScrollContainer = ScrollContainer.new()
 	tray_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	tray_scroll.custom_minimum_size = Vector2(0, 144)
+	tray_scroll.custom_minimum_size = Vector2(0, 124)
 	box.add_child(tray_scroll)
 	_tray_box = HBoxContainer.new()
 	_tray_box.add_theme_constant_override("separation", 8)
@@ -75,7 +77,7 @@ func _ready() -> void:
 		_row_btns.append(b)
 	_grid = Control.new()
 	_grid.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_grid.custom_minimum_size = Vector2(0, 420)
+	_grid.custom_minimum_size = Vector2(0, 300)
 	_grid.mouse_filter = Control.MOUSE_FILTER_STOP
 	_grid.draw.connect(_draw_grid)
 	_grid.gui_input.connect(_grid_input)
@@ -93,6 +95,7 @@ func _ready() -> void:
 	_pin_btn = Button.new()
 	_pin_btn.theme_type_variation = "RubricButton"
 	_pin_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_pin_btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_pin_btn.pressed.connect(func() -> void: pin_requested.emit(offset, row))
 	nav.add_child(_pin_btn)
 	_targets_label = Label.new()
@@ -170,7 +173,7 @@ func _rebuild_tray() -> void:
 		var b: Button = Button.new()
 		b.text = word.strip_edges() if word.strip_edges() != "" else "' '"
 		b.add_theme_font_override("font", ThemeBuilder.font("mono_bold"))
-		b.add_theme_font_size_override("font_size", ThemeBuilder.size(32))
+		b.add_theme_font_size_override("font_size", mini(ThemeBuilder.size(32), 38))
 		if word == crib:
 			b.theme_type_variation = "RubricButton"
 		b.pressed.connect(_choose_crib.bind(word))
@@ -212,6 +215,7 @@ func _refresh() -> void:
 	for t: Dictionary in targets:
 		lines.append("%s  %s" % [tr(str(t["label"])), str(t["text"])])
 	_targets_label.text = "\n".join(lines)
+	_targets_label.visible = show_targets
 	_grid.queue_redraw()
 
 

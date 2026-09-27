@@ -112,6 +112,8 @@ func make_tabs(tools: Array[Control], label_keys: PackedStringArray) -> void:
 		b.toggle_mode = true
 		b.button_group = g
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		b.add_theme_font_size_override("font_size", mini(ThemeBuilder.size(ThemeBuilder.SIZE_BUTTON), 52))
 		b.pressed.connect(show_tab.bind(i))
 		bar.add_child(b)
 		tab_buttons.append(b)

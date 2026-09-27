@@ -477,6 +477,8 @@ UI_WIDGET_FREQ_HELP,"Shift %d. The tallest cipher bar is %s. The profile slides,
 UI_WIDGET_IOC_HELP,A letter under the key VEIL. Slide N: at 4 (and 8) each strand is one Caesar of English and the vial thickens.
 UI_WIDGET_XOR_HELP,Flip any bead of the letter or the key. The poured strand is their XOR; pour the key again and the letter returns.
 UI_WIDGET_XOR_TWICE,Poured twice
+UI_ROSARY_EQ1,%s xor %s = %s\nWanted: %s
+UI_ROSARY_EQ2,Word: %s\nNow reads: %s
 UI_WHEEL_SHIFT,Shift
 UI_WHEEL_MIRROR,Mirror
 UI_WHEEL_KEY,the key
@@ -496,7 +498,7 @@ UI_TALLY_THIS_LETTER,This letter
 UI_TALLY_ENGLISH,English
 UI_BOARD_TAB,Alphabet
 UI_CRIB_TAB,Crib
-UI_CRIB_PIN,Pin the crib to the alphabet
+UI_CRIB_PIN,Pin the crib
 UI_CRIB_LETTER,The letter
 UI_CRIB_HELP,Slide the crib. A cross marks a letter that contradicts itself.
 UI_CRIB_FITS,It fits. Every letter agrees.
