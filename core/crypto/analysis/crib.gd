@@ -37,6 +37,38 @@ static func substitution_mapping(ciphertext: String, crib: String, offset: int) 
 	return fwd
 
 
+## Per-character verdict for the crib at `offset`, read left to right: 1 = consistent so
+## far, 0 = contradicts an earlier letter of the crib (or a space/punctuation mismatch),
+## -1 = past the end of the ciphertext.
+static func substitution_letter_status(ciphertext: String, crib: String, offset: int) -> PackedInt32Array:
+	var c: PackedByteArray = ciphertext.to_upper().to_ascii_buffer()
+	var p: PackedByteArray = crib.to_upper().to_ascii_buffer()
+	var out: PackedInt32Array = PackedInt32Array()
+	var fwd: Dictionary = {}
+	var back: Dictionary = {}
+	for i: int in range(p.size()):
+		var j: int = offset + i
+		if j < 0 or j >= c.size():
+			out.append(-1)
+			continue
+		var cc: int = c[j]
+		var pc: int = p[i]
+		var c_letter: bool = TextUtil.is_upper(cc)
+		if c_letter != TextUtil.is_upper(pc):
+			out.append(0)
+			continue
+		if not c_letter:
+			out.append(1 if cc == pc else 0)
+			continue
+		if (fwd.has(cc) and int(fwd[cc]) != pc) or (back.has(pc) and int(back[pc]) != cc):
+			out.append(0)
+			continue
+		fwd[cc] = pc
+		back[pc] = cc
+		out.append(1)
+	return out
+
+
 ## Every offset where the crib fits.
 static func substitution_positions(ciphertext: String, crib: String) -> PackedInt32Array:
 	var out: PackedInt32Array = PackedInt32Array()

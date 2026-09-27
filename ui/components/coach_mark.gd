@@ -81,8 +81,7 @@ func _draw() -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
-	var tapped: bool = (event is InputEventMouseButton and (event as InputEventMouseButton).pressed) or (event is InputEventScreenTouch and (event as InputEventScreenTouch).pressed)
-	if tapped and _t >= 1.0:
+	if ToolBase.is_press(event) and _t >= 1.0:
 		accept_event()
 		dismissed.emit()
 		queue_free()

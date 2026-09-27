@@ -170,27 +170,16 @@ func _draw() -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
-	var pressed: bool = false
-	var released: bool = false
-	var pos: Vector2 = Vector2.ZERO
-	if event is InputEventMouseButton and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
-		var mb: InputEventMouseButton = event
-		pressed = mb.pressed
-		released = not mb.pressed
-		pos = mb.position
-	elif event is InputEventScreenTouch:
-		var st: InputEventScreenTouch = event
-		pressed = st.pressed
-		released = not st.pressed
-		pos = st.position
-	if pressed:
+	if ToolBase.is_press(event):
+		var pos: Vector2 = ToolBase.press_pos(event)
 		_press_index = cell_at(pos)
 		_press_time = 0.0
 		_long_fired = false
 		set_process(_press_index >= 0)
-	elif released:
+	elif ToolBase.is_release(event):
 		set_process(false)
-		if _press_index >= 0 and not _long_fired and cell_at(pos) == _press_index:
+		var pos2: Vector2 = ToolBase.press_pos(event)
+		if _press_index >= 0 and not _long_fired and cell_at(pos2) == _press_index:
 			cell_pressed.emit(_press_index)
 		_press_index = -1
 

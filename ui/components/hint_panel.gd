@@ -27,7 +27,7 @@ func _build() -> void:
 	dim.color = Color(0, 0, 0, 0.6)
 	dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	dim.gui_input.connect(func(e: InputEvent) -> void:
-		if (e is InputEventMouseButton and (e as InputEventMouseButton).pressed) or (e is InputEventScreenTouch and (e as InputEventScreenTouch).pressed):
+		if ToolBase.is_press(e):
 			queue_free())
 	add_child(dim)
 	var panel: ParchmentPanel = ParchmentPanel.new()

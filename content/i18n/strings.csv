@@ -18,6 +18,74 @@ CH_A3_TITLE,Act III: Blood Sigils
 CH_A4_TITLE,Act IV: The Court of Primes
 CH_A5_TITLE,Act V: The Ward and the Whisper
 CARD_A1_END,To be continued\nAct II: The Stained Glass\nThe Marquise turns a page. Somewhere above you a bell counts the hour. She has more questions.
+UI_WHEEL_SHIFT,Shift
+UI_WHEEL_MIRROR,Mirror
+UI_WHEEL_KEY,the key
+UI_WHEEL_MIRRORED,mirrored
+UI_TALLY_LETTERS,Letters
+UI_TALLY_PAIRS,Pairs
+UI_TALLY_TRIPLES,Triples
+UI_TALLY_ALL,All
+UI_TALLY_SELECTED,%s: %d of %d letters (%.1f%%)
+UI_TALLY_TAP,Tap a bar to pick a cipher letter. Counting is free.
+UI_TALLY_READ_E,Read %s as E
+UI_TALLY_READ_E_COST,Read %s as E (+%d)
+UI_TALLY_GRAM_HELP,"Tap a pair or triple to see it on the page. English leans on TH, HE and THE."
+UI_TALLY_IN_LETTER,In this letter
+UI_TALLY_IN_ENGLISH,In English
+UI_TALLY_THIS_LETTER,This letter
+UI_TALLY_ENGLISH,English
+UI_BOARD_TAB,Alphabet
+UI_CRIB_TAB,Crib
+UI_CRIB_PIN,Pin the crib to the alphabet
+UI_CRIB_LETTER,The letter
+UI_CRIB_HELP,Slide the crib. A cross marks a letter that contradicts itself.
+UI_CRIB_FITS,It fits. Every letter agrees.
+UI_MULTI_PERIOD,%d wheels
+UI_MULTI_RUSTED,Rusted: every notch you turn costs Thirst.
+UI_KASISKI_TRAY,Factor tray: how many spacings each number divides
+UI_KASISKI_INFO,Repeats collected: %d (the lens senses %d)
+UI_KASISKI_EMPTY,Nothing collected yet.
+UI_KASISKI_HOLD,Hold a letter on the page. If it sits in a repeat of three or more letters the lens will measure it.
+UI_LOOM_N,N = %d
+UI_LOOM_WEAVE,Weave %d wheels
+UI_LOOM_RANDOM,noise
+UI_LOOM_ENGLISH,English
+UI_LOOM_VIAL,blood purity (IoC)
+UI_ROSARY_VIEW_BIN,Beads
+UI_ROSARY_VIEW_HEX,Hex
+UI_ROSARY_VIEW_ASCII,Letter
+UI_ROSARY_VIEW_DEC,Number
+UI_ROSARY_A,Letter
+UI_ROSARY_KEY,Key
+UI_ROSARY_RESULT,Poured
+UI_ROSARY_TARGET,Wanted
+UI_ROSARY_WORD,Word
+UI_DIAL_GAUGE,English-ness
+UI_COMB_SELECTED,Key size %d: %.2f differing bits per byte
+UI_COMB_GO,Transpose into %d strands
+UI_COMB_GO_NONE,Pick a tooth first
+UI_COMB_TAP,The shortest tooth is the likeliest key size. Tap a tooth to read it.
+UI_COMB_TITLE,Average bits that differ between neighbouring blocks (shorter is better)
+UI_KEYBOARD_TITLE,Write a crib
+UI_KEYBOARD_SPACE,space
+UI_KEYBOARD_DELETE,delete
+UI_KEYBOARD_DONE,Use it
+UI_CRIBDRAG_IN,Crib goes in:
+UI_CRIBDRAG_LETTER_A,Letter A
+UI_CRIBDRAG_LETTER_B,Letter B
+UI_CRIBDRAG_WRITE,Write your own
+UI_CRIBDRAG_PIN,Pin in %s
+UI_COACH_CIPHER_WHEEL,"Kett: ""Drag the outer ring with your thumb. The red letters are what they wrote. The black ones are what they meant."""
+UI_COACH_TALLY_SCROLL,"Kett: ""Count first. Tall bars are loud letters. English shouts E, T and A."""
+UI_COACH_SUBSTITUTION_BOARD,"Kett: ""Drag a red tile into the slot of the letter you think it hides. Hold a slot to lock a sure one."""
+UI_COACH_MULTI_WHEEL,"Kett: ""One wheel per tooth of the key. Drag each drum up or down."""
+UI_COACH_KASISKI_LENS,"Kett: ""Hold a letter on the page. Repeats sit a key-length apart, the lazy bastards."""
+UI_COACH_COLUMN_LOOM,"Kett: ""Slide N. When the strands are each plain English shifted, the vial runs red and thick."""
+UI_COACH_BIT_ROSARY,"Kett: ""Tap a bead to flip it. Dark is one, pale is nought. The chalice mixes two strands."""
+UI_COACH_KEY_DIAL,"Kett: ""Turn the dial. Watch the gauge, not your hopes."""
+UI_COACH_HAMMING_COMB,"Kett: ""Short tooth, likely key size. Tap it."""
+UI_COACH_CRIB_DRAGGER,"Kett: ""Drag a word you think is in one letter. If the other letter turns to sense beneath it, you've guessed right."""
 UI_WARNING_RATING,Mature 17+
 UI_WARNING_TITLE,A Warning
 UI_WARNING_BODY,"This is a tale of blood. It contains written violence, strong language, feeding, grief and bleak choices. Nothing is shown that the words don't earn, but the words are not kind."

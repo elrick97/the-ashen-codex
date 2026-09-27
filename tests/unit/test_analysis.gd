@@ -173,6 +173,13 @@ func test_crib_substitution() -> void:
 	var m: Dictionary = Crib.substitution_mapping(c, crib, 11)
 	assert_eq(int(m[key.unicode_at(4)]), 69) # cipher for E maps back to E
 	assert_eq(Crib.substitution_mapping(c, "", 0), {})
+	var st: PackedInt32Array = Crib.substitution_letter_status(c, crib, 11)
+	assert_eq(st.size(), crib.length())
+	assert_false(st.has(0), "every letter consistent at the true offset")
+	var bad: PackedInt32Array = Crib.substitution_letter_status("XY Z", "AA B", 0)
+	assert_eq(bad, PackedInt32Array([1, 0, 1, 1]))
+	assert_eq(Crib.substitution_letter_status("AB", "ABC", 0)[2], -1)
+	assert_eq(Crib.substitution_letter_status("A.", "AB", 0)[1], 0, "letter vs punctuation")
 	# Pattern conflict: "AA" can't sit on two different cipher letters.
 	assert_false(Crib.substitution_fits("XY", "AA", 0))
 	assert_false(Crib.substitution_fits("XX", "AB", 0))

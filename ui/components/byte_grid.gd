@@ -85,15 +85,9 @@ func _draw() -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
-	var pos: Vector2 = Vector2(-1, -1)
-	if event is InputEventMouseButton:
-		var mb: InputEventMouseButton = event
-		if mb.pressed and mb.button_index == MOUSE_BUTTON_LEFT:
-			pos = mb.position
-	elif event is InputEventScreenTouch and (event as InputEventScreenTouch).pressed:
-		pos = (event as InputEventScreenTouch).position
-	if pos.x < 0.0:
+	if not ToolBase.is_press(event):
 		return
+	var pos: Vector2 = ToolBase.press_pos(event)
 	for i: int in range(data.size()):
 		if cell_rect(i).has_point(pos):
 			cell_pressed.emit(i)

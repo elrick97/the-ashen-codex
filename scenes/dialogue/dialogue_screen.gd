@@ -109,13 +109,7 @@ func _layout_portrait() -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
-	var tapped: bool = false
-	if event is InputEventMouseButton:
-		var mb: InputEventMouseButton = event
-		tapped = mb.pressed and mb.button_index == MOUSE_BUTTON_LEFT
-	elif event is InputEventScreenTouch:
-		tapped = (event as InputEventScreenTouch).pressed
-	if tapped:
+	if ToolBase.is_press(event):
 		accept_event()
 		_on_tap()
 
