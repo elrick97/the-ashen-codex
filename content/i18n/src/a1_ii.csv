@@ -1,0 +1,108 @@
+keys,en
+PZ_P04_TITLE,The Tithe Roll
+PZ_P04_BRIEF,"Drag cipher tiles onto plaintext letters, guided by the frequency histogram."
+PZ_P04_HINT1,"Look at the tally scroll before you touch a single tile, boy. Some bars are stone, others are dust."
+PZ_P04_HINT2,Count every cipher letter the way a hangman counts nooses. The tallest bar in English is almost always E.
+PZ_P04_HINT3,"Pin your tallest bar to E, then hunt for a short three-letter word that keeps repeating. That is your next lock to pick."
+LTR_P04,"To Reeve Harl Bassett, at Hollowmere, by the Steward's own hand.\nThe tithe roll for the new moon stands thus. The Marsh Row households owe four measures each, save the Coopers, who owe six for their two grown sons and their mother besides. The millers on the Long Causeway owe five measures and a jar of the old vintage the Lord prefers. The Reed cottages by the water owe three measures each, and Widow Anwen owes but two, her holding being the smallest on the row.\nMark this well, Reeve. Of the last tithe, three jars had turned before they reached the tithe-house, gone black and sour in the heat of the cart. The Lord does not accept spoilage as an excuse, and neither will I. See that the jars are packed in wet moss this time, and see that your carters do not dawdle at the ford to drink what is not theirs to drink.\nOne name is added to this roll at the Lady's request, and not for the common roll: the girl called Lise, of the eel-trap cottages. She is not to be counted among the household quotas, and no receipt is to be written for her. You will understand me, Reeve, or in time you will.\nYour servant in eternity, Veneric Soll, Steward of House Morrow-Veil"
+LTR_P04_FROM,"From Steward Veneric Soll to Reeve Harl Bassett, by hand"
+PZ_P05_TITLE,The Signature
+PZ_P05_BRIEF,Slide the given crib along the cipher until its pattern of repeats fits.
+PZ_P05_HINT1,This letter is too short for the tally scroll to save you. Look instead at what a bureaucrat always writes.
+PZ_P05_HINT2,A crib is a guess you already trust. Slide it along the cipher until its repeats line up like a key in a lock.
+PZ_P05_HINT3,"Try the crib hard against the letter's very end, where a man like this always signs his name the same way."
+PZ_P05_CRIB,YOUR SERVANT IN ETERNITY
+PZ_P05_CRIB_SHORT,YOUR SERVANT
+LTR_P05,"My lord Casimir, forgive the haste of this hand.\nOur letters are read. Too many carts turned back at the ford, too many hounds waiting where none should wait, and no road to such knowledge but the raven road. I do not know if the reader is monk or renegade, but I know a fool's habit kept too long. From the next new moon I write in a new hand of my own devising, and the old wheel goes into the marsh mud. Say nothing of this to the household.\nYour servant in eternity, Veneric Soll"
+LTR_P05_FROM,"From Steward Veneric Soll to Lord Casimir Morrow-Veil, by raven"
+PZ_P06_TITLE,Bigrams in the Marsh
+PZ_P06_BRIEF,"Count letter pairs and triples, not single letters, to crack this flattened cipher."
+PZ_P06_HINT1,"The tally scroll lies flat this time, boy. Somebody's clerk was told to hide his favorite letter."
+PZ_P06_HINT2,Single letters will not save you here. Count pairs and triples instead: some shapes still cannot help repeating.
+PZ_P06_HINT3,"Find the three-letter shape that turns up more than any other. In English that is almost always one short, common word."
+LTR_P06,"Warden Tallow,\nThe carts turn south at the ford and climb north to the barn's back door, not the front. The hound naps past the midnight bell; a man stands watch on the stair till the dawn. Burn this fast.\nThe clerk, Wat Coln"
+LTR_P06_FROM,"From the Steward's clerk, Wat Coln, to Warden Mave Tallow, by hand"
+CDX_A1_SUBSTITUTION_TITLE,Monoalphabetic Substitution
+CDX_A1_SUBSTITUTION_BODY,"A monoalphabetic substitution cipher swaps every letter of the alphabet for another, fixed for the whole message: every E always becomes the same cipher letter, every T another, and so on. The key is the full swap, a permutation of 26 letters. There are 26! (about 4.03 x 10^26, some 88 bits) possible keys, far too many to try by hand. But the swap never changes which letters repeat, so English's own habits survive underneath it. Count the cipher's letters: the one that turns up most is very likely E. Word shapes, doubled letters and short words like THE help finish the rest."
+CDX_A1_SUBSTITUTION_EXAMPLE,"PLAIN:  THE STEWARD KEEPS THE ROLL\nCIPHER: ZIT LZTVQKR ATTHL ZIT KGSS\n\nEvery E enciphers to T, every T\nto Z: the same swap, letter by\nletter. English uses E about 1\nletter in 8. Count the cipher's\ncommonest letter: it is likely E,\nwhatever symbol stands for it."
+CDX_A1_SUBSTITUTION_WRONG,"The Steward believed a scrambled alphabet was as good as a hidden one, and kept the same swap roll after roll all season. He trusted the strangeness of the letters, not the key space, and never asked why the same shapes turned up in every tithe roll."
+CDX_A1_SUBSTITUTION_ASIDE,"The first known account of frequency analysis comes from al-Kindi, a 9th-century scholar in Baghdad. It is still the first tool a cryptanalyst reaches for against any simple substitution, and the reason no serious modern system hides plaintext by shuffling one alphabet."
+CDX_A1_SUBSTITUTION_M1,"Twenty-six keys is nothing. Twenty-six factorial is everything, and it still will not save a fool who reuses his letters."
+CDX_A1_SUBSTITUTION_M2,"Real letters wobble more than one tidy example lets on. Short words lie to you. Long ones confess everything, eventually."
+CDX_A1_CRIBS_TITLE,Cribs and Known Plaintext
+CDX_A1_CRIBS_BODY,"A crib is a guessed piece of plaintext you expect to find somewhere in a message: a greeting, a date, a signature, a phrase a clerk writes out of habit. Slide the guess against the cipher letter by letter. Where the guessed letters and the cipher letters agree on a consistent swap, you may have found part of the key; where they contradict each other, that position is wrong. Formulaic writing is a gift to the reader of another's mail: bureaucracies repeat themselves, and repetition is a crack. The more predictable the sender, the more of his own cipher he gives away for free."
+CDX_A1_CRIBS_EXAMPLE,"CRIB:   YOURSERVANT\nCIPHER: NGXKLTKCQFZ\n\nBoth spell the same shape: the 4th\nand 7th letters repeat, in the crib\nand in the cipher alike (the R and\nthe matching cipher letter).\nSlide the crib until the repeats\nline up. That spot is where it\nsits, and the swap falls out\nletter by letter."
+CDX_A1_CRIBS_WRONG,"The Steward thought a short letter was safe because it was too short for the frequency scroll to speak. He forgot that he signed every letter the same way, and a signature guessed once could be dragged along any other letter of his that was ever caught."
+CDX_A1_CRIBS_ASIDE,"Bletchley Park's codebreakers leaned on cribs from formulaic Enigma traffic: routine weather reports and the daily habit of signing off with 'nothing to report'. A predictable sender is every attacker's favorite kind of correspondent, then or now."
+CDX_A1_CRIBS_M1,Give me one line you always write and I will read every letter you ever send. Habit is a key left in the lock.
+CDX_A1_CRIBS_M2,"A crib does not solve the cipher. It just tells you where to push first, and pushing well is most of the trade."
+CDX_A1_NGRAMS_TITLE,Bigrams and Trigrams
+CDX_A1_NGRAMS_BODY,"A bigram is a pair of letters, a trigram a run of three. Even when a clerk flattens single-letter counts on purpose, the pairs and triples that make up ordinary words survive, because whole words still sit next to each other in the same order. In English, TH, HE, IN, ER and AN are the commonest bigrams; THE, AND and ING are the commonest trigrams. Count them across the cipher, word breaks or not, and the shapes of real language show through the disguise: which cipher letters tend to sit beside which others, and in what order, is a fingerprint no single swap can scrub away."
+CDX_A1_NGRAMS_EXAMPLE,"PLAIN TRIGRAM:  THE (9 times)\nCIPHER TRIGRAM: ZIT (9 times)\n\nCount every run of three letters\nin the cipher. One shape turns up\nfar more than any other: ZIT.\nIn English the commonest trigram\nis almost always THE, so ZIT is\nvery likely THE in disguise."
+CDX_A1_NGRAMS_WRONG,"The clerk was told to write sparing of the commonest letter and thought that duty done. He never thought to break up his own favorite little words, and THE sat inside his careful letter as often as it ever had, waiting to be counted."
+CDX_A1_NGRAMS_ASIDE,"Modern language models are built on the same idea taken much further: predicting the next letter, word or token from the ones around it. Every autocomplete on your phone is a distant descendant of counting THE against AND."
+CDX_A1_NGRAMS_M1,"Flatten the letters all you like. The words still hold hands with their neighbors, and neighbors talk."
+CDX_A1_NGRAMS_M2,"Simplified, mind: real cipher-breakers weigh dozens of common pairs and triples at once, not just the one favorite trigram I keep pointing at."
+DLG_A1_II_INTRO_01,"Hollowmere at night smelled of peat smoke and standing water, and under both, of blood going stale in clay jars."
+DLG_A1_II_INTRO_02,"There. Past the third eel-trap. That's her lantern, if the wind hasn't drowned it."
+DLG_A1_II_INTRO_03,"Wenna Grobb was thin as a reed herself, and just as easy to miss if you didn't know to look."
+DLG_A1_II_INTRO_04,Brother Kett. You said the new one wouldn't bite.
+DLG_A1_II_INTRO_05,"He hasn't yet. Show him what you carry, Wenna, we haven't got the night."
+DLG_A1_II_INTRO_06,"The Steward's roll. Copied it by candle while the house slept, letter for letter, same as always."
+DLG_A1_II_INTRO_07,"She unrolled it like it might scream if she wasn't careful. Maybe it would, eventually."
+DLG_A1_II_INTRO_08,"Get it to your Order fast. He changes his ledger-keepers like other men change boots, and I don't fancy being caught between."
+DLG_A1_II_INTRO_09,"Nobody's catching anybody tonight. Isaak, mind the reeds, and mind your teeth."
+DLG_A1_II_INTRO_10,"I minded them. That night, at least."
+DLG_A1_P04_AFTER_01,Wenna's finger stopped on the fourth line before I'd even finished reading the cipher aloud.
+DLG_A1_P04_AFTER_02,That name. Read it again.
+DLG_A1_P04_AFTER_03,"One small name, added at the Lady's request, not for the common roll."
+DLG_A1_P04_AFTER_04,"Lise. That's my sister's girl. Eight years old, and light on her feet, and she thinks I don't worry."
+DLG_A1_P04_AFTER_05,Wenna.
+DLG_A1_P04_AFTER_06,Don't. Don't tell me it's nothing. I know what 'not for the common roll' means in this house.
+DLG_A1_P04_AFTER_07,"I didn't know, not truly, not yet. I only knew she wasn't crying, and that frightened me more than tears would have."
+DLG_A1_P04_AFTER_08,Then we work faster. That's the only answer either of us has got tonight.
+DLG_A1_P05_AFTER_01,Read that last part again.
+DLG_A1_P05_AFTER_02,"'Our letters are read.' He knows, Kett. Or he suspects enough to matter."
+DLG_A1_P05_AFTER_03,"Then the clock's already turned over once. He'll change his hand, and we'll be chasing a new alphabet by the next moon."
+DLG_A1_P05_AFTER_04,"Small comfort, that we frightened him first."
+DLG_A1_P05_AFTER_05,Small comfort's the only kind Hollowmere hands out. Take it.
+DLG_A1_P05_REMARK_01,'Your servant in eternity.' He signed that on tithe rolls and threats alike. Vanity dressed as devotion.
+DLG_A1_P05_REMARK_02,"A signature is a habit wearing a crown. He gave you the same six words every time, and thought it made him sound eternal."
+DLG_A1_P05_REMARK_03,"It made him easy to read, is what it did."
+DLG_A1_P05_REMARK_04,"Yes. That too. Immortals are terrible at noticing their own repetitions, Isaak. Remember that, chained or not."
+DLG_A1_P06_AFTER_01,"Blackwater ford, the barn's back door, a hound that slept past midnight. Kett read it back twice, like he didn't trust his own eyes."
+DLG_A1_P06_AFTER_02,He wrote around his own most common letter and still couldn't help himself. Wrote 'the' nine times in a letter about hiding things.
+DLG_A1_P06_AFTER_03,So you know the route now.
+DLG_A1_P06_AFTER_04,"We know the route. Knowing where the cart goes and knowing where Lise sleeps are two different maps, Wenna."
+DLG_A1_P06_AFTER_05,"Find both, then."
+DLG_A1_II_END_01,Wenna held out her wrist before I'd even asked. Her hand shook so hard the lantern light jumped with it.
+DLG_A1_II_END_02,"Take it. You're hungrier than you're letting on, and I'd rather it was you than something worse in the reeds."
+DLG_A1_II_END_03,"I could smell it over the marsh, over the blood already spoiling in the Steward's jars. Everything else went quiet."
+DLG_A1_II_END_04,"She's shaking harder than the cold explains. Word travels fast in a marsh this small, about what you did to Odo Lusk."
+DLG_A1_II_END_05,"She trusts you more than she should, probably. Word of Odo Lusk walking home free travels just as fast as the other kind."
+DLG_A1_II_END_06,"'It's your choice, not mine,' I told her. It wasn't much of a promise. It was all I had."
+DLG_A1_II_END_07,The Thirst wanted her wrist more than it had wanted anything else all night.
+DLG_A1_II_END_C1,Drink from her wrist
+DLG_A1_II_END_C2,Refuse her offer
+DLG_A1_II_END_08,"He drank. Wenna's breath caught, then eased, like something old and terrible had finally been paid its due."
+DLG_A1_II_END_09,"He let her hand fall, gently, and stepped back before hunger could argue with him."
+DLG_A1_II_END_10,Whatever happens to that girl Lise isn't a promise either of us can make from a marsh at midnight.
+DLG_A1_II_END_11,"I didn't ask for a promise. I asked you to be quick, and careful, and to come back."
+DLG_A1_II_END_12,"We'll be quick. Careful's asking a lot of him, but I'll vouch for both of us."
+DLG_A1_II_END_13,"It was the closest thing to an oath either of us gave her that night, and it was Kett's, not mine."
+DLG_A1_II_FRENZY_01,"The hound smelled me before I smelled it, and by then it hardly mattered which of us moved first."
+DLG_A1_II_FRENZY_02,"He struck before Kett could get his name out, teeth first, thought a distant second."
+DLG_A1_II_FRENZY_03,"Isaak! Isaak, stop, please-"
+DLG_A1_II_FRENZY_04,"I heard her like she was shouting from the bottom of a well. The letter went out of her hand into the mud, and I didn't care."
+DLG_A1_II_FRENZY_05,"Kett hauled him back by the collar, hard as a man dragging a dog off a kill, and swore the whole while."
+DLG_A1_II_FRENZY_06,"That's enough! That's ENOUGH, Isaak, look at me, look at my one damned eye and nobody else's blood."
+DLG_A1_II_FRENZY_07,"The handler didn't die. I want that said plainly, for whatever plainness is worth after a thing like that."
+DLG_A1_II_FRENZY_08,"Wenna's copy was ruined past reading, soaked through with mud and worse. We'd have to catch the Steward's next letter clean."
+DLG_A1_VAULT_II_01,A crib. Elegant. You didn't break his alphabet so much as let him hand you the last six words of every letter he ever wrote.
+DLG_A1_VAULT_II_02,"He handed us more than that, eventually."
+DLG_A1_VAULT_II_03,"Vanity, Isaak. 'Your servant in eternity' is not devotion, it is a man admiring the sound of his own permanence."
+DLG_A1_VAULT_II_04,"You drank from the courier girl. I wonder if you tasted her fear, or only her blood."
+DLG_A1_VAULT_II_05,You refused her. Interesting. Hunger is not usually so polite.
+DLG_A1_VAULT_II_06,And a hound's handler nearly died for your restraint failing once. The ledger remembers that too.
+DLG_A1_VAULT_II_07,Ask what you actually want to ask.
+DLG_A1_VAULT_II_08,"Very well. How did the many-toothed key fall into a monk's hands, Isaak? Keys like that are not lost. They are given, or stolen."

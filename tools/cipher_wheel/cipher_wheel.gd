@@ -33,7 +33,7 @@ var _shift_btn: Button = null
 
 func _ready() -> void:
 	tool_id = "cipher_wheel"
-	custom_minimum_size = Vector2(600, 640)
+	custom_minimum_size = Vector2(360, 420)
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	mouse_filter = Control.MOUSE_FILTER_STOP

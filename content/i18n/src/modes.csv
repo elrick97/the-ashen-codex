@@ -1,0 +1,36 @@
+keys,en
+UI_TAB_WHEEL,Wheel
+UI_TAB_TALLY,Tally Scroll
+UI_TAB_BOARD,Alphabet
+UI_TAB_LENS,Lens
+UI_TAB_LOOM,Loom
+UI_TAB_WHEELS,Wheels
+UI_TAB_COMB,Comb
+UI_TAB_DIAL,Dials
+UI_MODE_CAESAR,"Turn the wheel until the letter reads true, then seal it."
+UI_MODE_CAESAR_RUSTED,"Rusted wheel: each notch costs %d Thirst. Counting letters is free."
+UI_KEYLESS_NOTE,Note %d
+UI_MODE_KEYLESS,"Three notes, two vanity schemes. Read each one, then seal and say what protects them."
+UI_MODE_SUB,"Place a tile for every cipher letter. Placing is free; sealing a wrong alphabet costs Thirst."
+UI_MODE_SUB_CRIB,The Steward always signs the same way. Slide the crib to where it fits.
+UI_MODE_SUB_NGRAMS,"No word breaks, and E is hiding. Pairs and triples still talk."
+UI_MODE_VIG_PERIOD,Set to %d wheels.
+UI_MODE_VIG_GIVEN,"The key has %d teeth. Set each wheel by its own column. Notches cost %d."
+UI_MODE_VIG_KASISKI,"Unknown key length. Hold repeated letters to measure them. Notches cost %d."
+UI_MODE_VIG_IOC,"Unknown key length and too short for Kasiski. Slide the loom. Notches cost %d."
+UI_ROSARY_STAGE1,"Kett's lesson: which key pours %s into %s?"
+UI_ROSARY_STAGE2,"Kett's lesson: pour the word, then pour it again. Pours: %d"
+UI_ROSARY_POUR,Pour the key in
+UI_ROSARY_POUR_AGAIN,Pour the same key again
+UI_MODE_ROSARY_1,Flip the key beads until the poured strand matches the wanted one.
+UI_MODE_ROSARY_2,"Pour twice with the same key, then seal it."
+UI_MODE_ROSARY_3,Turn the dial. The gauge scores how English the reading is. Turns are free.
+UI_MODE_REPXOR_SIZE,Transposed into %d strands.
+UI_MODE_REPXOR_1,Find the key size on the comb first.
+UI_MODE_REPXOR_2,"%d strands, one dial each. Every strand is single-byte XOR."
+UI_MODE_OTP,"One pad, used twice. Drag cribs; pin the ones that read true. A wrong pin costs %d."
+UI_WIDGET_SHIFT_HELP,"Turn the ring. At one setting, and only one, the line reads true."
+UI_WIDGET_FREQ_HELP,"Shift %d. The tallest cipher bar is %s. The profile slides, its shape does not."
+UI_WIDGET_IOC_HELP,"A letter under the key VEIL. Slide N: at 4 (and 8) each strand is one Caesar of English and the vial thickens."
+UI_WIDGET_XOR_HELP,"Flip any bead of the letter or the key. The poured strand is their XOR; pour the key again and the letter returns."
+UI_WIDGET_XOR_TWICE,Poured twice

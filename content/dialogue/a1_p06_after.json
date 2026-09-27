@@ -1,0 +1,28 @@
+{
+  "id": "a1_p06_after",
+  "location": "memory",
+  "ambience": "marsh",
+  "nodes": [
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_P06_AFTER_01"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_P06_AFTER_02"
+    },
+    {
+      "speaker": "wenna",
+      "text": "DLG_A1_P06_AFTER_03"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_P06_AFTER_04"
+    },
+    {
+      "speaker": "wenna",
+      "text": "DLG_A1_P06_AFTER_05",
+      "end": true
+    }
+  ]
+}

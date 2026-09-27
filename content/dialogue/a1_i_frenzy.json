@@ -1,0 +1,13 @@
+{
+  "id": "a1_i_frenzy",
+  "location": "memory",
+  "ambience": "marsh",
+  "nodes": [
+    {"speaker": "narrator", "text": "DLG_A1_I_FRENZY_01"},
+    {"speaker": "isaak", "text": "DLG_A1_I_FRENZY_02"},
+    {"speaker": "narrator", "text": "DLG_A1_I_FRENZY_03"},
+    {"speaker": "kett", "text": "DLG_A1_I_FRENZY_04"},
+    {"speaker": "isaak", "text": "DLG_A1_I_FRENZY_05"},
+    {"speaker": "kett", "text": "DLG_A1_I_FRENZY_06", "end": true}
+  ]
+}

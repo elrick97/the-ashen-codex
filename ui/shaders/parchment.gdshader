@@ -6,7 +6,7 @@ shader_type canvas_item;
 uniform vec2 rect_size = vec2(1000.0, 600.0);
 uniform float seed = 0.0;
 uniform vec4 base_color : source_color = vec4(0.914, 0.863, 0.753, 1.0);
-uniform vec4 dark_color : source_color = vec4(0.780, 0.690, 0.520, 1.0);
+uniform vec4 dark_color : source_color = vec4(0.845, 0.765, 0.610, 1.0);
 uniform vec4 burn_color : source_color = vec4(0.200, 0.120, 0.060, 1.0);
 uniform float burn_width = 34.0;
 uniform float stain_strength = 0.45;
@@ -44,7 +44,7 @@ float fbm(vec2 p) {
 
 void fragment() {
 	vec2 p = local;
-	float tone = fbm(p * 0.0045 + seed);
+	float tone = fbm(p * 0.0028 + seed);
 	vec3 col = mix(dark_color.rgb, base_color.rgb, smoothstep(0.25, 0.75, tone));
 	// Fibres: long thin streaks along the page.
 	float fib = noise(vec2(p.x * 0.35, p.y * 0.012 + seed)) * 0.6 + noise(vec2(p.x * 0.012, p.y * 0.3)) * 0.4;

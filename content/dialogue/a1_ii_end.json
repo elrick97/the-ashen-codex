@@ -1,0 +1,89 @@
+{
+  "id": "a1_ii_end",
+  "location": "memory",
+  "ambience": "marsh",
+  "nodes": [
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_II_END_01"
+    },
+    {
+      "speaker": "wenna",
+      "text": "DLG_A1_II_END_02"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_II_END_03"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_II_END_04",
+      "if": {
+        "flag": "courier_drained"
+      }
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_II_END_05",
+      "if": {
+        "flag": "courier_spared"
+      }
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_II_END_06"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_II_END_07",
+      "choices": [
+        {
+          "text": "DLG_A1_II_END_C1",
+          "set": {
+            "drank_wenna": true
+          },
+          "thirst": -30,
+          "goto": "drank"
+        },
+        {
+          "text": "DLG_A1_II_END_C2",
+          "set": {
+            "refused_wenna": true
+          },
+          "thirst": -5,
+          "goto": "refused"
+        }
+      ]
+    },
+    {
+      "speaker": "narrator",
+      "text": "DLG_A1_II_END_08",
+      "label": "drank",
+      "goto": "after"
+    },
+    {
+      "speaker": "narrator",
+      "text": "DLG_A1_II_END_09",
+      "label": "refused",
+      "goto": "after"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_II_END_10",
+      "label": "after"
+    },
+    {
+      "speaker": "wenna",
+      "text": "DLG_A1_II_END_11"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_II_END_12"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_II_END_13",
+      "end": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "a1_p01_after",
+  "location": "memory",
+  "ambience": "marsh",
+  "nodes": [
+    {"speaker": "kett", "text": "DLG_A1_P01_AFTER_01"},
+    {"speaker": "isaak", "text": "DLG_A1_P01_AFTER_02"},
+    {"speaker": "kett", "text": "DLG_A1_P01_AFTER_03", "end": true}
+  ]
+}

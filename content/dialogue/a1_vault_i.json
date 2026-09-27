@@ -1,0 +1,15 @@
+{
+  "id": "a1_vault_i",
+  "location": "vault",
+  "ambience": "vault",
+  "nodes": [
+    {"speaker": "marquise", "text": "DLG_A1_VAULT_I_01"},
+    {"speaker": "marquise", "text": "DLG_A1_VAULT_I_02"},
+    {"speaker": "marquise", "text": "DLG_A1_VAULT_I_03", "if": {"flag": "courier_drained"}},
+    {"speaker": "marquise", "text": "DLG_A1_VAULT_I_04", "if": {"flag": "courier_spared"}},
+    {"speaker": "marquise", "text": "DLG_A1_VAULT_I_05", "if": {"flag": "frenzied_a1_i"}},
+    {"speaker": "marquise", "text": "DLG_A1_VAULT_I_06"},
+    {"speaker": "isaak", "text": "DLG_A1_VAULT_I_07"},
+    {"speaker": "marquise", "text": "DLG_A1_VAULT_I_08", "end": true}
+  ]
+}

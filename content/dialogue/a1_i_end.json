@@ -1,0 +1,19 @@
+{
+  "id": "a1_i_end",
+  "location": "memory",
+  "ambience": "marsh",
+  "nodes": [
+    {"speaker": "narrator", "text": "DLG_A1_I_END_01"},
+    {"speaker": "isaak", "text": "DLG_A1_I_END_02"},
+    {"speaker": "kett", "text": "DLG_A1_I_END_03"},
+    {"speaker": "isaak", "text": "DLG_A1_I_END_04", "choices": [
+      {"text": "DLG_A1_I_END_C1", "set": {"courier_drained": true}, "thirst": -35, "goto": "drained"},
+      {"text": "DLG_A1_I_END_C2", "set": {"courier_spared": true}, "thirst": -12, "goto": "spared"}
+    ]},
+    {"label": "drained", "speaker": "narrator", "text": "DLG_A1_I_END_05", "goto": "drained2"},
+    {"label": "drained2", "speaker": "isaak", "text": "DLG_A1_I_END_06", "goto": "after"},
+    {"label": "spared", "speaker": "kett", "text": "DLG_A1_I_END_07", "goto": "spared2"},
+    {"label": "spared2", "speaker": "isaak", "text": "DLG_A1_I_END_08", "goto": "after"},
+    {"label": "after", "speaker": "isaak", "text": "DLG_A1_I_END_09", "end": true}
+  ]
+}

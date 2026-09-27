@@ -1,0 +1,40 @@
+{
+  "id": "a1_p04_after",
+  "location": "memory",
+  "ambience": "marsh",
+  "nodes": [
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_P04_AFTER_01"
+    },
+    {
+      "speaker": "wenna",
+      "text": "DLG_A1_P04_AFTER_02"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_P04_AFTER_03"
+    },
+    {
+      "speaker": "wenna",
+      "text": "DLG_A1_P04_AFTER_04"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_P04_AFTER_05"
+    },
+    {
+      "speaker": "wenna",
+      "text": "DLG_A1_P04_AFTER_06"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_P04_AFTER_07"
+    },
+    {
+      "speaker": "kett",
+      "text": "DLG_A1_P04_AFTER_08",
+      "end": true
+    }
+  ]
+}

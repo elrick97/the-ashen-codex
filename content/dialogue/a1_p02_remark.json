@@ -1,0 +1,9 @@
+{
+  "id": "a1_p02_remark",
+  "location": "vault",
+  "ambience": "vault",
+  "nodes": [
+    {"speaker": "marquise", "text": "DLG_A1_P02_REMARK_01"},
+    {"speaker": "marquise", "text": "DLG_A1_P02_REMARK_02", "end": true}
+  ]
+}

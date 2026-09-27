@@ -24,7 +24,7 @@ func _ready() -> void:
 	tool_id = "bit_rosary"
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	custom_minimum_size = Vector2(600, 600)
+	custom_minimum_size = Vector2(360, 420)
 	var box: VBoxContainer = VBoxContainer.new()
 	box.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	box.add_theme_constant_override("separation", 10)

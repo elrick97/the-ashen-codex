@@ -141,7 +141,7 @@ func _build() -> void:
 
 
 func _layout() -> void:
-	letter_card.custom_minimum_size.y = clampf(size.y * 0.30, 360.0, 720.0)
+	letter_card.custom_minimum_size.y = clampf(size.y * 0.27, 330.0, 620.0)
 
 
 func _start_mode(variant: int, frenzied: bool, state: Dictionary) -> void:
@@ -220,7 +220,13 @@ func _on_seal() -> void:
 	if _finished or _frenzy_running:
 		return
 	EventBus.sfx.emit("quill")
-	var v: PuzzleMode.Verdict = mode.commit()
+	resolve(mode.commit())
+
+
+## Applies a verdict (modes with a follow-up question call this later themselves).
+func resolve(v: PuzzleMode.Verdict) -> void:
+	if _finished:
+		return
 	match v:
 		PuzzleMode.Verdict.SOLVED:
 			_solved()
@@ -300,6 +306,11 @@ func _on_frenzy() -> void:
 
 
 func _show_coach_marks() -> void:
+	# Let the containers lay out first so the circled rect is real.
+	for _i: int in range(3):
+		await get_tree().process_frame
+	if not is_inside_tree():
+		return
 	for tool_id: String in mode.coach_tools():
 		if ctx.progression.coach_seen(tool_id):
 			continue

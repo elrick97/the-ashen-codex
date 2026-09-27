@@ -1,0 +1,49 @@
+{
+  "id": "a1_vault_ii",
+  "location": "vault",
+  "ambience": "vault",
+  "nodes": [
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_II_01"
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_VAULT_II_02"
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_II_03"
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_II_04",
+      "if": {
+        "flag": "drank_wenna"
+      }
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_II_05",
+      "if": {
+        "flag": "refused_wenna"
+      }
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_II_06",
+      "if": {
+        "flag": "frenzied_a1_ii"
+      }
+    },
+    {
+      "speaker": "isaak",
+      "text": "DLG_A1_VAULT_II_07"
+    },
+    {
+      "speaker": "marquise",
+      "text": "DLG_A1_VAULT_II_08",
+      "end": true
+    }
+  ]
+}

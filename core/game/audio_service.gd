@@ -71,10 +71,12 @@ func _on_thirst_level(level: int) -> void:
 		_crossfade(_heartbeat, null)
 		return
 	var s: AudioStream = _stream("heartbeat")
-	if _heartbeat.stream != s or not _heartbeat.playing:
-		_crossfade(_heartbeat, s)
+	var target: float = -14.0 + 4.0 * float(level)
 	_heartbeat.pitch_scale = 1.0 + 0.12 * float(level - 1)
-	_heartbeat.volume_db = -14.0 + 4.0 * float(level)
+	if _heartbeat.stream != s or not _heartbeat.playing:
+		_crossfade(_heartbeat, s, target)
+	else:
+		create_tween().tween_property(_heartbeat, "volume_db", target, 0.8)
 
 
 func _stream(id: String) -> AudioStream:
@@ -84,6 +86,9 @@ func _stream(id: String) -> AudioStream:
 	var s: AudioStream = null
 	if ResourceLoader.exists(path):
 		s = load(path) as AudioStream
+		if s != null and (id.begins_with("amb_") or id.begins_with("drone_") or id == "heartbeat"):
+			s = s.duplicate()
+			_make_looping(s)
 	_streams[id] = s
 	return s
 
@@ -92,13 +97,20 @@ func _make_loop_player(bus_name: String) -> AudioStreamPlayer:
 	var p: AudioStreamPlayer = AudioStreamPlayer.new()
 	p.bus = bus_name
 	add_child(p)
-	p.finished.connect(func() -> void:
-		if p.stream != null:
-			p.play())
 	return p
 
 
-func _crossfade(player: AudioStreamPlayer, stream: AudioStream) -> void:
+## Ambience, drones and the heartbeat loop natively (no gap, no finished-signal restart).
+static func _make_looping(s: AudioStream) -> void:
+	var wav: AudioStreamWAV = s as AudioStreamWAV
+	if wav == null:
+		return
+	wav.loop_mode = AudioStreamWAV.LOOP_FORWARD
+	wav.loop_begin = 0
+	wav.loop_end = int(wav.get_length() * float(wav.mix_rate))
+
+
+func _crossfade(player: AudioStreamPlayer, stream: AudioStream, target_db: float = 0.0) -> void:
 	var t: Tween = create_tween()
 	if player.playing:
 		t.tween_property(player, "volume_db", -40.0, 0.6)
@@ -109,7 +121,7 @@ func _crossfade(player: AudioStreamPlayer, stream: AudioStream) -> void:
 			player.volume_db = -40.0
 			player.play())
 	if stream != null:
-		t.tween_property(player, "volume_db", 0.0, 1.2)
+		t.tween_property(player, "volume_db", target_db, 1.2)
 
 
 func _ensure_buses() -> void:
