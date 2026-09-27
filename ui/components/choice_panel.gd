@@ -49,11 +49,4 @@ func _build(question: String, options: PackedStringArray) -> void:
 		cancelled.emit()
 		queue_free())
 	col.add_child(back)
-	var place: Callable = func() -> void:
-		var vs: Vector2 = get_viewport_rect().size
-		var m: Vector4 = SafeArea.margins(self)
-		panel.size = Vector2(vs.x - 60.0 - m.x - m.z, 0)
-		panel.reset_size()
-		panel.position = Vector2(30.0 + m.x, vs.y - m.w - panel.size.y - 40.0)
-	panel.resized.connect(place)
-	place.call_deferred()
+	PanelPlace.bottom(panel, self)

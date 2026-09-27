@@ -13,7 +13,7 @@ const ENGLISH_ORDER: String = "ETAOINSHRDLCUMWFGYPBVKJXQZ"
 ## `fixed`: cipher index -> plain index pinned by a crib (never moved).
 ## `use_trigrams`: score with trigrams (the Bigrams-in-the-Marsh lesson) instead of quadgrams.
 ## Returns a 26-entry PackedInt32Array: cipher letter index -> plain letter index.
-static func solve_substitution(ciphertext: String, fixed: Dictionary = {}, use_trigrams: bool = false, restarts: int = 4) -> PackedInt32Array:
+static func solve_substitution(ciphertext: String, fixed: Dictionary = {}, use_trigrams: bool = false, restarts: int = 10) -> PackedInt32Array:
 	var c: PackedInt32Array = TextUtil.letter_indices(ciphertext)
 	var ranked: PackedInt32Array = Frequency.ranked(ciphertext)
 	var start: PackedInt32Array = PackedInt32Array()
@@ -33,44 +33,130 @@ static func solve_substitution(ciphertext: String, fixed: Dictionary = {}, use_t
 		start[ci2] = order[oi]
 		used[order[oi]] = true
 		oi += 1
-	var best: PackedInt32Array = start.duplicate()
+	var best: PackedInt32Array = _climb(c, start.duplicate(), fixed, use_trigrams)
 	var best_score: float = _score(c, best, use_trigrams)
 	var rng: Pcg32 = Pcg32.new(777)
-	var key: PackedInt32Array = best.duplicate()
-	for r: int in range(restarts):
-		if r > 0:
-			key = best.duplicate()
-			for _k: int in range(3):
-				var a0: int = rng.next_int(26)
-				var b0: int = rng.next_int(26)
-				if not fixed.has(a0) and not fixed.has(b0):
-					var t0: int = key[a0]
-					key[a0] = key[b0]
-					key[b0] = t0
-		var score: float = _score(c, key, use_trigrams)
-		var improved: bool = true
-		while improved:
-			improved = false
-			for a: int in range(26):
-				if fixed.has(a):
-					continue
-				for b: int in range(a + 1, 26):
-					if fixed.has(b):
-						continue
-					var t: int = key[a]
-					key[a] = key[b]
-					key[b] = t
-					var s: float = _score(c, key, use_trigrams)
-					if s > score:
-						score = s
-						improved = true
-					else:
-						key[b] = key[a]
-						key[a] = t
-		if score > best_score:
-			best_score = score
-			best = key.duplicate()
+	for r: int in range(1, restarts):
+		# Restart from a shaken copy of the best key (half the time) or a fresh shuffle.
+		var key: PackedInt32Array = best.duplicate()
+		var free: Array = []
+		for i: int in range(26):
+			if not fixed.has(i):
+				free.append(i)
+		if r % 2 == 0:
+			var vals: Array = []
+			for i2: int in free:
+				vals.append(key[i2])
+			rng.shuffle(vals)
+			for j: int in range(free.size()):
+				key[free[j]] = vals[j]
+		else:
+			for _k: int in range(4):
+				var a0: int = free[rng.next_int(free.size())]
+				var b0: int = free[rng.next_int(free.size())]
+				var t0: int = key[a0]
+				key[a0] = key[b0]
+				key[b0] = t0
+		key = _climb(c, key, fixed, use_trigrams)
+		var sc: float = _score(c, key, use_trigrams)
+		if sc > best_score:
+			best_score = sc
+			best = key
 	return best
+
+
+## Hill-climb: keep swapping pairs of plaintext assignments while the score improves.
+static func _climb(c: PackedInt32Array, key: PackedInt32Array, fixed: Dictionary, tri: bool) -> PackedInt32Array:
+	var score: float = _score(c, key, tri)
+	var improved: bool = true
+	while improved:
+		improved = false
+		for a: int in range(26):
+			if fixed.has(a):
+				continue
+			for b: int in range(a + 1, 26):
+				if fixed.has(b):
+					continue
+				var t: int = key[a]
+				key[a] = key[b]
+				key[b] = t
+				var s: float = _score(c, key, tri)
+				if s > score:
+					score = s
+					improved = true
+				else:
+					key[b] = key[a]
+					key[a] = t
+	return key
+
+
+## Word patterns: with word breaks kept, keep swapping letters while more of the reading
+## is made of real English words (the second half of the Tithe Roll technique).
+static func polish_with_words(ciphertext: String, cipher_to_plain: PackedInt32Array, words: Dictionary, fixed: Dictionary = {}) -> PackedInt32Array:
+	var key: PackedInt32Array = cipher_to_plain.duplicate()
+	var present: Array[int] = []
+	var movable: Array[int] = []
+	var counts: PackedInt32Array = Frequency.counts(ciphertext)
+	for i: int in range(26):
+		if not fixed.has(i):
+			movable.append(i)
+			if counts[i] > 0:
+				present.append(i)
+	var spaced: bool = ciphertext.strip_edges().contains(" ")
+	var best: int = _word_score(ciphertext, key, words) if spaced else _segment_score(ciphertext, key, words)
+	var improved: bool = true
+	while improved:
+		improved = false
+		for a: int in present:
+			for b: int in movable:
+				if b <= a and counts[b] > 0:
+					continue
+				if b == a:
+					continue
+				var t: int = key[a]
+				key[a] = key[b]
+				key[b] = t
+				var s: int = _word_score(ciphertext, key, words) if spaced else _segment_score(ciphertext, key, words)
+				if s > best:
+					best = s
+					improved = true
+				else:
+					key[b] = key[a]
+					key[a] = t
+	return key
+
+
+## Letters without word breaks: the most letters that can be covered by real words
+## (dynamic-programming segmentation, words up to 12 letters).
+static func _segment_score(ciphertext: String, key: PackedInt32Array, words: Dictionary) -> int:
+	var c: PackedInt32Array = TextUtil.letter_indices(ciphertext)
+	var plain: PackedByteArray = PackedByteArray()
+	plain.resize(c.size())
+	for i: int in range(c.size()):
+		plain[i] = 65 + key[c[i]]
+	var text: String = plain.get_string_from_ascii()
+	var n: int = text.length()
+	var best: PackedInt32Array = PackedInt32Array()
+	best.resize(n + 1)
+	for i2: int in range(1, n + 1):
+		best[i2] = best[i2 - 1]
+		for l: int in range(2, mini(12, i2) + 1):
+			if words.has(text.substr(i2 - l, l)):
+				best[i2] = maxi(best[i2], best[i2 - l] + l)
+	return best[n]
+
+
+static func _word_score(ciphertext: String, key: PackedInt32Array, words: Dictionary) -> int:
+	var total: int = 0
+	var cur: String = ""
+	for ch: int in (ciphertext.to_upper() + " ").to_ascii_buffer():
+		if TextUtil.is_upper(ch):
+			cur += String.chr(65 + key[ch - 65])
+		else:
+			if cur != "" and words.has(cur):
+				total += cur.length()
+			cur = ""
+	return total
 
 
 ## Turns a cipher->plain index array into a Substitution key string (plain -> cipher).

@@ -138,6 +138,8 @@ func _relayout() -> void:
 
 
 func _draw() -> void:
+	if _plain_size < 4 or _cipher_size < 4:
+		return
 	var f: Font = _font()
 	var asc_c: float = f.get_ascent(_cipher_size)
 	var asc_p: float = f.get_ascent(_plain_size)

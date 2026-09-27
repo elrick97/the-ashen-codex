@@ -82,6 +82,8 @@ func _tooth_x(k: int) -> float:
 
 
 func _draw_comb() -> void:
+	if _comb.size.x < 200.0 or _comb.size.y < 200.0:
+		return
 	var w: float = _comb.size.x
 	var h: float = _comb.size.y
 	_comb.draw_rect(Rect2(0, 0, w, h), Color(0.1, 0.07, 0.05, 0.9))

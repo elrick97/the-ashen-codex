@@ -148,19 +148,24 @@ func test_p11_hamming_keysize() -> void:
 
 
 func test_p12_crib_dragging_recovers_targets() -> void:
-	for inst: PuzzleInstance in _instances("a1_p12"):
+	# C1 xor C2 does not depend on the pad, so every variant shows the same stream; the
+	# harder post-frenzy variant differs by the lost tray crib.
+	var def: PuzzleDef = db.puzzle("a1_p12")
+	for inst: PuzzleInstance in [PuzzleFactory.build(def, 0), PuzzleFactory.build(def, 1, true)]:
 		var r: Dictionary = ReferenceSolvers.solve_p12(inst)
 		var known: Array = r["known"]
-		var ok_same: bool = true
-		var ok_swap: bool = true
 		for t: Dictionary in inst.extras["targets"]:
-			var m: int = int(t["msg"])
-			for i: int in range(int(t["start"]), int(t["start"]) + int(t["length"])):
-				if (known[m] as PackedByteArray)[i] != inst.plain_bytes[m][i]:
-					ok_same = false
-				if (known[1 - m] as PackedByteArray)[i] != inst.plain_bytes[m][i]:
-					ok_swap = false
-		assert_true(ok_same or ok_swap, _tag(inst) + " recovered the tithe night and the traitor (pins: %d)" % int(r["pins"]))
+			var a: int = int(t["start"])
+			var ok: bool = true
+			# C1 xor C2 fixes each position's pair of letters only up to a swap; the player
+			# reads both letters and knows which says what, so check the pair per byte.
+			for i: int in range(a, a + int(t["length"])):
+				var got: Array = [(known[0] as PackedByteArray)[i], (known[1] as PackedByteArray)[i]]
+				var want: Array = [inst.plain_bytes[0][i], inst.plain_bytes[1][i]]
+				if not ((got[0] == want[0] and got[1] == want[1]) or (got[0] == want[1] and got[1] == want[0])):
+					ok = false
+			var phrase: String = inst.plaintexts[int(t["msg"])].substr(a, int(t["length"]))
+			assert_true(ok, _tag(inst) + " recovered '%s' (pins: %d)" % [phrase, int(r["pins"])])
 
 
 ## Share of letters read correctly by mapping cipher letters to English by frequency rank only.

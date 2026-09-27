@@ -88,12 +88,7 @@ func _build() -> void:
 		queue_free())
 	ok_row.add_child(ok)
 	_sync()
-	var place: Callable = func() -> void:
-		var vs: Vector2 = get_viewport_rect().size
-		panel.reset_size()
-		panel.position = Vector2((vs.x - panel.size.x) * 0.5, vs.y - panel.size.y - 40.0 - SafeArea.margins(self).w)
-	panel.resized.connect(place)
-	place.call_deferred()
+	PanelPlace.bottom(panel, self)
 
 
 func _type(ch: String) -> void:

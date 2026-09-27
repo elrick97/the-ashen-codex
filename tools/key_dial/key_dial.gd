@@ -220,6 +220,8 @@ func _check() -> void:
 
 
 func _draw_dial() -> void:
+	if _radius() < 60.0:
+		return
 	var c: Vector2 = _center()
 	var r: float = _radius()
 	var f: Font = ThemeBuilder.font("mono_bold")

@@ -112,7 +112,7 @@ func test_mid_puzzle_state_survives_save_and_resume() -> void:
 		assert_eq(str(saved["id"]), id, id + " active puzzle saved")
 		var host2: PuzzleHost = _open(id)
 		await wait_process_frames(2)
-		assert_eq(JSON.stringify(host2.mode.get_state()), JSON.stringify(JSON.parse_string(JSON.stringify(state))), id + " tool state restored")
+		assert_eq(_norm(host2.mode.get_state()), _norm(state), id + " tool state restored")
 		assert_true(host2.mode.can_commit(), id + " restored answer still sealable")
 		host2.queue_free()
 		await wait_process_frames(1)
@@ -148,6 +148,11 @@ func test_hints_charge_and_codex_unlocks_on_start() -> void:
 	assert_eq(int(ctx.progression.active()["thirst_spent"]), 5)
 	assert_ne(ctx.hints.text(host.def, 1), "PZ_P04_HINT1", "hint text translated")
 	host.queue_free()
+
+
+## JSON round trip so ints and floats compare equal (saves store numbers as floats).
+static func _norm(d: Dictionary) -> String:
+	return JSON.stringify(JSON.parse_string(JSON.stringify(d)))
 
 
 static func _find(n: Node, cls: String) -> Node:

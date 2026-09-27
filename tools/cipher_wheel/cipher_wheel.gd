@@ -237,6 +237,8 @@ func _rattle() -> void:
 
 
 func _draw() -> void:
+	if _radius() < 60.0:
+		return
 	var c: Vector2 = _wheel_center()
 	var r: float = _radius()
 	var step: float = TAU / 26.0

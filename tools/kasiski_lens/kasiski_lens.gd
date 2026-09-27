@@ -153,6 +153,8 @@ func _refresh() -> void:
 
 
 func _draw_ruler() -> void:
+	if _ruler.size.x < 100.0:
+		return
 	var w: float = _ruler.size.x
 	var h: float = _ruler.size.y
 	_ruler.draw_rect(Rect2(0, 0, w, h), Color(0.1, 0.07, 0.05, 0.9))

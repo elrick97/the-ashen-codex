@@ -32,6 +32,10 @@
       "text": "DLG_A1_III_INTRO_07"
     },
     {
+      "speaker": "kett",
+      "text": "DLG_A1_III_INTRO_09"
+    },
+    {
       "speaker": "isaak",
       "text": "DLG_A1_III_INTRO_08",
       "end": true

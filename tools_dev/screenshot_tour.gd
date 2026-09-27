@@ -48,12 +48,12 @@ func _frames(n: int) -> void:
 		await get_tree().process_frame
 
 
-func _snap(name: String, settle: int = 20) -> void:
+func _snap(label: String, settle: int = 20) -> void:
 	await _frames(settle)
 	await RenderingServer.frame_post_draw
 	var img: Image = get_viewport().get_texture().get_image()
 	shot += 1
-	img.save_png(out_dir.path_join("%02d_%s.png" % [shot, name]))
+	img.save_png(out_dir.path_join("%02d_%s.png" % [shot, label]))
 
 
 func _show(id: String, a: Dictionary = {}) -> Screen:
@@ -70,7 +70,7 @@ func _run() -> void:
 	await _show_and_snap("title", {}, "title_new")
 	ctx.progression.new_game()
 	await _show_and_snap("title", {}, "title_continue")
-	var st: Screen = _show("title")
+	_show("title")
 	await _frames(2)
 	main.call("open_overlay", "settings")
 	await _snap("settings")
@@ -229,6 +229,6 @@ func _extra_start_views(n: int, host: PuzzleHost) -> void:
 			await _snap("p12_crib_readable")
 
 
-func _show_and_snap(id: String, a: Dictionary, name: String) -> void:
+func _show_and_snap(id: String, a: Dictionary, label: String) -> void:
 	_show(id, a)
-	await _snap(name)
+	await _snap(label)

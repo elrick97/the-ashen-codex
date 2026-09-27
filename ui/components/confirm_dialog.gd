@@ -41,13 +41,7 @@ func _build(message: String, yes_text: String, no_text: String) -> void:
 	no.text = no_text
 	no.pressed.connect(_answer.bind(false))
 	box.add_child(no)
-	var place: Callable = func() -> void:
-		var vs: Vector2 = get_viewport_rect().size
-		panel.size = Vector2(minf(900.0, vs.x - 80.0), 0)
-		panel.reset_size()
-		panel.position = Vector2((vs.x - panel.size.x) * 0.5, vs.y * 0.62 - panel.size.y * 0.5)
-	panel.resized.connect(place)
-	place.call_deferred()
+	PanelPlace.bottom(panel, self, 900.0, 0.62)
 
 
 func _answer(yes: bool) -> void:

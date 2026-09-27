@@ -121,6 +121,8 @@ func _refresh() -> void:
 
 
 func _draw_view() -> void:
+	if _view.size.x < 200.0 or _view.size.y < 240.0:
+		return
 	var w: float = _view.size.x
 	var h: float = _view.size.y
 	_view.draw_rect(Rect2(0, 0, w, h), Color(0.1, 0.07, 0.05, 0.9))

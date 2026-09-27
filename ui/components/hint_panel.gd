@@ -53,14 +53,7 @@ func _build() -> void:
 	close.pressed.connect(queue_free)
 	col.add_child(close)
 	_refresh()
-	var place: Callable = func() -> void:
-		var vs: Vector2 = get_viewport_rect().size
-		var m: Vector4 = SafeArea.margins(self)
-		panel.size = Vector2(vs.x - 60.0 - m.x - m.z, 0)
-		panel.reset_size()
-		panel.position = Vector2(30.0 + m.x, vs.y - m.w - panel.size.y - 30.0)
-	panel.resized.connect(place)
-	place.call_deferred()
+	PanelPlace.bottom(panel, self)
 
 
 func _refresh() -> void:

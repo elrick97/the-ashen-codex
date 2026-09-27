@@ -114,6 +114,8 @@ func _bead_center(row: int, bit: int) -> Vector2:
 
 
 func _draw_canvas() -> void:
+	if _canvas.size.x < 400.0 or _canvas.size.y < 100.0 or rows.is_empty():
+		return
 	var g: Dictionary = _geom()
 	var w: float = _canvas.size.x
 	var rh: float = g["row_h"]

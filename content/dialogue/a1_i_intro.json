@@ -14,6 +14,8 @@
     {"speaker": "isaak", "text": "DLG_A1_I_INTRO_09"},
     {"speaker": "kett", "text": "DLG_A1_I_INTRO_10"},
     {"speaker": "isaak", "text": "DLG_A1_I_INTRO_11"},
-    {"speaker": "kett", "text": "DLG_A1_I_INTRO_12", "end": true}
+    {"speaker": "kett", "text": "DLG_A1_I_INTRO_12"},
+    {"speaker": "isaak", "text": "DLG_A1_I_INTRO_13"},
+    {"speaker": "kett", "text": "DLG_A1_I_INTRO_14", "end": true}
   ]
 }

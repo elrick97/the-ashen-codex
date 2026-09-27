@@ -380,6 +380,8 @@ func _unplace(cipher: String) -> void:
 # ---------------------------------------------------------------- board drawing
 
 func _draw_board() -> void:
+	if _board.size.x < 200.0 or _board.size.y < 300.0:
+		return
 	var f: Font = ThemeBuilder.font("mono_bold")
 	var small: Font = ThemeBuilder.font("semibold")
 	_board.draw_rect(_tray_rect(), Color(0.1, 0.07, 0.05, 0.9))

@@ -94,6 +94,10 @@ static func drag(stream: PackedByteArray, crib: PackedByteArray, offset: int) ->
 ## two-time-pad letters (a quick readability filter for dragged fragments).
 static func is_plausible_upper(fragment: PackedByteArray) -> bool:
 	for b: int in fragment:
-		if not (TextUtil.is_upper(b) or b == 32 or ".,;:'!?-\n".find(String.chr(b)) >= 0):
+		if not (TextUtil.is_upper(b) or UPPER_MARKS.has(b)):
 			return false
 	return true
+
+
+## Space, newline and . , ; : ' ! ? - as byte values.
+const UPPER_MARKS: Array[int] = [32, 10, 46, 44, 59, 58, 39, 33, 63, 45]

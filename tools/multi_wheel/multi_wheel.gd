@@ -223,6 +223,8 @@ func _check_notch(d: int) -> void:
 
 
 func _draw_drums() -> void:
+	if _drums.size.x < 60.0 or _drums.size.y < 120.0:
+		return
 	var w: float = _drum_w()
 	var h: float = _drums.size.y
 	var f: Font = ThemeBuilder.font("mono_bold")

@@ -262,6 +262,8 @@ func _chart_geom() -> Dictionary:
 
 
 func _draw_chart() -> void:
+	if _chart.size.x < 130.0 or _chart.size.y < 120.0:
+		return
 	var g: Dictionary = _chart_geom()
 	var w: float = g["w"]
 	var h: float = g["h"]

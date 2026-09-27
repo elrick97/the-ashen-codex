@@ -233,6 +233,8 @@ func _cell_rect(i: int) -> Rect2:
 
 
 func _draw_grid() -> void:
+	if _grid.size.x < 200.0 or _grid.size.y < 160.0:
+		return
 	var w: float = _grid.size.x
 	var h: float = _grid.size.y
 	_grid.draw_rect(Rect2(0, 0, w, h), Color(0.1, 0.07, 0.05, 0.92))

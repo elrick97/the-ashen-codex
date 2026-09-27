@@ -6,8 +6,7 @@ extends RefCounted
 
 const WORDS_PATH: String = "res://tests/solvers/data/english_words.json"
 
-static var _vocab: Dictionary = {}
-static var _prefixes: Dictionary = {}
+static var _vocab_list: PackedStringArray = PackedStringArray()
 
 
 ## 1. The First Letter: brute force the 26 shifts, keep the most English (key-space lesson).
@@ -40,7 +39,9 @@ static func solve_p03(inst: PuzzleInstance) -> Dictionary:
 
 ## 4. The Tithe Roll: frequency start + n-gram hill climb.
 static func solve_p04(inst: PuzzleInstance) -> Dictionary:
-	return {"key": SolverLib.to_key(SolverLib.solve_substitution(inst.ciphertexts[0]))}
+	var c: String = inst.ciphertexts[0]
+	var k: PackedInt32Array = SolverLib.solve_substitution(c)
+	return {"key": SolverLib.to_key(SolverLib.polish_with_words(c, k, _word_set()))}
 
 
 ## 5. The Signature: slide the crib to the offset where its letter pattern is consistent,
@@ -54,12 +55,16 @@ static func solve_p05(inst: PuzzleInstance) -> Dictionary:
 		var m: Dictionary = Crib.substitution_mapping(c, crib, pos[pos.size() - 1])
 		for k: Variant in m.keys():
 			fixed[int(k) - 65] = int(m[k]) - 65
-	return {"key": SolverLib.to_key(SolverLib.solve_substitution(c, fixed)), "crib_positions": pos}
+	var k: PackedInt32Array = SolverLib.solve_substitution(c, fixed)
+	return {"key": SolverLib.to_key(SolverLib.polish_with_words(c, k, _word_set(), fixed)), "crib_positions": pos}
 
 
-## 6. Bigrams in the Marsh: trigram statistics (single letters are flattened).
+## 6. Bigrams in the Marsh: n-gram statistics across word boundaries (single letters
+## are flattened, so only multi-letter structure such as TH, HE, THE can anchor the key).
 static func solve_p06(inst: PuzzleInstance) -> Dictionary:
-	return {"key": SolverLib.to_key(SolverLib.solve_substitution(inst.ciphertexts[0], {}, true, 6))}
+	var c: String = inst.ciphertexts[0]
+	var k: PackedInt32Array = SolverLib.solve_substitution(c, {}, false, 40)
+	return {"key": SolverLib.to_key(SolverLib.polish_with_words(c, k, _word_set()))}
 
 
 ## 7. The Steward Grows Clever: the period is given; each column is a Caesar by frequency.
@@ -94,168 +99,70 @@ static func solve_p11(inst: PuzzleInstance) -> Dictionary:
 	return {"key": SolverLib.xor_columns(data, size), "size": size}
 
 
-## 12. The Twice-Used Pad: crib-dragging. Seed with the best tray crib, then extend word by
-## word at the edges of what is known, keeping guesses whose other-letter fragment reads
-## as English. Returns the two recovered texts (0 = unknown byte). Which letter is "A" is
-## only fixed up to a swap (the game shows the senders), so the caller checks both ways.
-static func solve_p12(inst: PuzzleInstance, max_steps: int = 200) -> Dictionary:
+## 12. The Twice-Used Pad: crib-dragging (see CribDragSolver). Returns the two recovered
+## texts (0 = unknown byte). Which letter is "A" is only fixed up to a swap (the game
+## shows the senders), so the caller checks both ways.
+static func solve_p12(inst: PuzzleInstance) -> Dictionary:
 	_ensure_vocab()
 	var overlap: int = int(inst.extras["overlap"])
 	var x: PackedByteArray = XorOps.xor_bytes(inst.cipher_bytes[0], inst.cipher_bytes[1]).slice(0, overlap)
-	var known: Array[PackedByteArray] = [PackedByteArray(), PackedByteArray()]
-	for r: int in range(2):
-		known[r].resize(overlap)
-		known[r].fill(0)
-	var tray: PackedStringArray = inst.extras["crib_tray"]
-	var pins: int = 0
-	# Seed: every tray crib at every offset; keep the best-reading placement.
-	var seed_best: Dictionary = {}
-	for w: String in tray:
-		var wb: PackedByteArray = w.to_ascii_buffer()
-		for o: int in range(overlap - wb.size() + 1):
-			var frag: PackedByteArray = Crib.drag(x, wb, o)
-			if not Crib.is_plausible_upper(frag):
-				continue
-			var s: float = _fragment_score(frag) + wb.size() * 0.2
-			if seed_best.is_empty() or s > float(seed_best["score"]):
-				seed_best = {"score": s, "o": o, "w": wb}
-	if seed_best.is_empty():
-		return {"known": known, "pins": 0}
-	_apply(known, x, 0, int(seed_best["o"]), seed_best["w"])
-	pins += 1
-	for _step: int in range(max_steps):
-		var cand: Dictionary = _best_extension(known, x, tray)
-		if cand.is_empty():
-			break
-		_apply(known, x, int(cand["row"]), int(cand["o"]), cand["w"])
-		pins += 1
-	return {"known": known, "pins": pins}
+	var solver: CribDragSolver = CribDragSolver.new(x, inst.extras["crib_tray"], _story_words() + _vocab_list.slice(0, 6000))
+	return solver.solve()
 
 
-static func _apply(known: Array[PackedByteArray], x: PackedByteArray, row: int, o: int, w: PackedByteArray) -> void:
-	var other: PackedByteArray = Crib.drag(x, w, o)
-	for i: int in range(w.size()):
-		known[row][o + i] = w[i]
-		known[1 - row][o + i] = other[i]
-
-
-## Candidate words at the edges of known regions, in either letter.
-static func _best_extension(known: Array[PackedByteArray], x: PackedByteArray, tray: PackedStringArray) -> Dictionary:
-	var n: int = x.size()
-	var best: Dictionary = {}
-	for row: int in range(2):
-		var kb: PackedByteArray = known[row]
-		for e: int in range(1, n):
-			# Right edge: known up to e-1, unknown at e.
-			if kb[e - 1] != 0 and kb[e] == 0:
-				var start: int = e
-				while start > 0 and kb[start - 1] != 0 and kb[start - 1] != 32:
-					start -= 1
-				var partial: String = kb.slice(start, e).get_string_from_ascii()
-				for w: String in _completions(partial, tray):
-					var wb: PackedByteArray = (w + " ").to_ascii_buffer()
-					var cand: Dictionary = _evaluate(known, x, row, start, wb)
-					if not cand.is_empty() and (best.is_empty() or float(cand["score"]) > float(best["score"])):
-						best = cand
-			# Left edge: unknown at e-1, known from e: complete the word that ends here.
-			if kb[e - 1] == 0 and kb[e] != 0 and e >= 2:
-				var stop: int = e
-				while stop < n and kb[stop] != 0 and kb[stop] != 32:
-					stop += 1
-				var suffix: String = kb.slice(e, stop).get_string_from_ascii()
-				for w2: String in _endings(suffix, tray):
-					var wb2: PackedByteArray = (" " + w2).to_ascii_buffer()
-					var o2: int = stop - wb2.size()
-					if o2 < 0:
-						continue
-					var cand2: Dictionary = _evaluate(known, x, row, o2, wb2)
-					if not cand2.is_empty() and (best.is_empty() or float(cand2["score"]) > float(best["score"])):
-						best = cand2
-	return best
-
-
-static func _evaluate(known: Array[PackedByteArray], x: PackedByteArray, row: int, o: int, wb: PackedByteArray) -> Dictionary:
-	if o < 0 or o + wb.size() > x.size():
-		return {}
-	var fresh: int = 0
-	for i: int in range(wb.size()):
-		var k: int = known[row][o + i]
-		if k != 0 and k != wb[i]:
-			return {}
-		if k == 0:
-			fresh += 1
-	if fresh == 0:
-		return {}
-	var frag: PackedByteArray = Crib.drag(x, wb, o)
-	for i: int in range(frag.size()):
-		var k2: int = known[1 - row][o + i]
-		if k2 != 0 and k2 != frag[i]:
-			return {}
-	if not Crib.is_plausible_upper(frag):
-		return {}
-	# Read the other letter's words through the new fragment, with known neighbours.
-	var s: int = o
-	while s > 0 and known[1 - row][s - 1] != 0:
-		s -= 1
-	var t: int = o + wb.size()
-	while t < x.size() and known[1 - row][t] != 0:
-		t += 1
-	var ctx: PackedByteArray = known[1 - row].slice(s, t)
-	for i: int in range(frag.size()):
-		ctx[o - s + i] = frag[i]
-	var score: float = _fragment_score(ctx) + 0.15 * fresh
-	return {"score": score, "row": row, "o": o, "w": wb}
-
-
-## Higher when the fragment's complete words are English (or story) words.
-static func _fragment_score(frag: PackedByteArray) -> float:
-	var text: String = frag.get_string_from_ascii()
-	var parts: PackedStringArray = text.split(" ")
-	var score: float = 0.0
-	for i: int in range(parts.size()):
-		var w: String = parts[i].strip_edges().trim_suffix(".").trim_suffix(",").trim_suffix(";").trim_suffix(":")
-		if w == "":
+## Words from everything the player has read before the boss: the letters of puzzles
+## 1-11 and every dialogue scene up to puzzle 12, commonest first. A player at the boss
+## knows the House's vocabulary (tithe, moon, barn) and the names in the story.
+static func _story_words() -> PackedStringArray:
+	var keys: PackedStringArray = PackedStringArray()
+	for n: int in range(1, 12):
+		for suffix: String in ["", "_A", "_B", "_C"]:
+			keys.append("LTR_P%02d%s" % [n, suffix])
+	var db: ContentDB = ContentDB.new()
+	db.load_all()
+	for cid: String in ["a1_i", "a1_ii", "a1_iii"]:
+		var ch: ChapterDef = db.chapter(cid)
+		if ch == null:
 			continue
-		var complete: bool = i > 0 and i < parts.size() - 1
-		if complete:
-			score += float(w.length()) if _vocab.has(w) else -2.0
-		elif _prefixes.has(w) or _vocab.has(w):
-			score += 0.5 * w.length()
-	return score + EnglishScore.score_bytes(frag)
+		for st: Dictionary in ch.steps:
+			if str(st.get("id", "")) == "a1_p12":
+				break
+			if str(st.get("type", "")) != "dialogue":
+				continue
+			for node: Variant in db.dialogue(str(st["id"])).get("nodes", []):
+				var nd: Dictionary = node
+				keys.append(str(nd.get("text", "")))
+				for c: Variant in nd.get("choices", []):
+					keys.append(str((c as Dictionary).get("text", "")))
+	var counts: Dictionary = {}
+	for key: String in keys:
+		var t: String = TranslationServer.translate(key)
+		if t == key:
+			continue
+		var cur: String = ""
+		for ch2: String in (t.to_upper() + " "):
+			if ch2 >= "A" and ch2 <= "Z":
+				cur += ch2
+			else:
+				if cur.length() >= 2:
+					counts[cur] = int(counts.get(cur, 0)) + 1
+				cur = ""
+	var words: Array = counts.keys()
+	words.sort_custom(func(a2: String, b2: String) -> bool: return int(counts[a2]) > int(counts[b2]))
+	return PackedStringArray(words)
 
 
-static func _completions(partial: String, tray: PackedStringArray) -> PackedStringArray:
-	var out: PackedStringArray = PackedStringArray()
-	for w: String in _vocab.keys():
-		if w.begins_with(partial) and w.length() > partial.length():
-			out.append(w)
-	for t: String in tray:
-		var tw: String = t.strip_edges()
-		if tw.begins_with(partial) and tw.length() > partial.length():
-			out.append(tw)
-	if partial == "":
-		out.append_array(PackedStringArray(["THE", "AND", "OF", "TO", "IN", "AT", "IS", "A"]))
-	return out
-
-
-static func _endings(suffix: String, tray: PackedStringArray) -> PackedStringArray:
-	var out: PackedStringArray = PackedStringArray()
-	for w: String in _vocab.keys():
-		if w.ends_with(suffix) and w.length() > suffix.length():
-			out.append(w)
-	for t: String in tray:
-		var tw: String = t.strip_edges()
-		if tw.ends_with(suffix) and tw.length() > suffix.length():
-			out.append(tw)
-	return out
+static func _word_set() -> Dictionary:
+	_ensure_vocab()
+	var d: Dictionary = {}
+	for w: String in _vocab_list:
+		d[w] = true
+	return d
 
 
 static func _ensure_vocab() -> void:
-	if not _vocab.is_empty():
+	if not _vocab_list.is_empty():
 		return
 	var d: Variant = JSON.parse_string(FileAccess.get_file_as_string(WORDS_PATH))
 	for w: Variant in (d as Dictionary)["words"]:
-		var s: String = str(w)
-		_vocab[s] = true
-		for i: int in range(1, s.length()):
-			_prefixes[s.substr(0, i)] = true
+		_vocab_list.append(str(w))
