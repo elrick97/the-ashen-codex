@@ -6,6 +6,8 @@ You are Isaak Varr, a pale-blood cipher-hunter chained beneath the Undying Court
 
 *Everything eternal repeats.*
 
+**Play in the browser:** https://elrick97.github.io/the-ashen-codex/ (phone or desktop; the first load downloads about 40 MB).
+
 ## Run
 
 ```bash
