@@ -39,6 +39,14 @@ Presets for Android, iOS, Linux, Windows Desktop and Web are in `export_presets.
 ```
 Android needs Java + Android SDK paths in Editor Settings; iOS needs an Apple Team ID and macOS (see `docs/BLOCKERS.md`).
 
+### Web build (GitHub Pages)
+
+```bash
+./tools_dev/publish_web.sh            # export Web, then replace the gh-pages branch of origin
+./tools_dev/publish_web.sh --no-push  # export only, to build/web/
+```
+The Web preset is single-threaded, so any static host works (no COOP/COEP headers needed). To try it locally: `python3 -m http.server 8060 --directory build/web`, then open `http://localhost:8060`. The first load downloads about 40 MB; saves live in the browser's storage.
+
 ## Controls
 
 Touch first; the mouse works the same way (a click is a tap).

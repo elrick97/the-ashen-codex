@@ -21,7 +21,6 @@
       "WebFetch(domain:docs.godotengine.org)"
     ],
     "deny": [
-      "Bash(git push *)",
       "Bash(sudo *)",
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)",
