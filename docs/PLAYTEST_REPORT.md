@@ -16,7 +16,7 @@ Values are after all fixes. "Expected" is a careful first-timer who reads the Co
 | 6 | Bigrams in the Marsh (flattened E, no word breaks) | Letters tab (T tops it), then Triples: THE | Reading the other 17 letters out of an unbroken stream | Tiers now target that stage: letters before each THE, then half-words | 10-35 / Stained (the hardest early solve) |
 | 7 | The Steward Grows Clever (Vigenere, 5 given) | Per-column Tally; Read-as E; watch "shapes agree" | Columns whose peak is T or O, not E | Tier 2/3: try T, A, O, N and keep the best agreement | 14-22 / Stained |
 | 8 | Kasiski's Lens | Hold repeats; factor tray glows the largest well-supported factor | Choosing 6 over its factors 2 and 3 | Tier 3: largest factor nearly all spacings share | 12-20 / Stained |
-| 9 | The Loom of Columns (IoC) | Slide N; vial thickens at the key length | Columns that need I or N; the 0.79 column | Read-as covers E/T/A/O/I/N/S/H; tier 3 teaches the A-E-I-O vowel comb for stubborn strands | 20-30 / Stained |
+| 9 | The Loom of Columns (IoC) | Slide N; vial thickens at the key length | Columns that need I or N; the 0.79 column | Read-as covers E/T/A/O/I/N/S/H; tier 3 says to read a stubborn strand's tallest bar as S, H or N, or try the second-tallest | 12-30 / Stained |
 | 10 | Bit Rosary (bits, XOR, single-byte) | Flip beads to match; pour twice; dial the gauge | None serious | Stage-by-stage hints | 0 / Sanctified |
 | 11 | The Litany Key (repeating XOR) | Comb: shortest tooth (smallest near-best size marked); per-strand dials | A multiple of the key size (accepted anyway) | Tier 2 mentions multiples | 0 / Sanctified |
 | 12 | BOSS: The Twice-Used Pad | Drag tray cribs; readable gold text only where it truly reads | Deciding which letter a crib belongs to (now filed correctly for free) and bridging Ansgar | Tier 3: earlier letters' words; P11's "Our friend in the Quill" is the key callback | 8-20 / Stained |
@@ -53,7 +53,7 @@ All blockers and majors are fixed; every item below was re-tested (automated tes
 
 1. **Loop 1 (tests + first screenshot tour):** solvers tuned until all 12 puzzles solve on every seed and the frenzy variant; tour 1 at 1080x1920 found overflow at the largest text size, unreadable settings toggles, drips over the letter card, broken Codex drop caps, the crib strip's invisible letters, toasts over the tools, leaks at exit. All fixed; tour re-run.
 2. **Loop 2 (independent crypto audit + three adversarial playtests):** 12 WRONG / 35 MISLEADING audit items and 1 blocker / 12 major / 20+ minor playtest items fixed (tables above and in the audit). Tours re-run at 1080x1920, 720x1280, 360x640 and 1080x1920 with a simulated notch; screenshots re-reviewed; last polish (rosary lesson card, clean audio shutdown).
-3. **Loop 3 (re-audit):** a fresh auditor re-verified every earlier finding and audited everything new; see "Re-audit (second pass)" in `docs/CRYPTO_AUDIT.md`.
+3. **Loop 3 (re-audit):** a fresh auditor re-verified every earlier finding and audited everything new (33 FIXED, 9 PARTLY FIXED, 14 items open). All 14 were fixed and the same auditor verified them in a third pass (13 FIXED, 1 PARTLY FIXED: a new P09 tier-3 hint was wrong). That hint and its anti-cheese note were rewritten to the auditor's verified wording, and the three nits it listed were fixed too; see "Re-audit (second pass)", "Third pass" and "Third-pass resolution" in `docs/CRYPTO_AUDIT.md`.
 
 ## Definition of Done (PROMPT.md section 11)
 
@@ -72,7 +72,7 @@ All blockers and majors are fixed; every item below was re-tested (automated tes
 - [x] **Static typing; untyped-declaration warnings on and at zero.** `project.godot` `gdscript/warnings/untyped_declaration=1`; `python3 tools_dev/lint.py` -> 0 diagnostics (Godot's own analyzer via its language server).
 - [x] **Portrait layout at 1080x1920, 720x1280, 360x640; safe areas; no clipped text at the largest size.** `qa/screenshots/{1080x1920,720x1280,360x640,1080x1920_notch}/` (67 shots each); largest-text shots 64-67; safe areas via `SafeArea` (notch tour).
 - [x] **Screenshots reviewed.** Two review passes (loops 1 and 2); fixes listed above.
-- [x] **Independent crypto audit; every WRONG/MISLEADING fixed and re-verified.** `docs/CRYPTO_AUDIT.md` (first pass + re-audit).
+- [x] **Independent crypto audit; every WRONG/MISLEADING fixed and re-verified.** `docs/CRYPTO_AUDIT.md` (first pass, re-audit, third-pass verification and resolution; 0 open WRONG/MISLEADING items).
 - [x] **All strings in the translation CSV.** `content/i18n/strings.csv` (653 keys) built from `content/i18n/src/`; `tests/integration/test_strings.gd` (no literal `.text` in scripts, every `tr()` key and every content key exists).
 - [x] **Export presets for Android, iOS, desktop, Web.** `export_presets.cfg`; Linux, Windows and Web exported; Android/iOS need SDK/Team ID (BLOCKERS B2).
 

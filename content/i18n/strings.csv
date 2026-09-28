@@ -241,7 +241,7 @@ PZ_P09_TITLE,The Loom of Columns
 PZ_P09_BRIEF,Repeats are few and unreliable here. Slide the loom until the strands look like English.
 PZ_P09_HINT1,"Repeats here are few and can point the wrong way. The loom is the surer road, boy."
 PZ_P09_HINT2,Split the letters into strands and test each width. English strands clump; a wrong width scatters.
-PZ_P09_HINT3,"Take the smallest thick width. For a stubborn strand, find three tall bars four, four and six apart: that's A, E, I, O."
+PZ_P09_HINT3,"Take the smallest thick width. If E, T, A and O all agree poorly on a strand, read its tallest bar as S, H or N, or try the second-tallest; keep whichever agrees best."
 LTR_P09,"Tallow,\n\nWord from the manor: the night has moved. Bring the carts before dusk falls, not after moonrise as before. The old crossing floods whenever it rains, so use the north path this time and go quietly. Burn this note once you have read it.\n\nSoll"
 LTR_P09_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by hand"
 PZ_P10_TITLE,Bit Rosary
@@ -476,7 +476,7 @@ UI_MODE_REPXOR_2,"%d strands, one dial each. Every strand is single-byte XOR."
 UI_MODE_OTP,"One pad, used twice. Drag cribs; pin the ones that read true. A wrong pin costs %d."
 UI_WIDGET_SHIFT_HELP,"Turn the ring. At one setting, and only one, the line reads true."
 UI_WIDGET_FREQ_HELP,"Shift %d. The tallest cipher bar is %s. The profile slides, its shape does not."
-UI_WIDGET_IOC_HELP,"A letter under the key VEIL. Slide N: the vial thickens at 4 and its multiples, and on this short sample even at 2. Take the smallest N whose strands each read as one shift."
+UI_WIDGET_IOC_HELP,"A letter under the key VEIL. Slide N: the vial thickens at 4 and its multiples, and on this short sample even at 2 and 6. Take the smallest N whose strands each read as one shift."
 UI_WIDGET_XOR_HELP,Flip any bead of the letter or the key. The poured strand is their XOR; pour the key again and the letter returns.
 UI_WIDGET_XOR_TWICE,Poured twice
 UI_ROSARY_EQ1,%s xor %s = %s\nWanted: %s

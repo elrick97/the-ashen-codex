@@ -17,7 +17,7 @@ PZ_P09_TITLE,The Loom of Columns
 PZ_P09_BRIEF,Repeats are few and unreliable here. Slide the loom until the strands look like English.
 PZ_P09_HINT1,"Repeats here are few and can point the wrong way. The loom is the surer road, boy."
 PZ_P09_HINT2,Split the letters into strands and test each width. English strands clump; a wrong width scatters.
-PZ_P09_HINT3,"Take the smallest thick width. For a stubborn strand, find three tall bars four, four and six apart: that's A, E, I, O."
+PZ_P09_HINT3,"Take the smallest thick width. If E, T, A and O all agree poorly on a strand, read its tallest bar as S, H or N, or try the second-tallest; keep whichever agrees best."
 LTR_P09,"Tallow,\n\nWord from the manor: the night has moved. Bring the carts before dusk falls, not after moonrise as before. The old crossing floods whenever it rains, so use the north path this time and go quietly. Burn this note once you have read it.\n\nSoll"
 LTR_P09_FROM,"From Steward Veneric Soll to Warden Mave Tallow, by hand"
 PZ_P10_TITLE,Bit Rosary

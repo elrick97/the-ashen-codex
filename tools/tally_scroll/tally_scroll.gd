@@ -3,7 +3,7 @@ extends ToolBase
 ## Free analysis: how often each cipher letter occurs, drawn above the English baseline.
 ## Tabs for pairs and triples (bigrams/trigrams) when the puzzle allows, and a column
 ## selector when the letter is several Caesars interleaved (Vigenere).
-## Tapping a bar selects that cipher letter; "Read it as E / T / A / O" asks the mode to
+## Tapping a bar selects that cipher letter; "Read it as E / T / A / O / I / N / S / H" asks the mode to
 ## act. When the mode sets an alignment (the wheel's current shift), the English row is
 ## drawn under the cipher letters it would stand for, so matching shapes can be seen,
 ## and a "shapes agree" readout (Frequency.profile_match) is shown.

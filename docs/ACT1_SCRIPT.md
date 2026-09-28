@@ -161,10 +161,10 @@ Casimir Morrow-Veil,\n\nOur friend in the Quill is worth ten spies. He sits amon
 Warden Tallow,\n\nBe ready. The tithe falls on the night of the black moon, at the salt barn. Bring the ledger; count twice. The reeve is not to be trusted with the tally.\n\nYour servant in eternity,\nVeneric Soll
 ```
 
-### LTR_P12_B (33 words, 169 letters)
+### LTR_P12_B (32 words, 169 letters)
 *From Steward Veneric Soll to Lord Casimir Morrow-Veil, by raven*
 
 ```
-Casimir Morrow Veil,\n\nOur friend in the Quill is no friend. Brother Ansgar sells them our routes, and has done since the salt barn burned. Silence him before new moon.\n\nYour servant in eternity,\nVeneric Soll
+Casimir Morrow-Veil,\n\nOur friend in the Quill is no friend. Brother Ansgar sells them our routes, and has done since the salt barn burned. Silence him before new moon.\n\nYour servant in eternity,\nVeneric Soll
 ```
 

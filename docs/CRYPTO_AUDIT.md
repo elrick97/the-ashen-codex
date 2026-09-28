@@ -482,3 +482,48 @@ Independent second pass against HEAD `c219f22` (fixes in `c66a4e4`, `f9ab878`, `
 12. **MISLEADING.** `solve_p06` docstring and test message still say "flattened". The solver still starts from single-letter ranks and finishes with dictionary segmentation, so it does not show that the Pairs/Triples tabs suffice.
 13. **MISLEADING.** UI_COACH_HAMMING_COMB "Short tooth, likely key size". For 2 of 4 keys the shortest tooth is a multiple (33, 28). Low.
 14. **MISLEADING.** DLG_A1_P05_REMARK_02 ("every time") and DLG_A1_VAULT_II_01 ("on every letter"). LTR_P09 is signed only "Soll". Low.
+
+### Third pass
+
+This pass checks the 14 remaining items against HEAD `099c679` ("fix: re-audit findings"). I checked each one independently with `.tools/ra_third.py` plus short one-off ports; the scratch files are gitignored. The unit suite passes: 59/59 tests, 9605 asserts. The regenerated `.tres` anti_cheese texts match `gen_content_defs.py`.
+
+| # | item | status | evidence |
+|---|---|---|---|
+| 1 | a1_p09 anti_cheese "chance level" | FIXED | The note now reads "for some key words the repeats point at the key length or a multiple, for EMBERS they point the wrong way (3)". That matches my Kasiski port: VEIL gives 4, ASHES and GRIEF give 10, EMBERS gives 3. The same note repeats the vowel-comb advice; see item 3. |
+| 2 | a1_p05 anti_cheese O/T and "more than one place" | FIXED | Both false claims are gone. "IN ETERNITY... still fits in one place but pins six letters instead of eleven" is right: it fits once (offset 354), and the crib has 6 distinct letters against 11 for the full crib. Nit: "ambiguous in a letter this size" again hints that length is the cause, when the cause is O 43 > E 41. |
+| 3 | P09 strands unreachable by the Read-as search | PARTLY FIXED | **Fixed:** with Read-as extended to E T A O I N S H, the true shift is now within the 2 tallest bars in every strand of every key. The worst cases are 16 reads (ASHES/GRIEF strand 4) and 7-8 reads (ASHES/GRIEF strand 1, VEIL strand 4, EMBERS strand 6). The "20-30 Thirst" estimate is plausible for ASHES and GRIEF; it is high for VEIL and EMBERS (about 12-15 with perfect stopping).<br>**Remaining:** the **new PZ_P09_HINT3** ("For a stubborn strand, find three tall bars four, four and six apart: that's A, E, I, O") is **WRONG** for exactly the stubborn strands:<br>- Scoring each shift by the summed counts at the A, E, I and O positions ranks the true shift **13th/14th** (ASHES/GRIEF strand 1), **7th** (ASHES/GRIEF strand 4) and **8th** (EMBERS strand 6). Those strands have A 1, E 2-3, I 1-2, O 2: the vowels are not tall.<br>- The comb only helps on VEIL strand 4 (rank 2).<br>- "Three tall bars" also miscounts: A, E, I, O is four bars with three gaps.<br>- The a1_p09 anti_cheese repeats the vowel-comb advice. |
+| 4 | PZ_P07_HINT2 omits N | FIXED | "T, A, O or N can win". Column 4 peaks on N. |
+| 5 | a1_p07 anti_cheese preview and cost | FIXED | It now says "reads well only when most columns are right" and "roughly 14-22 Thirst". The minimum is still 14 with the eight buttons, because N stays 6th in the order. The eight letters listed match `READ_AS`. |
+| 6 | `Crib.reads_like_english` short fragments | FIXED | It now needs at least 6 letters and a per-gram fitness above -5.0; shorter fragments are drawn in a neutral colour, not red. Against the P12 stream:<br>- **0 false "reads"** across all tray cribs and 4 extra probes.<br>- The long cribs (SALT BARN, the sign-off, BROTHER, SERVANT, " OF THE ") read at every true placement.<br>- Trade-off: " THE ", TITHE, NIGHT, LEDGER and BROTHER ANSGAR never light up even when right, so the player judges those by eye (documented). |
+| 7 | CDX_A1_KASISKI_EXAMPLE third repeat off-text | FIXED | The example now shows 56 letters (28 + 28), which decrypt under VEIL to "THE TITHE IS OWED AT THE NEW MOON AND THE TITHE IS TAKEN AT THE NEW MOON". OLM (0, 16), XPP (5, 29) and BSZ (34, 46) are all visible, and they are the only repeats. The gaps 16, 24 and 12 share 2 and 4, and Kasiski gives 4. |
+| 8 | a1_p08 anti_cheese "(nothing does)" | FIXED | "about 0.89-0.90 against 0.84-0.88" matches all five keys. The true period scores 0.89-0.90; the best wrong period scores 0.84-0.88 (0.86 for SHROUD); multiple 12 scores 0.84. |
+| 9 | a1_p10 anti_cheese rationale | FIXED | It now gives the null-byte reason. K xor 0x20 reaches a gauge of at most 0.596 over all 186 keys, and the true key always tops the gauge. Note: the highest wrong gauge is 0.80, from K xor 0x07 (spaces become apostrophes, letters change). So "nearest impostor" is true only in readability, not in score; the claim "no wrong key reads as English" holds. |
+| 10 | UI_WIDGET_IOC_HELP | FIXED | The slider now reaches 12 (`configure(12)`). The help admits N = 2 (0.065) and steers to "the smallest N whose strands each read as one shift", which is 4. Nit: N = 6 also reads 0.061 (above 0.058) and is not mentioned. |
+| 11 | `profile_match` docstring | FIXED | "Compare settings... typically 0.8-0.95... a short column's runner-up can come close, and a flat count scores ~0.77." It is consistent with the measured 0.76-0.96 and the 0.77 floor. |
+| 12 | `solve_p06` docstring and test message | FIXED | "skewed away from E... trigram statistics anchor the key; the rest is finished by reading words", and the test message says "E-starved letter". |
+| 13 | UI_COACH_HAMMING_COMB | FIXED | "the key size, or a multiple of it. Tap the smallest tooth that's nearly as short." |
+| 14 | Marquise "every letter" | FIXED | Both DLG_A1_P05_REMARK_02 and DLG_A1_VAULT_II_01 now say "nearly every letter". |
+
+**Counts:** FIXED 13, PARTLY FIXED 1 (item 3), NOT FIXED 0.
+
+**New or remaining WRONG / MISLEADING items:**
+1. **WRONG.** PZ_P09_HINT3 and the a1_p09 anti_cheese teach the "A-E-I-O vowel comb" (bars four, four and six apart) for stubborn strands.
+   - On exactly those strands the comb ranks the true shift 7th to 14th: ASHES/GRIEF strands 1 and 4, and EMBERS strand 6.
+   - The hint also says "three tall bars" for four letters.
+   - What actually reaches those strands is the new S and H Read-as buttons (7-16 reads).
+   - Suggested hint: "If E, T, A and O all score poorly, try the tallest bar as S, H or N, or the second-tallest bar; keep the setting where the shapes agree best."
+
+Low-severity nits, not counted:
+- a1_p05 "ambiguous in a letter this size" (the cause is O > E, not length).
+- UI_WIDGET_IOC_HELP does not mention N = 6 (0.061).
+- The `tally_scroll.gd` header comment still says "Read it as E / T / A / O".
+
+### Third-pass resolution (lead)
+
+- **PZ_P09_HINT3 (WRONG):** the A-E-I-O vowel comb is gone. The hint now reads: "Take the smallest thick width. If E, T, A and O all agree poorly on a strand, read its tallest bar as S, H or N, or try the second-tallest; keep whichever agrees best." This is the auditor's suggested wording, voiced as Kett. It matches the measured fact that the true shift is always the tallest or second-tallest bar read as one of E T A O I N S H.
+- **a1_p09 anti_cheese:** the vowel-comb advice is replaced with "one or two strands per key need a less common read (the tallest bar as S or H, or the second-tallest bar)". The estimate is now "about 12-30 Thirst (Stained) depending on the key", covering VEIL and EMBERS at about 12-15 and ASHES and GRIEF at about 20-30.
+- **Nits:**
+  - The a1_p05 note now names the real cause ("O outnumbers E in this letter").
+  - UI_WIDGET_IOC_HELP now mentions both 2 and 6.
+  - The `tally_scroll.gd` header lists all eight Read-as letters.
+- **Open WRONG/MISLEADING items: 0.**
